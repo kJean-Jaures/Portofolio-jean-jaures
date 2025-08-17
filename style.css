@@ -838,3 +838,105 @@ body, a, button {
     transform: translate(-50%, -50%) scale(1.5);
     border-color: var(--primary-color);
 }
+
+/* ==========================================================================
+   ====== SECTION RESPONSIVE - ADAPTATION POUR MOBILES ET TABLETTES ======
+   ========================================================================== */
+
+@media screen and (max-width: 768px) {
+
+    /* --- Ajustements Généraux --- */
+    section {
+        padding: 60px 15px; /* Moins d'espace sur les côtés */
+    }
+
+    h2 {
+        font-size: 2em; /* Titres de section plus petits */
+    }
+
+    /* --- Navigation --- */
+    nav ul {
+        /* Pour l'instant, on cache le menu pour éviter qu'il ne casse le design.
+           Une future amélioration serait un menu "burger". */
+        display: none;
+    }
+    
+    /* --- Section d'Accueil (Hero) --- */
+    #hero {
+        min-height: auto; /* Hauteur automatique */
+        padding: 80px 15px;
+    }
+
+    .hero-container {
+        flex-direction: column; /* On empile le texte et la photo verticalement */
+        text-align: center;
+    }
+
+    .hero-text h1 {
+        font-size: 2.8em; /* Titre principal plus petit */
+    }
+
+    .hero-image {
+        width: 250px;  /* Photo plus petite */
+        height: 320px;
+        margin-top: 40px;
+        transform: translateY(0); /* On annule le décalage de la photo */
+    }
+    
+    .background-circle {
+        width: 220px;
+        height: 220px;
+    }
+
+    /* --- Section "À Propos" et Timeline --- */
+    /* On avait déjà inclus cette partie, mais c'est bien de vérifier qu'elle est là */
+    .timeline::before {
+        left: 10px; /* La ligne passe à gauche */
+    }
+    .timeline-item {
+        width: 100%;
+        padding-left: 50px;
+        padding-right: 15px;
+    }
+    .timeline-item:nth-child(odd),
+    .timeline-item:nth-child(even) {
+        left: 0;
+        text-align: left; /* Tout le texte est aligné à gauche */
+    }
+    .timeline-item:nth-child(odd)::after,
+    .timeline-item:nth-child(even)::after {
+        left: 1px;
+    }
+
+
+    /* --- Section Réalisations (Projets) --- */
+    .project-item,
+    .project-item:nth-child(even) {
+        flex-direction: column; /* On empile l'image et le texte verticalement */
+        gap: 20px;
+        padding: 40px 0;
+    }
+    
+    .project-title {
+        font-size: 2em; /* Titre de projet plus petit */
+    }
+    
+    .project-image-container {
+        flex-basis: auto; /* La taille de l'image s'adapte */
+    }
+
+    /* --- Bandeau Défilant --- */
+    .marquee-content span {
+        font-size: 1.2em; /* Texte du bandeau plus petit */
+    }
+
+    /* --- Curseur Personnalisé --- */
+    /* On cache le curseur personnalisé sur les appareils tactiles */
+    .cursor-dot, .cursor-outline {
+        display: none;
+    }
+
+    body, a, button {
+        cursor: auto; /* On réaffiche le curseur par défaut */
+    }
+}

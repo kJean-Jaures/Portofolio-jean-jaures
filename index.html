@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jean-Jaures Kouassi - Portfolio Étudiant Informatique</title>
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+<body>
+    
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <header>
+      <nav>
+  <div class="logo">KOUASSI Jean-Jaures</div>
+  <ul id="menu">
+    <li><a href="#a-propos">À Propos</a></li>
+    <li><a href="#realisations">Réalisations</a></li>
+    <li><a href="#competences">Compétences</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button id="darkModeToggle" aria-label="Basculer en mode sombre" class="dark-toggle">
+    <span class="toggle-circle"></span>
+  </button>
+</nav>
+
+    </header>
+
+    <main>
+        <section id="hero">
+    <div class="hero-container">
+        <div class="hero-text">
+            <h1 id="typed-title"></h1>
+
+                
+            
+            <p class="subtitle">
+                Étudiant en <span class="highlight">Informatique</span><br>Développement & Systèmes Réseaux
+            </p>
+            <a href="#realisations" class="cta-button">Découvrir mes Réalisations</a>
+        </div>
+        <div class="hero-image">
+            <div class="background-circle"></div>
+            <img src="image/pp.png" alt="Photo de Jean-Jaurès Kouassi">
+        </div>
+    </div>
+</section>
+
+<section id="a-propos">
+      <div class="intro-text" data-aos="fade-up">
+        <p>
+            Passionné par la résolution de problèmes complexes, que ce soit par le développement de logiciels ou par la gestion d'infrastructures sécurisées. Mon parcours m'a permis de développer une grande autonomie et une forte capacité d'adaptation. Je suis maintenant à la recherche d'une alternance qui me permettra de mettre en pratique mes compétences et de contribuer activement aux projets d'une entreprise innovante.
+        </p>
+    </div>
+    <svg class="background-blob" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+        <path d="M859,623Q779,746,654.5,820Q530,894,402,860.5Q274,827,188,728Q102,629,126,500.5Q150,372,242.5,280Q335,188,467,147.5Q600,107,720.5,193Q841,279,880,439.5Q919,600,859,623Z" fill="currentColor"></path>
+    </svg>
+
+    <h2>Mon Parcours</h2>
+    
+    
+    <div class="timeline">
+
+        <div class="timeline-item" data-aos="fade-up">
+            <div class="timeline-content">
+                <span class="timeline-date">2020 - 2021</span>
+                <h3>BAC Scientifique</h3>
+                <p class="timeline-location">Collège Sebaco</p>
+                <p>Obtention de mon baccalauréat, marquant le début de mon orientation vers les domaines techniques et scientifiques.</p>
+            </div>
+        </div>
+
+        <div class="timeline-item" data-aos="fade-up">
+            <div class="timeline-content">
+                <span class="timeline-date">2022 - 2023</span>
+                <h3>BTS en Informatique</h3>
+                <p class="timeline-location">Institut Supérieur Jean Paul 2</p>
+                <p>Spécialisation en développement d'applications, où j'ai acquis des bases solides en algorithmique et en programmation.</p>
+            </div>
+        </div>
+
+        <div class="timeline-item" data-aos="fade-up">
+            <div class="timeline-content">
+                <span class="timeline-date">Décembre 2023 -Mars 2023</span>
+                <h3>Stage de Fin d'étude - Assistant Chef de Projet</h3>
+                <p class="timeline-location">La Technologie Informatique</p>
+                <p>Première expérience professionnelle significative dans le développement d'applications web et mobile, avec un contact direct avec les clients.</p>
+            </div>
+        </div>
+
+        <div class="timeline-item" data-aos="fade-up">
+            <div class="timeline-content">
+                <span class="timeline-date">Mars 2025 - Juillet 2025</span>
+                <h3>Administrateur de systèmes et réseaux sécurisés – Bac+2</h3>
+                <p class="timeline-location">ESIEA, Paris</p>
+                <p>Année de spécialisation validée avec succès, axée sur l'approfondissement de mes compétences en infrastructure, administration réseau sécurisé.</p>
+            </div>
+            </div>
+
+
+        <div class="timeline-item" data-aos="fade-up">
+            <div class="timeline-content">
+                <span class="timeline-date">En cours</span>
+                <h3>Bachelor 2 Informatique(Tronc commun) </h3>
+                <p class="timeline-location">ESGI, Paris</p>
+                <p>Approfondissement de mes compétences en développement, systèmes et réseaux, en recherche active d'une alternance pour mettre en pratique cet apprentissage.</p>
+            </div>
+        </div>
+
+    </div>
+    <div class="center-button-container" data-aos="fade-up">
+        <a href="documents/MON CV.pdf" download class="cta-button">Télécharger mon CV</a>
+    </div>
+</section>
+
+        <section id="realisations">
+    <h2>Mes Réalisations</h2>
+    <div class="project-list">
+        <a href="#" class="project-item" data-aos="fade-up">
+            <div class="project-info">
+                <div class="project-number">01</div>
+                <h3 class="project-title">Projet WiSafe</h3>
+                <p class="project-description">Mise en place Hotspot Wi-Fi sécurisé avec portail captif sur Raspberry Pi.</p>
+                <div class="tags">
+                    <span>Réseaux</span>
+                    <span>Sécurité</span>
+                    <span>HTML/CSS</span>
+                    <span>JavaScript</span>
+                    <span>BASH</span>
+                    
+                </div>
+            </div>
+            <div class="project-image-container">
+                <img src="image/page dacceuil.png" alt="Projet WiSafe">
+            </div>
+        </a>
+
+        <a href="#" class="project-item" data-aos="fade-up">
+            <div class="project-info">
+                <div class="project-number">02</div>
+                <h3 class="project-title">Stage - Assistant Chef de Projet  & Devellopeur Freelance</h3>
+                <p class="project-description">Développement d'applications web et mobile pour divers clients.</p>
+                <div class="tags">
+                    <span>HTML/CSS</span>
+                    <span>JavaScript</span>
+                    <span>PHP</span>
+                    <span>Sql</span>
+                    <span>React.js</span>
+                    <span>Node.js</span>
+                    <span>Gestion de Projet</span>
+                </div>
+            </div>
+            <div class="project-image-container">
+                <img src="image/téléchargé (3).jpeg" alt="Projet de Stage">
+            </div>
+        </a>
+
+        <a href="#" class="project-item" data-aos="fade-up">
+            <div class="project-info">
+                <div class="project-number">03</div>
+                <h3 class="project-title">Graphiste Freelance</h3>
+                <p class="project-description">Création d'identités visuelles complètes pour des particuliers et petites entreprises.</p>
+                <div class="tags">
+                    <span>Photoshop</span>
+                    <span>Illustrator</span>
+                    <span>Canva</span>
+                    <span>Création d’identités visuelles</span>
+                </div>
+            </div>
+            <div class="project-image-container">
+                <img src="image/affiche.png" alt="Projet de Graphisme">
+            </div>
+        </a>
+    </div>
+</section>
+
+     <section id="competences">
+    <h2>Mes Compétences</h2>
+    <div class="competences-wrapper">
+
+        <div class="skill-category" data-aos="fade-up">
+            <h3>Langages & Développement</h3>
+            <div class="skills-grid">
+                <div class="skill-item" title="HTML5"><svg viewBox="0 0 128 128"><path fill="#E44D26" d="M20.3 11.9l-2.2 24.9h91.7l-2.2-24.9z"></path><path fill="#F16529" d="M107.6 36.8h-85l2.2 24.9h80.6z"></path><path fill="#EBEBEB" d="M105.4 61.7H64v11.1h39.2l-1.1 12.3H64v11.1h26.9l-1.1 12.3-13.4 3.7-13.4-3.7-.9-10h-11.1l2.2 24.9 36.5 10.1.1-.1 36.5-10.1 3.6-40.4z"></path></svg><p>HTML5</p></div>
+                <div class="skill-item" title="CSS3"><svg viewBox="0 0 128 128"><path fill="#264DE4" d="M20.3 11.9l-2.2 24.9h91.7l-2.2-24.9z"></path><path fill="#2965F1" d="M107.6 36.8h-85l2.2 24.9h80.6z"></path><path fill="#EBEBEB" d="M105.4 61.7H64v11.1h39.2l-1.1 12.3H64v11.1h26.9l-1.1 12.3-13.4 3.7-13.4-3.7-.9-10h-11.1l2.2 24.9 36.5 10.1.1-.1 36.5-10.1 3.6-40.4z"></path></svg><p>CSS3</p></div>
+                <div class="skill-item" title="JavaScript"><svg viewBox="0 0 128 128"><path fill="#F7DF1E" d="M0 0h128v128H0z"></path><path d="M111.1 98.4c-3.1 7.4-8.1 12.2-16.7 14.3-8.6 2.1-16.7.2-23.7-5.1-4.2-3.1-6.8-6.9-8.4-11.4h13.8c.8 2.6 2.4 4.8 4.6 6.3 2.2 1.5 4.8 2.2 7.7 2.2 4.1 0 7.3-1.4 8.7-4.1.9-1.7 1.4-4.2 1.4-7.4V50.8h17.9v47.6zM46.7 98.4c-3.1 7.4-8.1 12.2-16.7 14.3-8.6 2.1-16.7.2-23.7-5.1-4.2-3.1-6.8-6.9-8.4-11.4h13.8c.8 2.6 2.4 4.8 4.6 6.3 2.2 1.5 4.8 2.2 7.7 2.2 4.1 0 7.3-1.4 8.7-4.1.9-1.7 1.4-4.2 1.4-7.4V50.8h17.9v47.6z"></path></svg><p>JavaScript</p></div>
+                <div class="skill-item" title="React"><svg viewBox="0 0 128 128"><g fill="#61DAFB"><circle cx="64" cy="64" r="11.2"></circle><path d="M116.7 54.3c-2.8-7.9-8.4-14.8-16.2-20.1-5.1-3.5-10.7-6.2-16.6-8.2-1-.3-2.1-.6-3.1-.9H80c-.1 0 0 .1-.1.1-11.8 4.1-21.7 11.7-28.5 21.7C48.2 52.3 46 58 45.4 64c-.1 1.2-.1 2.4-.1 3.6 0 3.2.4 6.4 1.2 9.5 2.8 7.9 8.4 14.8 16.2 20.1 5.1 3.5 10.7 6.2 16.6 8.2 1 .3 2.1.6 3.1.9h.8c11.8-4.1 21.7-11.7 28.5-21.7 3.2-4.6 5.4-9.8 6.5-15.3.3-1.8.5-3.5.5-5.3 0-3.3-.4-6.5-1.2-9.6zM64 102.4c-21.2 0-38.4-17.2-38.4-38.4S42.8 25.6 64 25.6s38.4 17.2 38.4 38.4c0 21.2-17.2 38.4-38.4 38.4z"></path><path d="M54.3 11.3C46.5 14.1 39.6 19.7 34.2 27.5c-3.5 5.1-6.2 10.7-8.2 16.6-.3 1-.6 2.1-.9 3.1v.8c4.1 11.8 11.7 21.7 21.7 28.5 4.6 3.2 9.8 5.4 15.3 6.5 1.8.3 3.5.5 5.3.5 3.3 0 6.5-.4 9.6-1.2 7.9-2.8 14.8-8.4 20.1-16.2 3.5-5.1 6.2-10.7 8.2-16.6.3-1 .6-2.1.9-3.1V48c-4.1-11.8-11.7-21.7-21.7-28.5-4.6-3.2-9.8-5.4-15.3-6.5-1.8-.3-3.5-.5-5.3-.5-3.2 0-6.4.4-9.5 1.2zM89.6 64c0-14.1-11.5-25.6-25.6-25.6S38.4 49.9 38.4 64c0 14.1 11.5 25.6 25.6 25.6s25.6-11.5 25.6-25.6z"></path><path d="M11.3 73.7c2.8 7.9 8.4 14.8 16.2 20.1 5.1 3.5 10.7 6.2 16.6 8.2 1 .3 2.1.6 3.1.9h.8c11.8-4.1 21.7-11.7 28.5-21.7 3.2-4.6 5.4-9.8 6.5-15.3.3-1.8.5-3.5.5-5.3 0-3.3-.4-6.5-1.2-9.6-2.8-7.9-8.4-14.8-16.2-20.1-5.1-3.5-10.7-6.2-16.6-8.2-1-.3-2.1-.6-3.1-.9H48c-11.8 4.1-21.7 11.7-28.5 21.7-3.2 4.6-5.4 9.8-6.5 15.3-.3 1.8-.5 3.5-.5 5.3 0 3.2.4 6.4 1.2 9.5zM64 89.6c14.1 0 25.6-11.5 25.6-25.6S78.1 38.4 64 38.4 38.4 49.9 38.4 64c0 14.1 11.4 25.6 25.6 25.6z"></path></g></svg><p>React</p></div>
+                <div class="skill-item" title="Node.js"><svg viewBox="0 0 128 128"><path fill="#68A063" d="M62 104.3c-2.3 0-4.5-.9-6.2-2.6l-37-37c-3.4-3.4-3.4-9 0-12.4l37-37c2.6-2.6 6.3-3.4 9.6-2.1s5.7 5 5.7 8.5v74c0 3.5-2.4 6.8-5.7 8.5-1.9.8-3.9 1.1-5.4 1.1zM90.3 88.6c-4.1 0-7.5-3.4-7.5-7.5V46.8c0-4.1 3.4-7.5 7.5-7.5h11.2c4.1 0 7.5 3.4 7.5 7.5v34.3c0 4.1-3.4 7.5-7.5 7.5h-11.2z"></path></svg><p>Node.js</p></div>
+                <div class="skill-item" title="Express.js"><svg viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="128" height="128" fill="#303030" rx="16"/><path d="M102.8 40.2c-1.3-1.6-3.1-2.2-5-2.2H30.2c-2 0-3.8.7-5 2.2-1.3 1.5-2 3.5-1.7 5.5l10.3 64.2c.3 2 1.9 3.5 3.9 3.5h53.6c2 0 3.6-1.5 3.9-3.5l10.3-64.2c.3-2.1-.4-4-1.7-5.5zM83.8 88H45.2l-3.2-20h48l-3.2 20z" fill="#fff"/></svg><p>Express.js</p></div>
+                <div class="skill-item" title="PHP"><svg viewBox="0 0 128 128"><path fill="#777BB4" d="M64 128c35.3 0 64-28.7 64-64S99.3 0 64 0 0 28.7 0 64s28.7 64 64 64z"></path><text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="'Poppins', sans-serif" font-size="60" fill="#232531" font-weight="700">PHP</text></svg><p>PHP</p></div>
+                <div class="skill-item" title="SQL"><svg viewBox="0 0 128 128"><path fill="#F29111" d="M104 40H24c-4.4 0-8-3.6-8-8v-8c0-4.4 3.6-8 8-8h80c4.4 0 8 3.6 8 8v8c0 4.4-3.6 8-8 8z"></path><path fill="#E6E6E6" d="M16 32v64c0 4.4 3.6 8 8 8h80c4.4 0 8-3.6 8-8V32h-16v8c0 4.4-3.6 8-8 8H40c-4.4 0-8-3.6-8-8v-8H16z"></path><ellipse fill="#F29111" cx="32" cy="72" rx="8" ry="12"></ellipse></svg><p>SQL</p></div>
+                <div class="skill-item" title="Bash"><svg viewBox="0 0 128 128"><path fill="#222" d="M12 12h104v104H12z"></path><path d="M36 48l16 16-16 16M60 80h32" stroke="#4EAA25" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"></path></svg><p>Bash</p></div>
+            </div>
+        </div>
+
+        <div class="skill-category" data-aos="fade-up">
+            <h3>Systèmes, Réseaux & Sécurité</h3>
+            <div class="skills-grid">
+                <div class="skill-item" title="Windows"><svg viewBox="0 0 128 128"><path fill="#00A4EF" d="M12 12h50v50H12zM66 12h50v50H66zM12 66h50v50H12zM66 66h50v50H66z"></path></svg><p>Windows</p></div>
+                <div class="skill-item" title="Linux"><svg viewBox="0 0 128 128"><path d="M41.8 104.8c-1.2 1.3-3.1 1.4-4.5.3-1.2-1-1.6-2.8-.9-4.2l12.4-23.7c1.3-2.5 4.1-3.9 6.8-3.4 2.8.5 4.8 2.8 5 5.6.3 2.8-1.4 5.5-3.9 6.6L41.8 104.8zM86.1 104.8c1.2 1.3 3.1 1.4 4.5.3 1.2-1 1.6-2.8.9-4.2L79.1 77.2c-1.3-2.5-4.1-3.9-6.8-3.4-2.8.5-4.8 2.8-5 5.6-.3 2.8 1.4 5.5 3.9 6.6l14.9 18.8z" fill="#FFC500"></path><path d="M64 42.4c-1.9 0-3.5-1.6-3.5-3.5V22.6c0-1.9 1.6-3.5 3.5-3.5s3.5 1.6 3.5 3.5v16.3c0 1.9-1.6 3.5-3.5 3.5z" fill="#222"></path><path d="M103.5 63.8H87.1c-4.1 0-7.5-3.4-7.5-7.5s3.4-7.5 7.5-7.5h16.3c4.1 0 7.5 3.4 7.5 7.5s-3.3 7.5-7.4 7.5zM40.9 63.8H24.5c-4.1 0-7.5-3.4-7.5-7.5s3.4-7.5 7.5-7.5h16.3c4.1 0 7.5 3.4 7.5 7.5s-3.3 7.5-7.4 7.5z" fill="#222"></path></svg><p>Linux</p></div>
+                <div class="skill-item" title="Réseaux (TCP/IP, VLAN, DHCP, DNS, NAT)"><svg viewBox="0 0 128 128"><path fill="#4A90E2" d="M64 128c35.3 0 64-28.7 64-64S99.3 0 64 0 0 28.7 0 64s28.7 64 64 64z"></path><path d="M64 8C32.8 8 8 32.8 8 64s24.8 56 56 56 56-24.8 56-56S95.2 8 64 8zm0 104c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48z" fill="#FFF"></path><path d="M64 32v64M104 48H80M48 80H24M104 80H24" stroke="#FFF" stroke-width="8" stroke-linecap="round"></path></svg><p>Réseaux</p></div>
+                <div class="skill-item" title="pfSense"><svg viewBox="0 0 128 128"><path fill="#B22120" d="M64 128c35.3 0 64-28.7 64-64S99.3 0 64 0 0 28.7 0 64s28.7 64 64 64z"></path><path fill="#fff" d="M57.3 32h-16l19.4 32-19.4 32h16L73.3 64zM96.8 32h-16l19.4 32-19.4 32h16l16-25.6v-12.8L96.8 32z"></path></svg><p>pfSense</p></div>
+                <div class="skill-item" title="Firewall"><svg viewBox="0 0 128 128"><rect x="32" y="12" width="64" height="104" rx="4" fill="#E67E22"/><rect x="40" y="20" width="48" height="88" rx="2" fill="#F39C12"/><path d="M48 32h32v8H48zM48 48h32v8H48zM48 64h32v8H48zM48 80h32v8H48z" fill="#2C3E50"/></svg><p>Firewall</p></div>
+                <div class="skill-item" title="Virtualisation (Hyper-V, VMware)"><svg viewBox="0 0 128 128"><rect width="80" height="16" x="24" y="80" fill="#95A5A6" rx="4"></rect><rect width="80" height="16" x="24" y="56" fill="#BDC3C7" rx="4"></rect><rect width="80" height="16" x="24" y="32" fill="#E6E6E6" rx="4"></rect></svg><p>Virtualisation</p></div>
+            </div>
+        </div>
+
+        <div class="skill-category" data-aos="fade-up">
+            <h3>Outils & Design</h3>
+            <div class="skills-grid">
+                <div class="skill-item" title="Git"><svg viewBox="0 0 128 128"><path d="M116.5 64L64 11.5 11.5 64 64 116.5 116.5 64z" fill="#F05033"></path><path d="M64 105.4l-30-30v-22.8l30 30v22.8z" fill="#EBEBEB"></path><path d="M64 105.4v-22.8l30-30v22.8l-30 30z" fill="#D4D4D4"></path><circle cx="64" cy="34" r="11.2" fill="#EBEBEB"></circle><path d="M64 45.2c-6.2 0-11.2-5-11.2-11.2S57.8 22.8 64 22.8s11.2 5 11.2 11.2-5 11.2-11.2 11.2zM64 82.6c-6.2 0-11.2-5-11.2-11.2s5-11.2 11.2-11.2 11.2 5 11.2 11.2-5 11.2-11.2 11.2z" fill="#424242"></path><circle cx="94" cy="71.4" r="11.2" fill="#EBEBEB"></circle><path d="M94 82.6c-6.2 0-11.2-5-11.2-11.2s5-11.2 11.2-11.2 11.2 5 11.2 11.2-5 11.2-11.2 11.2z" fill="#424242"></path><path d="M64 50v21.4" stroke="#424242" stroke-width="5"></path></svg><p>Git</p></div>
+                <div class="skill-item" title="Trello"><svg viewBox="0 0 128 128"><path fill="#0079BF" d="M116 12H12c-3.3 0-6 2.7-6 6v92c0 3.3 2.7 6 6 6h104c3.3 0 6-2.7 6-6V18c0-3.3-2.7-6-6-6z"></path><path fill="#FFF" d="M80 32H56c-2.2 0-4 1.8-4 4v56c0 2.2 1.8 4 4 4h24c2.2 0 4-1.8 4-4V36c0-2.2-1.8-4-4-4zM44 32H20c-2.2 0-4 1.8-4 4v32c0 2.2 1.8 4 4 4h24c2.2 0 4-1.8 4-4V36c0-2.2-1.8-4-4-4z"></path></svg><p>Trello</p></div>
+                <div class="skill-item" title="Zabbix"><svg viewBox="0 0 128 128"><path fill="#D40000" d="M12 12h104v104H12z"/><path fill="#fff" d="M32 32h16v16H32zM80 32h16v16H80zM32 80h16v16H32zM80 80h16v16H80z"/><path stroke="#fff" stroke-width="8" stroke-linecap="round" d="M48 40h32M40 48v32M88 48v32M48 88h32"/></svg><p>Zabbix</p></div>
+                <div class="skill-item" title="Grafana"><svg viewBox="0 0 128 128"><path fill="#F46800" d="M64 8l56 32v64L64 120 8 104V40L64 8z"/><path fill="#FFF" d="M64 22.4l42 24v43.2l-42 24-42-24V46.4l42-24zM64 32L32 49.6v35.2L64 102.4l32-17.6V49.6L64 32z"/><path fill="#F46800" d="M56 56h8v24h-8zM72 48h8v24h-8zM88 64h8v24h-8z"/></svg><p>Grafana</p></div>
+                <div class="skill-item" title="VS Code"><svg viewBox="0 0 128 128"><path d="M112.5 16.6l-58-14.5c-3-.7-6 .3-8 2.5L12 36.4v55.2l34.5 31.8c2 1.8 4.6 2.5 7.1 1.8l58-14.5c3-.7 5.4-3.1 5.9-6.2V22.8c0-3.1-1.8-5.8-4-7.2z" fill="#007ACC"/><path d="M88.6 64L50.2 96.2c-1 .8-2.6.8-3.6 0L24 77.8V50.2l22.6-18.4c1-.8 2.6-.8 3.6 0L88.6 64z" fill="#FFF" fill-opacity=".8"/></svg><p>VS Code</p></div>
+                <div class="skill-item" title="Figma"><svg viewBox="0 0 128 128"><path fill="#F24E1E" d="M42.7 85.3H21.3V64h21.4z"></path><path fill="#FF7262" d="M64 85.3H42.7V64H64z"></path><path fill="#A259FF" d="M42.7 64H21.3V42.7h21.4z"></path><path fill="#1ABCFE" d="M42.7 42.7H21.3V21.3h21.4c11.8 0 21.4 9.6 21.4 21.4v0z"></path><path fill="#0ACF83" d="M64 64H42.7v21.3H64c11.8 0 21.4-9.6 21.4-21.4v0z"></path></svg><p>Figma</p></div>
+                <div class="skill-item" title="Photoshop"><svg viewBox="0 0 128 128"><path fill="#31A8FF" d="M116 12H12c-3.3 0-6 2.7-6 6v92c0 3.3 2.7 6 6 6h104c3.3 0 6-2.7 6-6V18c0-3.3-2.7-6-6-6z"></path><path d="M54.5 48.3c-1.4 0-2.8-.4-4-1.2-2.3-1.5-3.7-4.1-3.7-6.9 0-2.8 1.4-5.4 3.7-6.9 2.3-1.5 5.1-1.7 7.6-.6l8.8 3.8V32h14.8v34.9c0 4.1-3.4 7.5-7.5 7.5h-1.9c-.8 0-1.5-.5-1.8-1.2l-6.2-13.8c-1-2.2-3.3-3.1-5.5-2.1z" fill="#001E36"></path></svg><p>Photoshop</p></div>
+                <div class="skill-item" title="Illustrator"><svg viewBox="0 0 128 128"><path fill="#FF9A00" d="M116 12H12c-3.3 0-6 2.7-6 6v92c0 3.3 2.7 6 6 6h104c3.3 0 6-2.7 6-6V18c0-3.3-2.7-6-6-6z"></path><path d="M52.3 32L32 96h14.8l4.4-12.3h25.6L81.2 96H96L75.7 32H52.3zm11.8 42.5L70 56.4c.3-.8.6-1.7.9-2.6h.3c.3.9.6 1.8.9 2.6l5.9 18.1H64.1z" fill="#300000"></path></svg><p>Illustrator</p></div>
+                <div class="skill-item" title="InDesign"><svg viewBox="0 0 128 128"><path fill="#FF3366" d="M116 12H12c-3.3 0-6 2.7-6 6v92c0 3.3 2.7 6 6 6h104c3.3 0 6-2.7 6-6V18c0-3.3-2.7-6-6-6z"></path><path d="M52 32v64h-8c-4.4 0-8-3.6-8-8V40c0-4.4 3.6-8 8-8h8zm40 0c4.4 0 8 3.6 8 8v48c0 4.4-3.6 8-8 8h-8V32h8z" fill="#200505"></path></svg><p>InDesign</p></div>
+                <div class="skill-item" title="Canva"><svg viewBox="0 0 128 128"><circle cx="64" cy="64" r="52" fill="url(#a)"/><defs><radialGradient id="a" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(104 0 0 104 64 64)"><stop stop-color="#2ED5E2"/><stop offset=".5" stop-color="#A259FF"/><stop offset="1" stop-color="#FF7262"/></radialGradient></defs><path fill="#fff" d="M64 96c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm0-56c-13.3 0-24 10.7-24 24s10.7 24 24 24 24-10.7 24-24-10.7-24-24-24z"/><circle cx="52" cy="56" r="4" fill="#fff"/><circle cx="76" cy="56" r="4" fill="#fff"/></svg><p>Canva</p></div>
+                <div class="skill-item" title="Microsoft Office"><svg viewBox="0 0 128 128"><path fill="#D83B01" d="M24 24h32v32H24zM64 24h32v32H64zM24 64h32v32H24zM64 64h32v32H64z"/></svg><p>MS Office</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+            <h2>Contactez-moi</h2>
+            <p>Un projet, une question ou une opportunité d'alternance ? Je suis à votre écoute.</p>
+            
+            <form action="https://formspree.io/f/mwpqanoe" method="POST" class="contact-form" data-aos="fade-up">
+                <div class="form-group">
+                    <label for="name">Nom</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="cta-button">Envoyer le message</button>
+            </form>
+        </section>
+
+       <footer>
+    <div class="footer-content">
+        <h3>Mes plateformes professionnelles.</h3>
+        <p>N'hésitez pas à me joindre sur mes plateformes professionnelles.</p>
+        <div class="footer-socials">
+            <a href="https://www.linkedin.com/in/kouame-jean-jaures-kouassi-384187358" target="_blank" class="social-link" title="LinkedIn">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+            <a href="#" target="_blank" class="social-link" title="GitHub">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.043c-3.338.724-4.043-1.61-4.043-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+            <a href="mailto:k.kouassi@myskolae.fr" class="social-link" title="Email">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z"/></svg>
+            </a>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <p>&copy; 2025 Kouassi Jean-Jaurès. Tous droits réservés.</p>
+    </div>
+</footer>
+<a href="#hero" id="backToTop" title="Retour en haut">↑</a>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+    <script>
+        // On attend que la page soit entièrement chargée pour exécuter le code
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- EFFET MACHINE À ÉCRIRE ---
+            const typedTitle = document.getElementById('typed-title');
+            if (typedTitle) {
+                const text = "KOUASSI Kouamé Jean-Jaures";
+                let index = 0;
+                const speed = 100;
+
+                function typeWriter() {
+                    if (index < text.length) {
+                        typedTitle.innerHTML += text.charAt(index);
+                        index++;
+                        setTimeout(typeWriter, speed);
+                    }
+                }
+                typeWriter();
+            }
+
+            // --- BOUTON RETOUR EN HAUT ---
+            const backToTopButton = document.getElementById('backToTop');
+            if (backToTopButton) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 300) {
+                        backToTopButton.style.display = 'block';
+                    } else {
+                        backToTopButton.style.display = 'none';
+                    }
+                });
+            }
+
+            // --- MODE SOMBRE (DARK MODE) ---
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+
+            // Appliquer le thème sauvegardé au chargement
+            if (localStorage.getItem('theme') === 'dark') {
+                body.classList.add('dark-mode');
+            }
+
+            if (darkModeToggle) {
+                darkModeToggle.addEventListener('click', () => {
+                    body.classList.toggle('dark-mode');
+
+                    // Sauvegarder le choix de l'utilisateur
+                    if (body.classList.contains('dark-mode')) {
+                        localStorage.setItem('theme', 'dark');
+                    } else {
+                        localStorage.setItem('theme', 'light');
+                    }
+                });
+            }
+
+            // --- EFFET PARALLAXE DE L'IMAGE AU SURVOL DES PROJETS (NOUVEAU!) ---
+            const projectItems = document.querySelectorAll('.project-item');
+            if (projectItems.length > 0) {
+                projectItems.forEach(item => {
+                    const imageContainer = item.querySelector('.project-image-container img');
+                    const movementStrength = 25; // Augmentez ou diminuez pour plus ou moins d'effet
+
+                    item.addEventListener('mousemove', (e) => {
+                        const rect = item.getBoundingClientRect();
+                        const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+                        const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+                        const moveX = -x * movementStrength;
+                        const moveY = -y * movementStrength;
+                        imageContainer.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                    });
+
+                    item.addEventListener('mouseleave', () => {
+                        imageContainer.style.transform = 'translate(0, 0)';
+                    });
+                });
+            }
+
+            // --- INITIALISATION D'AOS (ANIMATIONS AU DÉFILEMENT) ---
+            AOS.init({
+                duration: 1000,
+                once: true,
+            });
+        });
+        // ... le code de l'effet parallaxe se termine ici
+
+        // --- CURSEUR PERSONNALISÉ ---
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+        const interactiveElements = document.querySelectorAll('a, button');
+
+        if (cursorDot && cursorOutline) {
+            window.addEventListener('mousemove', (e) => {
+                const posX = e.clientX;
+                const posY = e.clientY;
+
+                // Le point suit la souris instantanément
+                cursorDot.style.left = `${posX}px`;
+                cursorDot.style.top = `${posY}px`;
+
+                // Le cercle extérieur suit avec un léger délai (grâce à la transition CSS)
+                cursorOutline.style.left = `${posX}px`;
+                cursorOutline.style.top = `${posY}px`;
+            });
+        }
+
+        if (interactiveElements.length > 0) {
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursorOutline.classList.add('grow');
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursorOutline.classList.remove('grow');
+                });
+            });
+        }
+
+       // --- MASQUER LE CURSEUR SUR LES CHAMPS DE TEXTE (NOUVEAU!) ---
+        const textInputs = document.querySelectorAll('input[type="text"], input[type="email"], textarea');
+
+        if (textInputs.length > 0) {
+            textInputs.forEach(input => {
+                // Quand on clique DANS le champ
+                input.addEventListener('focus', () => {
+                    cursorDot.classList.add('hidden');
+                    cursorOutline.classList.add('hidden');
+                });
+                // Quand on clique EN DEHORS du champ
+                input.addEventListener('blur', () => {
+                    cursorDot.classList.remove('hidden');
+                    cursorOutline.classList.remove('hidden');
+                });
+            });
+        }
+
+    </script>
+    
+
+</body>
+</html>

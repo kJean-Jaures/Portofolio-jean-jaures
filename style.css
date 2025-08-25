@@ -839,104 +839,131 @@ body, a, button {
     border-color: var(--primary-color);
 }
 
-/* ==========================================================================
-   ====== SECTION RESPONSIVE - ADAPTATION POUR MOBILES ET TABLETTES ======
-   ========================================================================== */
+/* ================================================= */
+/* =========== RESPONSIVE POUR MOBILES =========== */
+/* ================================================= */
 
+/* On utilise une media query pour appliquer ces styles
+   uniquement sur les écrans de 768px de large ou moins */
 @media screen and (max-width: 768px) {
 
-    /* --- Ajustements Généraux --- */
-    section {
-        padding: 60px 15px; /* Moins d'espace sur les côtés */
+    /* --- Typographie & Espacements Généraux --- */
+    h1 { font-size: 2.8em !important; } /* On réduit la taille du titre principal */
+    h2 { font-size: 2em; }
+    section { padding: 60px 15px; } /* Moins de padding sur les côtés */
+
+    /* --- Navigation & Menu Hamburger --- */
+    nav {
+        padding: 0 15px;
     }
 
-    h2 {
-        font-size: 2em; /* Titres de section plus petits */
-    }
-
-    /* --- Navigation --- */
-    nav ul {
-        /* Pour l'instant, on cache le menu pour éviter qu'il ne casse le design.
-           Une future amélioration serait un menu "burger". */
-        display: none;
-    }
-    
-    /* --- Section d'Accueil (Hero) --- */
-    #hero {
-        min-height: auto; /* Hauteur automatique */
-        padding: 80px 15px;
-    }
-
-    .hero-container {
-        flex-direction: column; /* On empile le texte et la photo verticalement */
-        text-align: center;
-    }
-
-    .hero-text h1 {
-        font-size: 2.8em; /* Titre principal plus petit */
-    }
-
-    .hero-image {
-        width: 250px;  /* Photo plus petite */
-        height: 320px;
-        margin-top: 40px;
-        transform: translateY(0); /* On annule le décalage de la photo */
-    }
-    
-    .background-circle {
-        width: 220px;
-        height: 220px;
-    }
-
-    /* --- Section "À Propos" et Timeline --- */
-    /* On avait déjà inclus cette partie, mais c'est bien de vérifier qu'elle est là */
-    .timeline::before {
-        left: 10px; /* La ligne passe à gauche */
-    }
-    .timeline-item {
-        width: 100%;
-        padding-left: 50px;
-        padding-right: 15px;
-    }
-    .timeline-item:nth-child(odd),
-    .timeline-item:nth-child(even) {
+    #menu {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 70px; /* Commence juste en dessous du header */
         left: 0;
-        text-align: left; /* Tout le texte est aligné à gauche */
+        width: 100%;
+        height: calc(100vh - 70px); /* Toute la hauteur restante */
+        background-color: var(--white-color);
+        transform: translateX(100%); /* Le menu est caché sur la droite */
+        transition: transform 0.3s ease-in-out;
+        gap: 40px;
     }
-    .timeline-item:nth-child(odd)::after,
-    .timeline-item:nth-child(even)::after {
-        left: 1px;
+
+    #menu.active {
+        transform: translateX(0); /* Le menu devient visible */
+    }
+
+    nav a {
+        font-size: 1.5em; /* Liens plus gros pour être cliquables */
+    }
+
+    #menu-toggle {
+        display: flex; /* Le bouton hamburger devient visible */
+        flex-direction: column;
+        justify-content: space-around;
+        width: 30px;
+        height: 25px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 1001; /* Pour être au-dessus du menu */
+    }
+
+    #menu-toggle .bar {
+        display: block;
+        width: 100%;
+        height: 3px;
+        background-color: var(--primary-color);
+        border-radius: 3px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* Animation du hamburger en croix */
+    #menu-toggle.active .bar:nth-child(1) {
+        transform: translateY(11px) rotate(45deg);
+    }
+    #menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    #menu-toggle.active .bar:nth-child(3) {
+        transform: translateY(-11px) rotate(-45deg);
+    }
+
+    /* --- Section Héros (Accueil) --- */
+    .hero-container {
+        flex-direction: column; /* On empile le texte et l'image */
+        text-align: center;
+        gap: 50px;
+    }
+    
+    .hero-image {
+        transform: translateY(0); /* On annule le décalage vertical */
+        width: 280px;  /* On réduit la taille de l'image */
+        height: 350px;
+        margin-top: 30px;
+    }
+
+    .background-circle {
+        width: 250px;
+        height: 250px;
     }
 
 
-    /* --- Section Réalisations (Projets) --- */
+    /* --- Section Réalisations --- */
     .project-item,
     .project-item:nth-child(even) {
-        flex-direction: column; /* On empile l'image et le texte verticalement */
-        gap: 20px;
+        flex-direction: column; /* On empile systématiquement l'image et le texte */
+        gap: 30px;
         padding: 40px 0;
     }
-    
+
     .project-title {
-        font-size: 2em; /* Titre de projet plus petit */
-    }
-    
-    .project-image-container {
-        flex-basis: auto; /* La taille de l'image s'adapte */
+        font-size: 2.2em;
     }
 
-    /* --- Bandeau Défilant --- */
-    .marquee-content span {
-        font-size: 1.2em; /* Texte du bandeau plus petit */
+
+    /* --- Section Contact --- */
+    .contact-form {
+        padding: 0 10px;
     }
 
-    /* --- Curseur Personnalisé --- */
-    /* On cache le curseur personnalisé sur les appareils tactiles */
-    .cursor-dot, .cursor-outline {
+    /* --- On cache le curseur perso sur mobile --- */
+    @media (pointer: coarse) {
+      .cursor-dot, .cursor-outline {
         display: none;
+      }
+      body, a, button {
+        cursor: auto;
+      }
     }
+}
 
-    body, a, button {
-        cursor: auto; /* On réaffiche le curseur par défaut */
-    }
+/* Cache le bouton hamburger sur les grands écrans */
+#menu-toggle {
+    display: none;
 }

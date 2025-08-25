@@ -19,26 +19,20 @@
     <div class="cursor-outline"></div>
 
     <header>
-  <nav>
-    <div class="logo">KOUASSI Jean-Jaures</div>
-    <ul id="menu">
-        <li><a href="#a-propos">À Propos</a></li>
-        <li><a href="#realisations">Réalisations</a></li>
-        <li><a href="#competences">Compétences</a></li>
-        <li><a href="#contact">Contact</a></li>
-    </ul>
+      <nav>
+  <div class="logo">KOUASSI Jean-Jaures</div>
+  <ul id="menu">
+    <li><a href="#a-propos">À Propos</a></li>
+    <li><a href="#realisations">Réalisations</a></li>
+    <li><a href="#competences">Compétences</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button id="darkModeToggle" aria-label="Basculer en mode sombre" class="dark-toggle">
+    <span class="toggle-circle"></span>
+  </button>
+</nav>
 
-    <button id="darkModeToggle" aria-label="Basculer en mode sombre" class="dark-toggle">
-        <span class="toggle-circle"></span>
-    </button>
-    
-    <button id="menu-toggle" aria-label="Ouvrir le menu">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-    </button>
-  </nav>
-</header>
+    </header>
 
     <main>
         <section id="hero">
@@ -416,32 +410,6 @@
                 });
             });
         }
-        // On attend que la page soit entièrement chargée
-document.addEventListener('DOMContentLoaded', () => {
-
-    // --- GESTION DU MENU MOBILE ---
-    const menuToggle = document.getElementById('menu-toggle');
-    const menu = document.getElementById('menu');
-
-    if (menuToggle && menu) {
-        menuToggle.addEventListener('click', () => {
-            menu.classList.toggle('active');
-            menuToggle.classList.toggle('active');
-        });
-
-        // On ferme le menu si on clique sur un lien
-        menu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.remove('active');
-                menuToggle.classList.remove('active');
-            });
-        });
-    }
-
-    // --- EFFET MACHINE À ÉCRIRE ---
-    // (Le reste de votre code JavaScript vient ici...)
-    const typedTitle = document.getElementById('typed-title');
-    // ...etc
 
     </script>
     

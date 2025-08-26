@@ -839,3 +839,141 @@ body, a, button {
     border-color: var(--primary-color);
 }
 
+/* ===================================================================== */
+/* ===================  STYLES POUR MOBILES & TABLETTES ================ */
+/* ===================================================================== */
+@media screen and (max-width: 900px) { /* J'ai élargi à 900px pour inclure les tablettes */
+
+    /* == AJUSTEMENTS GÉNÉRAUX == */
+    section {
+        /* On réduit les espacements verticaux sur mobile pour ne pas avoir à trop scroller */
+        padding: 40px 20px;
+    }
+
+    h2 {
+        font-size: 2em; /* On réduit la taille des titres de section */
+        margin-bottom: 40px;
+    }
+
+    /* On cache le curseur personnalisé sur les appareils tactiles où il est inutile */
+    .cursor-dot, .cursor-outline {
+        display: none;
+    }
+
+
+    /* == HEADER & NAVIGATION == */
+    nav {
+        /* Permet aux éléments de passer à la ligne si pas assez de place */
+        flex-wrap: wrap;
+        padding: 15px 20px;
+        height: auto;
+    }
+
+    nav ul {
+        /* On cache le menu principal sur mobile */
+        /* L'étape suivante pour toi sera d'ajouter un menu "burger" */
+        display: none; 
+    }
+    
+    .logo {
+        font-size: 1.3em;
+    }
+
+
+    /* == SECTION ACCUEIL (HERO) == */
+    #hero {
+        min-height: auto; /* Hauteur automatique pour s'adapter au contenu */
+        text-align: center; /* On centre le texte */
+    }
+
+    .hero-container {
+        /* L'image passe SOUS le texte au lieu d'être à côté */
+        flex-direction: column-reverse; 
+        gap: 30px;
+    }
+
+    .hero-text h1 {
+        font-size: 2.8em; /* Police du titre principal bien plus petite */
+    }
+
+    .hero-text .subtitle {
+        font-size: 1.2em;
+    }
+    
+    .hero-image {
+        /* On réinitialise la position et on définit une taille max */
+        transform: translateY(0);
+        width: 80%;
+        max-width: 300px; /* Limite la taille de l'image sur mobile */
+        height: auto; 
+    }
+    
+    .background-circle {
+        /* On ajuste la taille du cercle de fond */
+        width: 100%;
+        height: 100%;
+    }
+
+
+    /* == SECTION À PROPOS (TIMELINE) == */
+    .background-blob {
+      display: none; /* On cache la forme SVG en fond qui peut gêner sur petit écran */
+    }
+
+    .timeline::before {
+        left: 10px; /* La ligne passe à gauche */
+    }
+
+    .timeline-item {
+        width: 100%;
+        padding-left: 50px;
+        padding-right: 15px;
+    }
+
+    .timeline-item:nth-child(odd),
+    .timeline-item:nth-child(even) {
+        left: 0;
+        text-align: left; /* Tout le texte est aligné à gauche */
+    }
+
+    .timeline-item:nth-child(odd)::after,
+    .timeline-item:nth-child(even)::after {
+        left: 1px;
+    }
+
+
+    /* == SECTION RÉALISATIONS == */
+    .project-item,
+    .project-item:nth-child(even) { /* On cible aussi les projets pairs */
+        /* L'image passe SOUS les infos du projet */
+        flex-direction: column;
+        gap: 20px;
+        padding: 30px 0;
+    }
+
+    .project-title {
+        font-size: 2em; /* On réduit la taille du titre des projets */
+    }
+
+    .project-description {
+        font-size: 1em;
+    }
+    
+
+    /* == SECTION COMPÉTENCES == */
+    /* Ton code ici était déjà parfait grâce à "auto-fit", donc presque rien à changer ! */
+    .skill-category {
+        padding: 20px;
+    }
+
+    .skill-category h3 {
+        font-size: 1.5em;
+    }
+
+    /* == FORMULAIRE DE CONTACT == */
+    .form-group input,
+    .form-group textarea {
+        /* Assure que les champs ne sont pas trop petits */
+        font-size: 16px; 
+    }
+}

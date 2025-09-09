@@ -83,6 +83,77 @@ nav ul {
     margin: 0;
     padding: 0;
 }
+/* Style du bouton hamburger */
+.menu-toggle {
+  display: none; /* Caché sur grand écran */
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 25px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-left: auto;
+  z-index: 1500;
+}
+
+.menu-toggle span {
+  display: block;
+  height: 3px;
+  background-color: var(--primary-color);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Affichage hamburger sur mobile */
+@media screen and (max-width: 900px) {
+  .menu-toggle {
+    display: flex;
+  }
+
+  /* Cacher le menu normalement sur mobile */
+  nav ul {
+    display: none;
+    position: absolute;
+    top: 70px; /* juste en dessous du header */
+    right: 20px;
+    background-color: var(--white-color);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    flex-direction: column;
+    width: 200px;
+    padding: 15px 0;
+    z-index: 1400;
+  }
+
+  nav ul.show {
+    display: flex;
+  }
+
+  nav ul li {
+    margin: 0;
+    padding: 10px 20px;
+  }
+
+  nav ul li a {
+    font-size: 1.2em;
+  }
+}
+
+/* Animation lors du clic sur hamburger */
+.menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
 
 nav a {
     text-decoration: none;

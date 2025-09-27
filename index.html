@@ -19,18 +19,23 @@
     <div class="cursor-outline"></div>
 
     <header>
-      <nav>
-  <div class="logo">KOUASSI Jean-Jaures</div>
-  
-  <ul id="menu">
-    <li><a href="#a-propos">À Propos</a></li>
-    <li><a href="#realisations">Réalisations</a></li>
-    <li><a href="#competences">Compétences</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <button id="darkModeToggle" aria-label="Basculer en mode sombre" class="dark-toggle">
-    <span class="toggle-circle"></span>
-  </button>
+    <nav>
+    <div class="logo">KOUASSI Jean-Jaures</div>
+    
+    <ul id="menu">
+      <li><a href="#a-propos">À Propos</a></li>
+      <li><a href="#realisations">Réalisations</a></li>
+      <li><a href="#competences">Compétences</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <button id="darkModeToggle" aria-label="Basculer en mode sombre" class="dark-toggle">
+      <span class="toggle-circle"></span>
+    </button>
+    
+    <button id="menuToggle" class="menu-toggle" aria-controls="menu" aria-expanded="false" aria-label="Ouvrir le menu">
+      <span class="hamburger"></span>
+    </button>
 </nav>
 
     </header>
@@ -411,6 +416,30 @@
                 });
             });
         }
+        // --- MENU MOBILE TOGGLE ---
+const menuToggle = document.getElementById('menuToggle');
+const body = document.body;
+const menu = document.getElementById('menu');
+
+if (menuToggle && menu) {
+    menuToggle.addEventListener('click', () => {
+        // Toggle la classe 'menu-open' sur le body pour ouvrir/fermer le menu
+        body.classList.toggle('menu-open');
+        
+        // Mettre à jour l'attribut ARIA pour l'accessibilité
+        const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+        menuToggle.setAttribute('aria-expanded', !isExpanded);
+    });
+
+    // Fermer le menu si on clique sur un lien (ancre)
+    const menuLinks = menu.querySelectorAll('a');
+    menuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            body.classList.remove('menu-open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+        });
+    });
+}
 
     </script>
     

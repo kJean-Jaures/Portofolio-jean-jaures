@@ -839,230 +839,142 @@ body, a, button {
     transform: translate(-50%, -50%) scale(1.5);
     border-color: var(--primary-color);
 }
-<<<<<<< HEAD
-/*
-=========================================
-CORRECTIFS POUR MOBILE (Media Queries)
-=========================================
-*/
 
-/* --- Styles pour le bouton Hamburger (caché par défaut sur bureau) --- */
-.menu-toggle {
-    display: none; /* Caché sur desktop */
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-    z-index: 1001;
-}
+/* ===================================================================== */
+/* ===================  STYLES POUR MOBILES & TABLETTES ================ */
+/* ===================================================================== */
+@media screen and (max-width: 900px) { /* J'ai élargi à 900px pour inclure les tablettes */
 
-.hamburger {
-    display: block;
-    width: 24px;
-    height: 3px;
-    background-color: var(--primary-color);
-    position: relative;
-    transition: background-color 0.3s ease;
-}
-
-.hamburger::before,
-.hamburger::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 3px;
-    background-color: var(--primary-color);
-    transition: transform 0.3s ease;
-}
-
-.hamburger::before {
-    top: -8px;
-}
-
-.hamburger::after {
-    top: 8px;
-}
-
-/* Animation de la croix lors de l'ouverture */
-.menu-open .hamburger {
-    background-color: transparent;
-}
-
-.menu-open .hamburger::before {
-    transform: translateY(8px) rotate(45deg);
-}
-
-.menu-open .hamburger::after {
-    transform: translateY(-8px) rotate(-45deg);
-}
-
-/* ------------------------------------- */
-/* --- Règles spécifiques pour MOBILE --- */
-/* ------------------------------------- */
-
-@media (max-width: 900px) {
-    /* Cache le menu desktop et affiche le bouton hamburger */
-    nav ul#menu {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        background-color: var(--white-color);
-        box-shadow: var(--card-shadow);
-        z-index: 999;
-        transition: transform 0.3s ease-out;
-    }
-
-    /* Affiche le menu lorsque la classe 'menu-open' est présente sur le body */
-    .menu-open #menu {
-        display: flex;
-        padding: 10px 0;
-    }
-    
-    /* Règle pour les liens du menu mobile */
-    nav ul#menu li {
-        text-align: center;
-        width: 100%;
-        padding: 10px 0;
-    }
-    
-    nav ul#menu li a {
-        display: block;
-        padding: 5px 0;
-    }
-
-    /* Affiche le bouton hamburger */
-    .menu-toggle {
-        display: block; 
-    }
-    
-    /* Assure que la barre de navigation reste bien alignée */
-    nav {
-        padding: 0 10px;
-        height: 60px; /* Réduire la hauteur du header */
-    }
-
-    /* Règle pour la section Hero */
-    .hero-container {
-        flex-direction: column; /* Empile l'image et le texte verticalement */
-        text-align: center;
-    }
-
-    .hero-image {
-        order: -1; /* Place l'image au-dessus du texte sur mobile */
-        margin-bottom: 30px;
-        max-width: 80%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    
-    .hero-text h1 {
-        font-size: 2.2em; /* Réduire la taille du titre */
-    }
-    
-    /* Réduire le padding des sections */
+    /* == AJUSTEMENTS GÉNÉRAUX == */
     section {
-        padding: 40px 15px;
-=======
-/* ================== RESPONSIVE MOBILE ================== */
-@media screen and (max-width: 768px) {
-    /* Section Hero */
-    .hero-container {
-        flex-direction: column;
-        text-align: center;
-        gap: 30px;
-        padding: 40px 15px;
+        /* On réduit les espacements verticaux sur mobile pour ne pas avoir à trop scroller */
+        padding: 40px 20px;
     }
 
-    .hero-text h1 {
-        font-size: 2.2em; /* Réduction du titre */
+    h2 {
+        font-size: 2em; /* On réduit la taille des titres de section */
+        margin-bottom: 40px;
     }
 
-    .hero-text .subtitle {
-        font-size: 1.1em;
-    }
-
-    .hero-image {
-        width: 250px;
-        height: 320px;
-        transform: translateY(0); /* Supprime le décalage qui casse tout sur mobile */
-    }
-
-    /* Navigation */
-    nav ul {
-        gap: 15px;
-    }
-    nav a {
-        font-size: 0.95em;
-    }
-
-    /* Timeline */
-    .timeline {
-        padding: 20px 0;
-    }
-    .timeline-content {
-        padding: 15px 20px;
-    }
-
-    /* Réalisations */
-    .project-item {
-        flex-direction: column !important; /* Force image en haut, texte en bas */
-        gap: 20px;
-        text-align: center;
-    }
-    .project-title {
-        font-size: 1.8em;
-    }
-    .project-description {
-        font-size: 1em;
-        max-width: 100%;
-    }
-
-    /* Compétences */
-    .skills-grid {
-        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-        gap: 15px;
-    }
-    .skill-item svg {
-        width: 35px;
-        height: 35px;
-    }
-
-    /* Contact */
-    #contact p {
-        font-size: 1em;
-        margin-bottom: 20px;
-    }
-
-    /* Footer */
-    footer {
-        padding: 40px 15px;
-    }
-    .footer-content h3 {
-        font-size: 1.5em;
-    }
-    .footer-socials {
-        gap: 15px;
->>>>>>> eb60fd5eca060049dfc4aa2e6e8ad7d845df5f86
-    }
-
-    /* Curseur custom (optionnel : on désactive sur mobile car gênant) */
+    /* On cache le curseur personnalisé sur les appareils tactiles où il est inutile */
     .cursor-dot, .cursor-outline {
         display: none;
     }
-}
 
-/* Version extra small (max 480px) */
-@media screen and (max-width: 480px) {
+
+    /* == HEADER & NAVIGATION == */
+    nav {
+        /* Permet aux éléments de passer à la ligne si pas assez de place */
+        flex-wrap: wrap;
+        padding: 15px 20px;
+        height: auto;
+    }
+
+    nav ul {
+        /* On cache le menu principal sur mobile */
+        /* L'étape suivante pour toi sera d'ajouter un menu "burger" */
+        display: none; 
+    }
+    
+    .logo {
+        font-size: 1.3em;
+    }
+
+
+    /* == SECTION ACCUEIL (HERO) == */
+    #hero {
+        min-height: auto; /* Hauteur automatique pour s'adapter au contenu */
+        text-align: center; /* On centre le texte */
+    }
+
+    .hero-container {
+        /* L'image passe SOUS le texte au lieu d'être à côté */
+        flex-direction: column-reverse; 
+        gap: 30px;
+    }
+
     .hero-text h1 {
-        font-size: 1.8em;
+        font-size: 2.8em; /* Police du titre principal bien plus petite */
     }
-    h2 {
-        font-size: 1.8em;
+
+    .hero-text .subtitle {
+        font-size: 1.2em;
     }
+    
+    .hero-image {
+        /* On réinitialise la position et on définit une taille max */
+        transform: translateY(0);
+        width: 80%;
+        max-width: 300px; /* Limite la taille de l'image sur mobile */
+        height: auto; 
+    }
+    
+    .background-circle {
+        /* On ajuste la taille du cercle de fond */
+        width: 100%;
+        height: 100%;
+    }
+
+
+    /* == SECTION À PROPOS (TIMELINE) == */
+    .background-blob {
+      display: none; /* On cache la forme SVG en fond qui peut gêner sur petit écran */
+    }
+
+    .timeline::before {
+        left: 10px; /* La ligne passe à gauche */
+    }
+
+    .timeline-item {
+        width: 100%;
+        padding-left: 50px;
+        padding-right: 15px;
+    }
+
+    .timeline-item:nth-child(odd),
+    .timeline-item:nth-child(even) {
+        left: 0;
+        text-align: left; /* Tout le texte est aligné à gauche */
+    }
+
+    .timeline-item:nth-child(odd)::after,
+    .timeline-item:nth-child(even)::after {
+        left: 1px;
+    }
+
+
+    /* == SECTION RÉALISATIONS == */
+    .project-item,
+    .project-item:nth-child(even) { /* On cible aussi les projets pairs */
+        /* L'image passe SOUS les infos du projet */
+        flex-direction: column;
+        gap: 20px;
+        padding: 30px 0;
+    }
+
     .project-title {
+        font-size: 2em; /* On réduit la taille du titre des projets */
+    }
+
+    .project-description {
+        font-size: 1em;
+    }
+    
+
+    /* == SECTION COMPÉTENCES == */
+    /* Ton code ici était déjà parfait grâce à "auto-fit", donc presque rien à changer ! */
+    .skill-category {
+        padding: 20px;
+    }
+
+    .skill-category h3 {
         font-size: 1.5em;
+    }
+
+    /* == FORMULAIRE DE CONTACT == */
+    .form-group input,
+    .form-group textarea {
+        /* Assure que les champs ne sont pas trop petits */
+        font-size: 16px; 
     }
 }

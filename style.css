@@ -978,3 +978,35 @@ body, a, button {
         font-size: 16px; 
     }
 }
+/* Ajoutez ceci à la fin de votre fichier style.css */
+
+/* Pour les tablettes et écrans plus petits */
+@media (max-width: 992px) {
+    .hero-container {
+        flex-direction: column-reverse; /* Met l'image au-dessus du texte */
+        text-align: center;
+        gap: 2rem;
+    }
+
+    .hero-image img {
+        width: 250px; /* Réduire la taille de l'image */
+    }
+}
+
+/* Pour les mobiles */
+@media (max-width: 768px) {
+    /* Cacher le menu principal pour le remplacer par un menu "burger" (nécessite du JS en plus) */
+    nav ul {
+        display: none;
+    }
+
+    /* Adapter les titres */
+    h2 {
+        font-size: 2em;
+    }
+
+    /* Empiler les projets verticalement */
+    .project-item {
+        flex-direction: column;
+    }
+}

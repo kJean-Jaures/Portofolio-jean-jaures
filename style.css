@@ -978,10 +978,16 @@ body, a, button {
         font-size: 16px; 
     }
 }
-/* Ajoutez ceci à la fin de votre fichier style.css */
+/* =========================================== */
+/* ========== SECTION RESPONSIVE ========== */
+/* =========================================== */
 
-/* Pour les tablettes et écrans plus petits */
+/* Styles pour les tablettes (jusqu'à 992px de large) */
 @media (max-width: 992px) {
+    section {
+        padding: 60px 15px; /* Réduire l'espacement sur les côtés */
+    }
+
     .hero-container {
         flex-direction: column-reverse; /* Met l'image au-dessus du texte */
         text-align: center;
@@ -989,24 +995,41 @@ body, a, button {
     }
 
     .hero-image img {
-        width: 250px; /* Réduire la taille de l'image */
+        width: 250px; /* Réduire la taille de la photo */
+        height: auto; /* Garder les proportions */
     }
 }
 
-/* Pour les mobiles */
+
+/* Styles pour les mobiles (jusqu'à 768px de large) */
 @media (max-width: 768px) {
-    /* Cacher le menu principal pour le remplacer par un menu "burger" (nécessite du JS en plus) */
-    nav ul {
+    /* Cacher le menu de navigation pour un futur menu "burger" */
+    nav #menu {
         display: none;
     }
 
-    /* Adapter les titres */
-    h2 {
-        font-size: 2em;
+    /* --- Correction du texte qui dépasse sur le parcours --- */
+    .timeline-content p {
+        word-wrap: break-word; /* Force le texte à aller à la ligne, même pour les longs mots */
+        overflow-wrap: break-word;
     }
 
-    /* Empiler les projets verticalement */
-    .project-item {
-        flex-direction: column;
+    /* --- Cacher le cercle bleu de la timeline sur mobile --- */
+    .timeline-item::before { /* On suppose que le cercle est un pseudo-élément ::before */
+        display: none; /* On le fait disparaître */
+    }
+
+    .timeline-content {
+        padding-left: 0; /* On supprime le décalage à gauche qui était là pour le cercle */
+    }
+    
+    /* On s'assure que la ligne verticale de la timeline reste centrée ou alignée */
+    .timeline::after {
+        left: 20px;
+    }
+    
+    .timeline-item {
+        width: 100%; /* L'élément prend toute la largeur */
+        padding-left: 40px; /* On laisse un peu d'espace pour la ligne */
     }
 }

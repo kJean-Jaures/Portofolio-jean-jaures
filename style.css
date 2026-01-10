@@ -494,3 +494,64 @@ footer {
     text-align: center;
     border-top: 1px solid var(--card-border);
 }
+/* =========== BURGER MENU STYLES =========== */
+
+/* Le bouton Burger lui-même */
+.burger-menu {
+    display: none; /* Caché par défaut sur desktop */
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+.burger-menu span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--primary-color);
+    transition: 0.3s ease;
+    border-radius: 2px;
+}
+
+/* Version Mobile (Max 900px) */
+@media screen and (max-width: 900px) {
+    .burger-menu {
+        display: flex; /* On l'affiche enfin */
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 70px; /* Juste sous le header */
+        right: -100%; /* Caché à droite par défaut */
+        flex-direction: column;
+        background-color: var(--card-bg);
+        width: 100%;
+        height: calc(100vh - 70px);
+        text-align: center;
+        transition: 0.4s ease;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        padding-top: 50px;
+        z-index: 1000;
+    }
+
+    /* Quand le menu est ouvert */
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-links li {
+        margin: 20px 0;
+    }
+
+    /* Animation du burger en "X" quand il est actif */
+    .burger-menu.active span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .burger-menu.active span:nth-child(2) {
+        opacity: 0;
+    }
+    .burger-menu.active span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+}

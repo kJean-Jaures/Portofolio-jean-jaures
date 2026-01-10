@@ -19,20 +19,28 @@
     <div class="cursor-outline"></div>
 
     <header>
-      <nav>
-  <div class="logo">KOUASSI Jean-Jaures</div>
-  
-  <ul id="menu">
-    <li><a href="#a-propos">À Propos</a></li>
-    <li><a href="#realisations">Réalisations</a></li>
-    <li><a href="#competences">Compétences</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <button id="darkModeToggle" aria-label="Basculer en mode sombre" class="dark-toggle">
-    <span class="toggle-circle"></span>
-  </button>
-</nav>
+   <nav>
+    <div class="logo">TonLogo</div>
+    
+    <ul class="nav-links">
+        <li><a href="#hero">Accueil</a></li>
+        <li><a href="#a-propos">À propos</a></li>
+        <li><a href="#realisations">Projets</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
 
+    <div class="nav-controls">
+        <div class="dark-toggle" onclick="toggleDarkMode()">
+            <div class="toggle-circle"></div>
+        </div>
+
+        <div class="burger-menu" id="burger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</nav>
     </header>
 
     <main>
@@ -411,6 +419,22 @@
                 });
             });
         }
+        const burger = document.getElementById('burger');
+const navLinks = document.querySelector('.nav-links');
+
+burger.addEventListener('click', () => {
+    // On ajoute/enlève la classe 'active' au menu et au burger
+    navLinks.classList.toggle('active');
+    burger.classList.toggle('active');
+});
+
+// Optionnel : Fermer le menu quand on clique sur un lien
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        burger.classList.remove('active');
+    });
+});
 
     </script>
     

@@ -737,6 +737,15 @@ nav ul {
   padding: 0;
   align-items: center;
 }
+:root {
+  --primary-color: #0d2c4b;
+  --secondary-color: #4a90e2;
+  --background-gradient: linear-gradient(120deg, #e0f3f3, #f4f7f9);
+  --text-color: #333333;
+  --white-color: #ffffff;
+  --card-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
 body.dark-mode {
   --primary-color: #9ecfff;
   --secondary-color: #3a80d2;

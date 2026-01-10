@@ -1012,3 +1012,34 @@ body, a, button {
     display: flex;
   }
 }
+@media screen and (max-width: 900px) {
+  #hero-canvas {
+    display: none;
+  }
+}
+@media screen and (max-width: 500px) {
+  .hero-text h1 {
+    font-size: 2.3em;
+    line-height: 1.2;
+  }
+
+  .hero-text .subtitle {
+    font-size: 1.05em;
+  }
+}
+@media screen and (max-width: 900px) {
+  .hero-image {
+    margin-top: 20px;
+  }
+
+  .hero-image img {
+    border-radius: 12px;
+  }
+}
+@media screen and (max-width: 900px) {
+  .cta-button {
+    padding: 14px 30px;
+    font-size: 1.05em;
+  }
+}
+

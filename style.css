@@ -978,3 +978,37 @@ body, a, button {
         font-size: 16px; 
     }
 }
+/* ===== MENU BURGER MOBILE ===== */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: var(--primary-color);
+  cursor: pointer;
+}
+
+/* Mobile */
+@media screen and (max-width: 900px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  nav ul {
+    width: 100%;
+    flex-direction: column;
+    background-color: var(--white-color);
+    margin-top: 15px;
+    padding: 20px 0;
+    border-top: 1px solid var(--card-border);
+  }
+
+  nav ul li {
+    text-align: center;
+    padding: 10px 0;
+  }
+
+  nav ul.open {
+    display: flex;
+  }
+}

@@ -148,7 +148,7 @@ export default function About() {
             >
               <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-emerald-500/10 border-2 border-emerald-500/20">
                 <img
-                  src="public/image/photo-profil.png"
+                  src={`${import.meta.env.BASE_URL}image/photo-profil.png`}
                   alt="Jean-Jaures KOUASSI"
                   className="w-full h-auto object-contain"
                 />
@@ -243,6 +243,7 @@ export default function About() {
               Secure
             </motion.div>
           </motion.div>
+          
 
           {/* Right - Text Content */}
           <motion.div

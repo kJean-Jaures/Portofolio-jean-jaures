@@ -226,7 +226,7 @@ export default function Hero() {
             {/* Photo - displayed in full */}
             <div className="absolute inset-[8px] rounded-full overflow-hidden shadow-2xl flex items-center justify-center">
               <img
-                src="public/image/photo-profil.png"
+                src={`${import.meta.env.BASE_URL}image/photo-profil.png`} 
                 alt="Jean-Jaures KOUASSI"
                 className="w-full h-full object-contain"
               />
@@ -295,7 +295,7 @@ export default function Hero() {
             />
           </motion.a>
           <motion.a
-            href="public/documents/CV-Jean-Jaures-KOUASSI.pdf"
+            href={import.meta.env.BASE_URL + 'documents/CV-Jean-Jaur
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05, y: -3 }}

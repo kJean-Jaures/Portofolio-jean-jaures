@@ -44,7 +44,7 @@ const projects = [
     description: 'Développement d\'applications web et mobile pour divers clients. Gestion de projet agile, contact direct avec les clients et livraison de solutions sur mesure.',
     tags: ['React.js', 'Node.js', 'PHP', 'SQL', 'Gestion de Projet', 'Agile'],
     image: '💼',
-    imageUrl: 'public/image/stage-assistant.png',
+    imageUrl: import.meta.env.BASE_URL + 'image/stage-assistant.png',
     gradient: 'from-cyan-600 to-blue-600',
     category: 'Développement',
     link: '#',

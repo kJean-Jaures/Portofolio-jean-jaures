@@ -2,6 +2,16 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
 export default function CustomCursor() {
+  const [visible, setVisible] = useState(false);
+
+useEffect(() => {
+  const mq = window.matchMedia('(pointer: fine)'); // vrai seulement si souris
+  const update = () => setVisible(mq.matches);
+  update();
+  mq.addEventListener('change', update);
+  return () => mq.removeEventListener('change', update);
+}, []);
+
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [trail, setTrail] = useState<{ x: number; y: number; id: number }[]>([]);
   const [isHovering, setIsHovering] = useState(false);
@@ -44,6 +54,7 @@ export default function CustomCursor() {
   }, []);
 
   return (
+    if (!visible) return null;
     <>
       {/* Trail effect */}
       {trail.map((point, index) => (

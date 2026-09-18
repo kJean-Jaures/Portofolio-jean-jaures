@@ -38,11 +38,19 @@ export default function App() {
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
   }, [terminalOpen]);
+const [isDesktop, setIsDesktop] = useState(false);
 
+useEffect(() => {
+  const mq = window.matchMedia('(pointer: fine)'); // souris = true, tactile = false
+  setIsDesktop(mq.matches);
+  const onChange = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+  mq.addEventListener('change', onChange);
+  return () => mq.removeEventListener('change', onChange);
+}, []);
   return (
     <div className={`min-h-screen transition-colors duration-500 ${darkMode ? 'bg-[#0a0e17] text-white' : 'bg-white text-gray-900'}`}>
       {/* Custom Cursor */}
-      <CustomCursor />
+      {isDesktop && <CustomCursor />}
       
       {/* Easter Eggs */}
       <EasterEggs />

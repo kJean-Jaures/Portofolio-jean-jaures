@@ -1,6 +1,7 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import { Code2, Shield, Network, Lock, Sparkles } from 'lucide-react';
+import photoProfil from '../assets/photo-profil.png'
 
 function AnimatedCounter({ target, duration = 2000 }: { target: number; duration?: number }) {
   const [count, setCount] = useState(0);
@@ -148,7 +149,7 @@ export default function About() {
             >
               <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-emerald-500/10 border-2 border-emerald-500/20">
                 <img
-                  src={`${import.meta.env.BASE_URL}image/photo-profil.png`}
+                  src={photoProfil}
                   alt="Jean-Jaures KOUASSI"
                   className="w-full h-auto object-contain"
                 />

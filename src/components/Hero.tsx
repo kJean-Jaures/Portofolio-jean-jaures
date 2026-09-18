@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import { ArrowDown, Github, Linkedin, Mail, Download, Shield, Terminal, ChevronRight } from 'lucide-react';
 import { useEffect, useState, useRef } from 'react';
+import photoProfil from '../assets/photo-profil.png'
+import cv from '../assets/CV-Jean-Jaures-KOUASSI.pdf'
 
 function TypeWriter({ texts, speed = 100 }: { texts: string[]; speed?: number }) {
   const [displayText, setDisplayText] = useState('');
@@ -226,7 +228,7 @@ export default function Hero() {
             {/* Photo - displayed in full */}
             <div className="absolute inset-[8px] rounded-full overflow-hidden shadow-2xl flex items-center justify-center">
               <img
-                src={`${import.meta.env.BASE_URL}image/photo-profil.png`} 
+                src={photoProfil} 
                 alt="Jean-Jaures KOUASSI"
                 className="w-full h-full object-contain"
               />
@@ -295,7 +297,7 @@ export default function Hero() {
             />
           </motion.a>
           <motion.a
-            href={import.meta.env.BASE_URL + 'documents/CV-Jean-Jaur
+            href={cv}
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05, y: -3 }}

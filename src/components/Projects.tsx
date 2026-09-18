@@ -2,6 +2,9 @@ import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { ExternalLink, Folder, Sparkles, Eye } from 'lucide-react';
 import ProjectModal from './ProjectModal';
+import stageAssistant from '../assets/stage-assistant.png'
+import projetWisafe from '../assets/projet-wisafe.png'
+import graphisteFreelance from '../assets/graphiste-freelance.png'
 
 const projects = [
   {
@@ -9,7 +12,7 @@ const projects = [
     description: 'Mise en place d\'un Hotspot Wi-Fi sécurisé avec portail captif sur Raspberry Pi. Configuration complète de la sécurité réseau, authentification des utilisateurs et monitoring.',
     tags: ['Réseaux', 'Sécurité', 'HTML/CSS', 'JavaScript', 'BASH', 'Raspberry Pi'],
     image: '📡',
-    imageUrl: import.meta.env.BASE_URL + projet-wisafe.png',
+    imageUrl: projetWisafe,
     gradient: 'from-emerald-600 to-green-600',
     category: 'Sécurité',
     link: '#',
@@ -44,7 +47,7 @@ const projects = [
     description: 'Développement d\'applications web et mobile pour divers clients. Gestion de projet agile, contact direct avec les clients et livraison de solutions sur mesure.',
     tags: ['React.js', 'Node.js', 'PHP', 'SQL', 'Gestion de Projet', 'Agile'],
     image: '💼',
-    imageUrl: import.meta.env.BASE_URL + 'image/stage-assistant.png',
+    imageUrl: stageAssistant,
     gradient: 'from-cyan-600 to-blue-600',
     category: 'Développement',
     link: '#',
@@ -115,7 +118,7 @@ const projects = [
     description: 'Création d\'identités visuelles complètes pour des particuliers et petites entreprises. Logos, affiches, supports de communication et chartes graphiques.',
     tags: ['Photoshop', 'Illustrator', 'Canva', 'Identité visuelle', 'Design'],
     image: '🎨',
-    imageUrl: import.meta.env.BASE_URL + graphiste-freelance.png',
+    imageUrl: graphisteFreelance,
     gradient: 'from-pink-600 to-rose-600',
     category: 'Design',
     link: '#',

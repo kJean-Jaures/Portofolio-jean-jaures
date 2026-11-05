@@ -1,11 +1,21 @@
 import { useEffect, useState } from "react";
-import { ArrowUpRight, Menu, Moon, Network, Sun, X } from "lucide-react";
+import {
+  ArrowUpRight,
+  Menu,
+  Moon,
+  Network,
+  Sun,
+  X,
+  Pause,
+  Play,
+} from "lucide-react";
+
+import { useMotionSettings } from "./visuals/MotionSettings";
 
 const links = [
   { label: "Profil", id: "apropos" },
-  { label: "Expériences", id: "experiences" },
-  { label: "Projets", id: "realisations" },
-  { label: "Compétences", id: "competences" },
+  { label: "Expériences & projets", id: "experiences" },
+  { label: "Tech stack", id: "competences" },
   { label: "Formation", id: "parcours" },
 ];
 
@@ -17,6 +27,7 @@ export default function Navbar({
   setDarkMode: (value: boolean) => void;
 }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { enabled, toggle, systemReduced } = useMotionSettings();
   useEffect(() => {
     const close = (event: KeyboardEvent) => {
       if (event.key === "Escape") setMenuOpen(false);
@@ -72,6 +83,27 @@ export default function Navbar({
           </a>
         </div>
         <div className="nav-actions">
+          <button
+            className="icon-button motion-toggle"
+            onClick={toggle}
+            disabled={systemReduced}
+            aria-label={
+              systemReduced
+                ? "Animations réduites selon vos préférences système"
+                : enabled
+                  ? "Mettre les animations en pause"
+                  : "Activer les animations"
+            }
+            title={
+              systemReduced
+                ? "Le système demande des animations réduites"
+                : enabled
+                  ? "Mettre les animations en pause"
+                  : "Activer les animations"
+            }
+          >
+            {enabled ? <Pause size={17} /> : <Play size={17} />}
+          </button>
           <button
             className="icon-button"
             onClick={() => setDarkMode(!darkMode)}

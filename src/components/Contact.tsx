@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import {
   ArrowUpRight,
   CheckCircle2,
@@ -12,49 +12,53 @@ import {
 } from "lucide-react";
 import { profile } from "../data/profile";
 import SectionHeading from "./SectionHeading";
+import { ContactError, sendContactMessage } from "../lib/contact";
+import TechScene from "./visuals/LazyScene";
+import { Reveal } from "./visuals/Reveal";
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    message: "",
+    website: "",
+  });
   const [status, setStatus] = useState<
     "idle" | "sending" | "success" | "error"
   >("idle");
+  const [errorMessage, setErrorMessage] = useState("");
+  const inFlight = useRef(false);
   const updateField = (field: keyof typeof form, value: string) => {
     setForm((previous) => ({ ...previous, [field]: value }));
     if (status !== "sending") setStatus("idle");
   };
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (status === "sending") return;
+    if (inFlight.current) return;
+    inFlight.current = true;
+    setErrorMessage("");
     setStatus("sending");
     try {
-      const data = new FormData();
-      for (const [key, value] of Object.entries(form))
-        data.append(key, value.trim());
-      data.append("_subject", `Portfolio — Message de ${form.name.trim()}`);
-      data.append("_template", "table");
-      data.append("_captcha", "false");
-      const response = await fetch(
-        `https://formsubmit.co/ajax/${profile.email}`,
-        { method: "POST", headers: { Accept: "application/json" }, body: data },
-      );
-      const result: { success?: boolean | string } = await response.json();
-      if (
-        !response.ok ||
-        (result.success !== true && result.success !== "true")
-      )
-        throw new Error("Envoi non confirmé");
+      await sendContactMessage(form, profile.email);
       setStatus("success");
-      setForm({ name: "", email: "", message: "" });
-    } catch {
+      setForm({ name: "", email: "", message: "", website: "" });
+    } catch (error) {
+      setErrorMessage(
+        error instanceof ContactError
+          ? error.message
+          : "L’envoi n’a pas pu être confirmé.",
+      );
       setStatus("error");
+    } finally {
+      inFlight.current = false;
     }
   };
   return (
     <section id="contact" className="section section-shell">
-      <div className="contact-panel">
+      <Reveal className="contact-panel">
         <div className="contact-copy">
           <SectionHeading
-            number="06"
+            number="05"
             label="Faisons connaissance"
             title="Et si on travaillait ensemble ?"
           />
@@ -66,6 +70,9 @@ export default function Contact() {
           <span className="availability">
             <span className="status-dot" /> Alternance · Île-de-France
           </span>
+          <div className="contact-scene">
+            <TechScene variant="globe" />
+          </div>
           <div className="contact-links">
             <a href={`mailto:${profile.email}`}>
               <Mail size={19} />
@@ -106,13 +113,27 @@ export default function Contact() {
         </div>
         <form
           className="contact-form"
+          aria-busy={status === "sending"}
           onSubmit={handleSubmit}
           aria-label="Envoyer un message"
+          action={`https://formsubmit.co/${profile.email}`}
+          method="POST"
         >
           <h3>Un premier message ?</h3>
           <p>
             Parlez-moi de votre équipe, de votre projet ou de votre opportunité.
           </p>
+          <div className="form-honeypot" aria-hidden="true">
+            <label htmlFor="contact-website">Votre site web</label>
+            <input
+              id="contact-website"
+              name="website"
+              tabIndex={-1}
+              autoComplete="off"
+              value={form.website}
+              onChange={(event) => updateField("website", event.target.value)}
+            />
+          </div>
           <label htmlFor="contact-name">Votre nom</label>
           <input
             id="contact-name"
@@ -122,6 +143,7 @@ export default function Contact() {
             onChange={(e) => updateField("name", e.target.value)}
             placeholder="Prénom et nom"
             required
+            minLength={2}
             maxLength={120}
             disabled={status === "sending"}
           />
@@ -147,6 +169,7 @@ export default function Contact() {
             placeholder="Bonjour Jean-Jaures, échangeons sur…"
             rows={5}
             required
+            minLength={10}
             maxLength={5000}
             disabled={status === "sending"}
           />
@@ -165,17 +188,16 @@ export default function Contact() {
               </>
             )}
           </button>
-          <div aria-live="polite" aria-atomic="true">
+          <div aria-live="polite" aria-atomic="true" className="form-feedback">
             {status === "success" && (
               <p className="form-success">
-                <CheckCircle2 size={17} /> Merci ! Votre message a bien été
-                envoyé.
+                <CheckCircle2 size={17} /> Merci ! Le service d’envoi a bien
+                accepté votre message.
               </p>
             )}
             {status === "error" && (
               <p className="form-error">
-                L’envoi n’a pas abouti. Vos champs sont conservés. Vous pouvez
-                réessayer ou m’écrire à{" "}
+                {errorMessage} Vous pouvez m’écrire à{" "}
                 <a href={`mailto:${profile.email}`}>{profile.email}</a>.
               </p>
             )}
@@ -185,7 +207,7 @@ export default function Contact() {
             à votre message.
           </p>
         </form>
-      </div>
+      </Reveal>
     </section>
   );
 }

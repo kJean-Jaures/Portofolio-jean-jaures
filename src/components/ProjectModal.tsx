@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
-import { ArrowUpRight, Check, X } from "lucide-react";
+import { ArrowUpRight, Check, Layers, X } from "lucide-react";
 import type { Project } from "../data/projects";
+import ProjectArtwork from "./ProjectArtwork";
 
 export default function ProjectModal({
   project,
@@ -21,7 +22,6 @@ export default function ProjectModal({
       document.body.style.overflow = oldOverflow;
     };
   }, [project]);
-
   return (
     <dialog
       ref={ref}
@@ -33,28 +33,40 @@ export default function ProjectModal({
       }}
     >
       {project && (
-        <div className="project-dialog-content">
+        <div className={`project-dialog-content project-${project.id}`}>
           <button
             className="icon-button dialog-close"
             onClick={onClose}
-            aria-label="Fermer le projet"
+            aria-label="Fermer l’expérience"
             autoFocus
           >
             <X size={21} />
           </button>
-          <img
-            className="dialog-image"
-            src={project.image}
-            alt={project.imageAlt}
-            width="960"
-            height="540"
-          />
+          <div className="dialog-art">
+            <ProjectArtwork project={project} modal />
+          </div>
           <div className="dialog-copy">
-            <p className="eyebrow">{project.category}</p>
+            <p className="eyebrow">
+              {project.company} / {project.category}
+            </p>
             <h2 id="project-title">{project.title}</h2>
-            <p className="project-period">{project.period}</p>
+            <div className="dialog-facts">
+              <span>
+                <small>Mon rôle</small>
+                {project.role}
+              </span>
+              <span>
+                <small>Période</small>
+                {project.period}
+              </span>
+              <span>
+                <small>Cadre</small>
+                {project.type}
+              </span>
+            </div>
+            <h3>Le contexte</h3>
             <p>{project.context}</p>
-            <h3>Ma contribution</h3>
+            <h3>Ce que j’ai fait</h3>
             <ul className="contribution-list">
               {project.contributions.map((text) => (
                 <li key={text}>
@@ -63,6 +75,17 @@ export default function ProjectModal({
                 </li>
               ))}
             </ul>
+            <div className="deliverables-panel">
+              <h3>
+                <Layers size={18} /> Réalisations & livrables
+              </h3>
+              <ul>
+                {project.deliverables.map((text) => (
+                  <li key={text}>{text}</li>
+                ))}
+              </ul>
+            </div>
+            <h3>Outils & compétences mobilisés</h3>
             <div className="tags">
               {project.tags.map((tag) => (
                 <span key={tag}>{tag}</span>
@@ -73,7 +96,7 @@ export default function ProjectModal({
               href="#contact"
               onClick={onClose}
             >
-              Échanger sur ce projet <ArrowUpRight size={17} />
+              Échanger sur cette expérience <ArrowUpRight size={17} />
             </a>
           </div>
         </div>

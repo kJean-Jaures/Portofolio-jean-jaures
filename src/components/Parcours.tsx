@@ -8,7 +8,7 @@ export default function Parcours() {
       <div className="education-layout">
         <div>
           <SectionHeading
-            number="05"
+            number="04"
             label="La formation"
             title="Apprendre, puis aller plus loin."
           />

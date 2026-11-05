@@ -1,6 +1,8 @@
 import { Code2, Headphones, Network } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 import { profile } from "../data/profile";
+import portrait from "../assets/photo-profil.webp";
+import { Reveal, TiltCard } from "./visuals/Reveal";
 
 const strengths = [
   {
@@ -29,7 +31,22 @@ export default function About() {
           label="Le profil"
           title="La technique, au service des autres."
         />
-        <div className="about-copy">
+        <Reveal className="about-copy">
+          <div className="profile-signature">
+            <img
+              src={portrait}
+              alt={profile.name}
+              width="64"
+              height="64"
+              loading="lazy"
+            />
+            <div>
+              <strong>{profile.name}</strong>
+              <span>
+                {profile.school} · Réseaux & SecOps · {profile.academicYear}
+              </span>
+            </div>
+          </div>
           <p>
             J’aime comprendre comment les choses fonctionnent. Et surtout,
             trouver pourquoi elles ne fonctionnent plus.
@@ -60,18 +77,22 @@ export default function About() {
               Anglais <strong>Intermédiaire</strong>
             </span>
           </div>
-        </div>
+        </Reveal>
       </div>
       <div className="strengths-grid">
         {strengths.map(({ icon: Icon, title, text }, index) => (
-          <article className="strength-card" key={title}>
-            <div className="card-topline">
-              <Icon size={24} strokeWidth={1.6} />
-              <span>0{index + 1}</span>
-            </div>
-            <h3>{title}</h3>
-            <p>{text}</p>
-          </article>
+          <Reveal key={title} delay={index * 0.08}>
+            <TiltCard>
+              <article className="strength-card">
+                <div className="card-topline">
+                  <Icon size={24} strokeWidth={1.6} />
+                  <span>0{index + 1}</span>
+                </div>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            </TiltCard>
+          </Reveal>
         ))}
       </div>
     </section>

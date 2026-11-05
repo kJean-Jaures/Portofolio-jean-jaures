@@ -1,3 +1,4 @@
+import { Reveal } from "./visuals/Reveal";
 interface Props {
   number: string;
   label: string;
@@ -12,12 +13,12 @@ export default function SectionHeading({
   description,
 }: Props) {
   return (
-    <div className="section-heading">
+    <Reveal className="section-heading">
       <p className="eyebrow">
         <span>{number}</span> {label}
       </p>
       <h2>{title}</h2>
       {description && <p className="section-intro">{description}</p>}
-    </div>
+    </Reveal>
   );
 }

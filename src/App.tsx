@@ -1,9 +1,10 @@
 import { lazy, Suspense, useEffect, useState } from "react";
 import { Gamepad2, ArrowDownRight } from "lucide-react";
 import Navbar from "./components/Navbar";
+import { MotionSettingsProvider } from "./components/visuals/MotionSettings";
+import Atmosphere from "./components/visuals/Atmosphere";
 import Hero from "./components/Hero";
 import About from "./components/About";
-import Experience from "./components/Experience";
 import Parcours from "./components/Parcours";
 import Skills from "./components/Skills";
 import Projects from "./components/Projects";
@@ -15,7 +16,7 @@ const InteractiveTerminal = lazy(
   () => import("./components/InteractiveTerminal"),
 );
 
-export default function App() {
+function Portfolio() {
   const [darkMode, setDarkMode] = useState(() =>
     document.documentElement.classList.contains("dark"),
   );
@@ -34,6 +35,7 @@ export default function App() {
   }, [darkMode]);
   return (
     <>
+      <Atmosphere />
       <a className="skip-link" href="#main">
         Aller au contenu
       </a>
@@ -41,7 +43,6 @@ export default function App() {
       <main id="main">
         <Hero />
         <About />
-        <Experience />
         <Projects />
         <Skills />
         <Parcours />
@@ -84,5 +85,13 @@ export default function App() {
         </Suspense>
       )}
     </>
+  );
+}
+
+export default function App() {
+  return (
+    <MotionSettingsProvider>
+      <Portfolio />
+    </MotionSettingsProvider>
   );
 }

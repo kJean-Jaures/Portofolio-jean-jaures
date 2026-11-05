@@ -53,8 +53,9 @@ useEffect(() => {
     return () => clearInterval(interval);
   }, []);
 
+  if (!visible) return null;
+
   return (
-    if (!visible) return null;
     <>
       {/* Trail effect */}
       {trail.map((point, index) => (

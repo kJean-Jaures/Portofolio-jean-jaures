@@ -1,84 +1,88 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import About from './components/About';
-import Parcours from './components/Parcours';
-import Skills from './components/Skills';
-import Projects from './components/Projects';
-import FunZone from './components/FunZone';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
-import ParticlesBackground from './components/ParticlesBackground';
-import EasterEggs from './components/EasterEggs';
-import InteractiveTerminal from './components/InteractiveTerminal';
+import { lazy, Suspense, useEffect, useState } from "react";
+import { Gamepad2, ArrowDownRight } from "lucide-react";
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import About from "./components/About";
+import Experience from "./components/Experience";
+import Parcours from "./components/Parcours";
+import Skills from "./components/Skills";
+import Projects from "./components/Projects";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
+
+const FunZone = lazy(() => import("./components/FunZone"));
+const InteractiveTerminal = lazy(
+  () => import("./components/InteractiveTerminal"),
+);
 
 export default function App() {
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(() =>
+    document.documentElement.classList.contains("dark"),
+  );
   const [terminalOpen, setTerminalOpen] = useState(false);
-
+  const [gamesOpen, setGamesOpen] = useState(false);
   useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-      document.documentElement.classList.remove('light');
-    } else {
-      document.documentElement.classList.add('light');
-      document.documentElement.classList.remove('dark');
+    const theme = darkMode ? "dark" : "light";
+    document.documentElement.classList.toggle("dark", darkMode);
+    document.documentElement.classList.toggle("light", !darkMode);
+    document.documentElement.dataset.theme = theme;
+    try {
+      localStorage.setItem("portfolio-theme", theme);
+    } catch {
+      /* Theme remains usable without storage. */
     }
   }, [darkMode]);
-
-  // Open terminal with Ctrl+Shift+T
-  useEffect(() => {
-    const handleKeyPress = (e: KeyboardEvent) => {
-      if (e.ctrlKey && e.shiftKey && e.key === 'T') {
-        setTerminalOpen(!terminalOpen);
-      }
-    };
-    window.addEventListener('keydown', handleKeyPress);
-    return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [terminalOpen]);
-const [isDesktop, setIsDesktop] = useState(false);
-
-useEffect(() => {
-  const mq = window.matchMedia('(pointer: fine)'); // souris = true, tactile = false
-  setIsDesktop(mq.matches);
-  const onChange = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
-  mq.addEventListener('change', onChange);
-  return () => mq.removeEventListener('change', onChange);
-}, []);
   return (
-    <div className={`min-h-screen transition-colors duration-500 ${darkMode ? 'bg-[#0a0e17] text-white' : 'bg-white text-gray-900'}`}>
-      {/* Custom Cursor */}
-     
-      
-      {/* Easter Eggs */}
-      <EasterEggs />
-      
-      {/* Interactive Terminal */}
-      <InteractiveTerminal isOpen={terminalOpen} onClose={() => setTerminalOpen(false)} />
-      
-      {/* Noise overlay */}
-      <div className="noise-overlay" />
-      
-      {/* Particles background */}
-      <ParticlesBackground />
-      
+    <>
+      <a className="skip-link" href="#main">
+        Aller au contenu
+      </a>
       <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
-      <motion.main
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        className="relative z-10"
-      >
+      <main id="main">
         <Hero />
         <About />
-        <Parcours />
-        <Skills />
+        <Experience />
         <Projects />
-        <FunZone />
+        <Skills />
+        <Parcours />
         <Contact />
-      </motion.main>
-      <Footer />
-    </div>
+        <div className="playground section-shell">
+          <details onToggle={(event) => setGamesOpen(event.currentTarget.open)}>
+            <summary>
+              <span>
+                <Gamepad2 size={19} />
+                <strong>Un peu de code, juste pour le plaisir.</strong>
+                <span className="playground-subtitle">
+                  Mes petites expériences interactives
+                </span>
+              </span>
+              <ArrowDownRight size={20} />
+            </summary>
+            {gamesOpen && (
+              <div className="playground-content">
+                <Suspense
+                  fallback={
+                    <p className="lazy-loading" role="status">
+                      Chargement des jeux…
+                    </p>
+                  }
+                >
+                  <FunZone />
+                </Suspense>
+              </div>
+            )}
+          </details>
+        </div>
+      </main>
+      <Footer onOpenTerminal={() => setTerminalOpen(true)} />
+      {terminalOpen && (
+        <Suspense fallback={<p role="status">Ouverture du terminal…</p>}>
+          <InteractiveTerminal
+            isOpen={terminalOpen}
+            onClose={() => setTerminalOpen(false)}
+          />
+        </Suspense>
+      )}
+    </>
   );
 }

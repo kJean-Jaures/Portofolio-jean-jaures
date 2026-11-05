@@ -1,55 +1,76 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Portfolio de Jean-Jaures KOUASSI - Étudiant en Cybersécurité à l'ESGI Paris" />
-    <title>Jean-Jaures KOUASSI | Cybersécurité & Développement</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    <meta
+      name="description"
+      content="Kouamé Jean-Jaures KOUASSI, étudiant en Bachelor 3 Réseaux & SecOps à l’IPSSI. Alternance en systèmes, réseaux et cybersécurité en Île-de-France. Découvrez mon parcours et mes projets."
     />
-    <style>
-      html, body {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        height: 100%;
-      }
-      html.light, html.light body {
-        background-color: #ffffff !important;
-        color: #000000;
-      }
-      html.dark, html.dark body {
-        background-color: #1a1a1a !important;
-        color: #ffffff;
-      }
-    </style>
+    <meta name="theme-color" content="#0c141b" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href="https://portofolio-jean-jaures.vercel.app/" />
+    <title>Jean-Jaures KOUASSI | Systèmes, Réseaux & SecOps</title>
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta
+      property="og:title"
+      content="Jean-Jaures KOUASSI — Systèmes, Réseaux & SecOps"
+    />
+    <meta
+      property="og:description"
+      content="Étudiant à l’IPSSI, à la recherche d’une alternance en administration systèmes, réseaux et cybersécurité. Parcours, compétences et réalisations."
+    />
+    <meta
+      property="og:url"
+      content="https://portofolio-jean-jaures.vercel.app/"
+    />
+    <meta
+      property="og:image"
+      content="https://portofolio-jean-jaures.vercel.app/image/photo-profil.webp"
+    />
+    <meta property="og:image:alt" content="Kouamé Jean-Jaures KOUASSI" />
+    <meta name="twitter:card" content="summary" />
     <script>
       (function () {
-        const isInIframe = window.self !== window.top;
-        function applyThemeToDOM(theme) {
-          document.documentElement.classList.remove("light", "dark");
-          document.documentElement.classList.add(theme);
-          document.documentElement.setAttribute("data-theme", theme);
-        }
-        if (isInIframe) {
-          window.addEventListener("message", function (event) {
-            if (event.data && typeof event.data.theme === "string") {
-              const theme = event.data.theme;
-              if (theme === "light" || theme === "dark") {
-                applyThemeToDOM(theme);
-              }
-            }
-          });
-        } else {
-          applyThemeToDOM("light");
-        }
+        let theme = "dark";
+        try {
+          const saved = localStorage.getItem("portfolio-theme");
+          if (saved === "light" || saved === "dark") theme = saved;
+        } catch (_) {}
+        document.documentElement.className = theme;
+        document.documentElement.dataset.theme = theme;
       })();
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Kouamé Jean-Jaures KOUASSI",
+        "url": "https://portofolio-jean-jaures.vercel.app/",
+        "email": "mailto:kouassijaures605@gmail.com",
+        "affiliation": { "@type": "EducationalOrganization", "name": "IPSSI" },
+        "knowsAbout": [
+          "Administration systèmes",
+          "Réseaux",
+          "Cybersécurité",
+          "Développement full stack"
+        ],
+        "sameAs": [
+          "https://github.com/kJean-Jaures",
+          "https://www.linkedin.com/in/k-kouassi"
+        ]
+      }
     </script>
   </head>
   <body>
     <div id="root"></div>
+    <noscript
+      >Portfolio de Kouamé Jean-Jaures KOUASSI — Bachelor 3 Réseaux & SecOps à
+      l’IPSSI. Recherche d’alternance en Île-de-France. Contact :
+      <a href="mailto:kouassijaures605@gmail.com">kouassijaures605@gmail.com</a
+      >.</noscript
+    >
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

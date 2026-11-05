@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://portofolio-jean-jaures.vercel.app/sitemap.xml

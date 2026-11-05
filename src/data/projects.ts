@@ -18,6 +18,12 @@ export interface Project {
   context: string;
   contributions: string[];
   deliverables: string[];
+  resources?: {
+    label: string;
+    href: string;
+    kind: "demo" | "document" | "pdf";
+    downloadName?: string;
+  }[];
 }
 
 export const projects: Project[] = [
@@ -60,6 +66,18 @@ export const projects: Project[] = [
       "Un hotspot Wi-Fi sur Raspberry Pi, avec portail captif, contrôle d’accès et supervision du réseau.",
     image: wisafeImage,
     imageAlt: "Portail captif du projet WiSafe, hotspot Wi-Fi sécurisé",
+    resources: [
+      {
+        label: "Voir le portail captif",
+        href: "https://kjean-jaures.github.io/portail-captif-Pi-ESIEA/",
+        kind: "demo",
+      },
+      {
+        label: "Voir le document sur LinkedIn",
+        href: "https://www.linkedin.com/in/k-kouassi/overlay/1754786248894/single-media-viewer/?profileId=ACoAAFkDxVQBP9vFslDwfG0vMxBpG1uDCJBqcdA",
+        kind: "document",
+      },
+    ],
     tags: ["Raspberry Pi", "Bash", "Zabbix", "Grafana", "Pare-feu"],
     context:
       "Un projet académique réalisé à l’ESIEA pour concevoir un hotspot Wi-Fi sécurisé. Une mise en pratique de l’architecture réseau, de l’authentification et de la supervision.",
@@ -119,6 +137,13 @@ export const projects: Project[] = [
       "Sites vitrines, e-commerce et identités visuelles : accompagner les projets du premier croquis au lancement.",
     image: freelanceImage,
     imageAlt: "Illustration de mon activité de création web et graphique",
+    resources: [
+      {
+        label: "Voir Fashion Afro Braids",
+        href: "https://fashionafrobraids.fr",
+        kind: "demo",
+      },
+    ],
     tags: ["Responsive", "SEO", "Full stack", "Figma", "Design"],
     context:
       "Dans mon activité freelance, j’associe développement web et graphisme pour proposer des interfaces adaptées aux besoins de chaque client et une identité visuelle cohérente.",

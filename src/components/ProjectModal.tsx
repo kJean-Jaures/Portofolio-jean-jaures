@@ -1,5 +1,12 @@
 import { useEffect, useRef } from "react";
-import { ArrowUpRight, Check, Layers, X } from "lucide-react";
+import {
+  ArrowUpRight,
+  Check,
+  ExternalLink,
+  FileText,
+  Layers,
+  X,
+} from "lucide-react";
 import type { Project } from "../data/projects";
 import ProjectArtwork from "./ProjectArtwork";
 
@@ -64,6 +71,28 @@ export default function ProjectModal({
                 {project.type}
               </span>
             </div>
+            {project.resources && project.resources.length > 0 && (
+              <div className="project-resources" aria-label="Ressources du projet">
+                {project.resources.map((resource) => (
+                  <a
+                    key={resource.href}
+                    className={`button ${resource.kind === "demo" ? "button-primary" : "button-secondary"}`}
+                    href={resource.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    download={resource.downloadName}
+                  >
+                    {resource.kind === "demo" ? (
+                      <ExternalLink size={18} />
+                    ) : (
+                      <FileText size={18} />
+                    )}
+                    {resource.label}
+                    <ArrowUpRight size={16} />
+                  </a>
+                ))}
+              </div>
+            )}
             <h3>Le contexte</h3>
             <p>{project.context}</p>
             <h3>Ce que j’ai fait</h3>

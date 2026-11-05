@@ -2525,6 +2525,23 @@ main {
   letter-spacing: 0.06em;
   margin-bottom: 6px;
 }
+.project-resources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-block: 22px 28px;
+}
+.project-resources .button {
+  min-width: 0;
+  white-space: normal;
+}
+@media (max-width: 767px) {
+  .project-resources .button {
+    width: 100%;
+    font-size: 12px;
+    padding-inline: 12px;
+  }
+}
 .dialog-copy .eyebrow {
   display: block;
   line-height: 1.7;

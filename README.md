@@ -1,26 +1,60 @@
-# Portfolio — Kouamé Jean-Jaures KOUASSI
+# Mon portfolio — Jean-Jaures KOUASSI
 
-Portfolio React, TypeScript et Vite : systèmes, réseaux, SecOps et développement full stack.
+Bienvenue sur mon portfolio ! Je m’appelle Kouamé Jean-Jaures KOUASSI et je suis étudiant en Bachelor 3 Administrateur Réseaux & SecOps à l’IPSSI, en Île-de-France.
 
-Interface à fond étoilé animé, entrée avec éclairs désactivable, navigation flottante, portrait cyber interactif et portfolio organisé en onglets accessibles au clavier. Les liens directs vers les projets, les compétences et la formation restent utilisables. Les animations respectent la préférence système de mouvement réduit et disposent d’un contrôle de pause persistant.
+Je m’intéresse aux systèmes, aux réseaux et à la sécurité informatique. Je fais aussi du développement web et du graphisme en freelance. J’aime comprendre comment les choses fonctionnent, résoudre des problèmes et créer des projets que l’on peut vraiment utiliser.
 
-## Développement
+[Voir mon portfolio](https://portofolio-jean-jaures.vercel.app)
+
+## Pourquoi ce site ?
+
+J’ai voulu réunir mon parcours, mes expériences et mes réalisations au même endroit. On y retrouve mes stages chez Arescom et Meraky, mes projets en systèmes et réseaux, ainsi que mon travail en développement web et en design.
+
+J’avais aussi envie que le site reflète mon goût pour la tech. J’ai donc choisi un univers sombre, un fond étoilé et des animations 3D, avec quelques éléments interactifs comme le clavier et le terminal. Le site s’adapte au téléphone et les animations peuvent être mises en pause.
+
+## Quelques projets à découvrir
+
+- **WiSafe** : un projet de portail captif sur Raspberry Pi, autour de l’accès au réseau et de sa sécurisation. [Voir le portail](https://kjean-jaures.github.io/portail-captif-Pi-ESIEA/).
+- **Fashion Afro Braids** : une application web développée pour un salon de coiffure, avec des parcours de réservation et une boutique. [Voir le site](https://fashionafrobraids.fr).
+- **Mes créations graphiques** : logos, identités visuelles, affiches, flyers et maquettes d’interfaces.
+
+Les fiches du portfolio présentent mon rôle, ce que j’ai réalisé et les outils utilisés. Mon CV est également disponible sur le site.
+
+## Avec quoi je l’ai développé
+
+Le code est écrit en **TypeScript**, avec du **HTML** et du **CSS** pour la structure et la mise en forme.
+
+- **React** pour construire les pages et les composants interactifs.
+- **Three.js** pour les scènes 3D.
+- **Framer Motion** pour les animations d’interface.
+- **Lucide** et **Devicon** pour les icônes et les logos des technologies.
+- **Vite** pour lancer le site en local et préparer la version de production.
+- **FormSubmit** pour le formulaire de contact.
+
+## Lancer le projet en local
+
+Avec Node.js et npm installés :
 
 ```sh
+git clone https://github.com/kJean-Jaures/Portofolio-jean-jaures.git
+cd Portofolio-jean-jaures
 npm ci
 npm run dev
+```
+
+Pour vérifier le TypeScript et générer le site dans le dossier `dist` :
+
+```sh
 npm run typecheck
 npm run build
 ```
 
-Les informations du profil se trouvent dans `src/data/profile.ts`. Les expériences et leurs fiches détaillées sont dans `src/data/projects.ts`. Les scènes 3D sont réalisées avec Three.js dans `src/components/visuals/TechScene.tsx` ; elles sont chargées séparément, arrêtent leur rendu lorsqu’elles quittent l’écran et disposent d’un visuel de repli sans WebGL. Le bouton de pause et la préférence système de réduction des animations sont pris en compte.
+Les informations de mon profil et les projets se trouvent dans `src/data`. Les composants sont dans `src/components` et les styles dans `src/index.css`.
 
-## Réception des messages
+Le formulaire utilise FormSubmit : l’adresse destinataire doit être activée auprès du service pour recevoir les messages.
 
-Le formulaire effectue un véritable POST vers `https://formsubmit.co/ajax/kouassijaures605@gmail.com`. Aucun message n’est enregistré fictivement et aucune clé privée n’est nécessaire dans le navigateur. Le visiteur ne voit un succès qu’après confirmation explicite du service ; une erreur, un délai dépassé ou une demande d’activation conservent les champs et proposent le contact direct par email.
+## Me contacter
 
-L’adresse destinataire doit avoir été **activée chez FormSubmit**. Au premier envoi, le propriétaire peut recevoir un email de confirmation : ouvrir le lien d’activation, puis effectuer un nouvel envoi. Vérifier aussi les courriers indésirables. Une réponse du service n’est pas une preuve de réception dans la boîte mail ; cette dernière vérification nécessite de consulter la messagerie destinataire.
-
-Pour tester depuis un environnement cloud restreint, autoriser `formsubmit.co` dans les accès Internet de cet environnement. Le site public utilise la connexion Internet du visiteur. Les tests automatisés des cas d’échec et de succès interceptent les requêtes pour éviter des envois multiples ; un essai réel et la confirmation de réception restent distincts.
-
-La stack affichée est dérivée de `skillGroups` pour rester complète. Le clavier accepte le survol, les tapotements et des boutons accessibles, y compris sans WebGL ; les gestes de défilement ne déclenchent pas de sélection.
+- [LinkedIn](https://www.linkedin.com/in/k-kouassi)
+- [GitHub](https://github.com/kJean-Jaures)
+- [kouassijaures605@gmail.com](mailto:kouassijaures605@gmail.com)

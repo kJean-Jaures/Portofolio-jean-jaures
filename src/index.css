@@ -3319,3 +3319,46 @@ button.tech-tile[aria-pressed="true"] {
   #funzone .mb-16 { margin-bottom: 1.5rem; }
   #funzone button { touch-action: manipulation; }
 }
+
+.arcade-invite { margin-block: 1rem 5rem; padding: 2rem; border: 1px solid var(--line); border-radius: 24px; display: flex; gap: 2rem; align-items: center; justify-content: space-between; }
+.arcade-invite .eyebrow, .arcade-heading .eyebrow { display: flex; gap: .6rem; align-items: center; }
+.arcade-invite h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin-block: .6rem; }
+.arcade-invite p { color: var(--muted); }
+.arcade-page { min-height: 100dvh; color: #f1f5ff; background: radial-gradient(ellipse at 15% 0%, #172448 0, transparent 48%), radial-gradient(ellipse at 95% 50%, #221739 0, transparent 48%), #080d1c; }
+.arcade-header { min-height: 90px; display: flex; align-items: center; justify-content: space-between; gap: 1rem; border-bottom: 1px solid #ffffff12; }
+.arcade-home, .arcade-brand, .arcade-back { display: inline-flex; align-items: center; gap: .6rem; }
+.arcade-home, .arcade-back { color: #b9c8e1; min-height: 44px; }
+.arcade-home:hover, .arcade-back:hover { color: white; }
+.arcade-brand { font-weight: 800; letter-spacing: -.03em; color: #a9c4ff; }
+.arcade-zone { padding-block: 4rem 5rem; }
+.arcade-heading { max-width: 760px; margin-bottom: 2.5rem; }
+.arcade-heading .eyebrow { color: #9bbaff; }
+.arcade-heading h1 { font-size: clamp(2.5rem, 7vw, 5.5rem); line-height: 1.05; font-weight: 800; letter-spacing: -.055em; margin-block: 1rem 1.2rem; }
+.arcade-heading h1 span { color: #a7b9ff; }
+.arcade-heading > p:last-of-type { color: #aebcd4; line-height: 1.7; }
+.arcade-badges { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.4rem; }
+.arcade-badges span { font-size: .75rem; color: #c4d2ea; padding: .4rem .7rem; border: 1px solid #ffffff1c; border-radius: 999px; }
+.arcade-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.3rem; }
+.arcade-card { --arcade-accent: #b7a0ff; display: flex; flex-direction: column; min-width: 0; padding: 1.7rem; border: 1px solid #ffffff20; border-radius: 24px; background: linear-gradient(145deg, #ffffff08, #ffffff02); transition: transform .2s, border-color .2s; }
+.arcade-card-memory { --arcade-accent: #ffaad3; }
+.arcade-card-quiz { --arcade-accent: #8de4e4; }
+.arcade-card-top { display: flex; justify-content: space-between; color: #9aabc7; font-size: .75rem; }
+.arcade-emoji { font-size: 3.8rem; line-height: 1; margin-block: 2.5rem; }
+.arcade-category { font-size: .7rem; text-transform: uppercase; letter-spacing: .1em; color: var(--arcade-accent); }
+.arcade-card h2 { font-size: 1.6rem; font-weight: 700; margin-block: .6rem; }
+.arcade-card > p:last-of-type { color: #aebcd4; font-size: .9rem; line-height: 1.7; margin-bottom: 2rem; }
+.arcade-play { display: flex; justify-content: space-between; align-items: center; padding-top: 1.2rem; border-top: 1px solid #ffffff18; margin-top: auto; color: var(--arcade-accent); font-weight: 600; font-size: .9rem; }
+.arcade-back { margin-bottom: 1.5rem; }
+.arcade-stage { display: flex; justify-content: center; padding: clamp(.5rem, 2vw, 2rem); background: #03071380; border: 1px solid #ffffff16; border-radius: 24px; }
+.arcade-footer { padding: 1.5rem; text-align: center; font-size: .8rem; color: #93a3bf; border-top: 1px solid #ffffff12; }
+.arcade-page a:focus-visible, .arcade-page button:focus-visible { outline: 3px solid #9bbaff; outline-offset: 5px; }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) { .arcade-card:hover { transform: translateY(-6px); border-color: var(--arcade-accent); } }
+@media (max-width: 767px) {
+  .arcade-invite { flex-direction: column; align-items: flex-start; padding: 1.4rem; }
+  .arcade-header { min-height: 76px; font-size: .8rem; }
+  #funzone.arcade-zone { padding-block: 2.5rem 3rem; }
+  .arcade-grid { grid-template-columns: 1fr; }
+  .arcade-card { padding: 1.4rem; }
+  .arcade-emoji { margin-block: 1.5rem; font-size: 3rem; }
+  .arcade-stage { border-radius: 16px; padding: .3rem; }
+}

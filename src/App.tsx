@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect, useState } from "react";
-import { Gamepad2, ArrowDownRight } from "lucide-react";
+import { Gamepad2, ArrowUpRight } from "lucide-react";
 import Navbar from "./components/Navbar";
 import { MotionSettingsProvider } from "./components/visuals/MotionSettings";
 import Atmosphere from "./components/visuals/Atmosphere";
@@ -10,7 +10,7 @@ import WelcomeIntro from "./components/visuals/WelcomeIntro";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
-const FunZone = lazy(() => import("./components/FunZone"));
+const GamesPage = lazy(() => import("./components/GamesPage"));
 const InteractiveTerminal = lazy(
   () => import("./components/InteractiveTerminal"),
 );
@@ -20,7 +20,6 @@ function Portfolio() {
     document.documentElement.classList.contains("dark"),
   );
   const [terminalOpen, setTerminalOpen] = useState(false);
-  const [gamesOpen, setGamesOpen] = useState(false);
   useEffect(() => {
     const theme = darkMode ? "dark" : "light";
     document.documentElement.classList.toggle("dark", darkMode);
@@ -45,33 +44,16 @@ function Portfolio() {
         <About />
         <PortfolioHub />
         <Contact />
-        <div className="playground section-shell">
-          <details onToggle={(event) => setGamesOpen(event.currentTarget.open)}>
-            <summary>
-              <span>
-                <Gamepad2 size={19} />
-                <strong>Un peu de code, juste pour le plaisir.</strong>
-                <span className="playground-subtitle">
-                  Mes petites expériences interactives
-                </span>
-              </span>
-              <ArrowDownRight size={20} />
-            </summary>
-            {gamesOpen && (
-              <div className="playground-content dark">
-                <Suspense
-                  fallback={
-                    <p className="lazy-loading" role="status">
-                      Chargement des jeux…
-                    </p>
-                  }
-                >
-                  <FunZone />
-                </Suspense>
-              </div>
-            )}
-          </details>
-        </div>
+        <section className="arcade-invite section-shell" aria-labelledby="arcade-invite-title">
+          <div>
+            <span className="eyebrow"><Gamepad2 size={18} /> La pause ludique</span>
+            <h2 id="arcade-invite-title">On fait une partie ?</h2>
+            <p>Tetris, mémoire et quiz informatique : découvre mon espace de jeux.</p>
+          </div>
+          <a className="button button-primary" href="./jeux.html">
+            Entrer dans l’espace jeux <ArrowUpRight size={18} />
+          </a>
+        </section>
       </main>
       <Footer onOpenTerminal={() => setTerminalOpen(true)} />
       {terminalOpen && (
@@ -89,7 +71,11 @@ function Portfolio() {
 export default function App() {
   return (
     <MotionSettingsProvider>
-      <Portfolio />
+      {window.location.pathname.endsWith("/jeux.html") ? (
+        <Suspense fallback={<p className="lazy-loading" role="status">Chargement de l’espace jeux…</p>}>
+          <GamesPage />
+        </Suspense>
+      ) : <Portfolio />}
     </MotionSettingsProvider>
   );
 }

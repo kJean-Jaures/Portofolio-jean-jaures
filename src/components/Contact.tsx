@@ -35,6 +35,11 @@ export default function Contact() {
   };
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (window.location.hostname.endsWith(".github.io")) {
+      if (form.website) return;
+      HTMLFormElement.prototype.submit.call(event.currentTarget);
+      return;
+    }
     if (inFlight.current) return;
     inFlight.current = true;
     setErrorMessage("");
@@ -120,6 +125,8 @@ export default function Contact() {
           action={`https://formsubmit.co/${profile.email}`}
           method="POST"
         >
+          <input type="hidden" name="_subject" value="Portfolio — Nouveau message" />
+          <input type="hidden" name="_template" value="table" />
           <h3>Un premier message ?</h3>
           <p>
             Parlez-moi de votre équipe, de votre projet ou de votre opportunité.
@@ -211,8 +218,9 @@ export default function Contact() {
             </a>
           )}
           <p className="form-note">
-            Vos coordonnées me permettent uniquement de répondre à votre
-            message.
+            Sur GitHub Pages, l’envoi se poursuit sur une page sécurisée
+            FormSubmit pour validation. Vos coordonnées servent uniquement à
+            répondre à votre message.
           </p>
         </form>
       </Reveal>

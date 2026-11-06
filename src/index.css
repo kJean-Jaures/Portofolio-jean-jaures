@@ -3310,3 +3310,12 @@ button.tech-tile[aria-pressed="true"] {
   min-height: 44px;
   text-align: center;
 }
+
+/* Compact game layout for narrow screens. */
+@media (max-width: 767px) {
+  #funzone { padding-block: 1.5rem; }
+  #funzone > div { padding-inline: 0; }
+  #funzone .text-4xl { font-size: 1.75rem; }
+  #funzone .mb-16 { margin-bottom: 1.5rem; }
+  #funzone button { touch-action: manipulation; }
+}

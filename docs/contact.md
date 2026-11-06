@@ -26,6 +26,6 @@ Les tests du serveur simulent le prestataire et n’envoient aucun email. Pour t
 
 Le serveur contrôle les champs, une origine autorisée, un champ piège et un petit quota par IP sur chaque instance. Ce quota n’est pas partagé entre les instances ; les limites du compte Resend restent importantes. Une clé d’idempotence évite qu’un même message envoyé à nouveau crée plusieurs emails pendant la période de déduplication de Resend.
 
-Sur GitHub Pages, qui ne peut pas exécuter cette fonction, le site conserve le relais FormSubmit. Ce relais nécessite l’activation de l’adresse destinataire et dépend de la disponibilité de FormSubmit.
+Sur GitHub Pages, qui ne peut pas exécuter cette fonction, le formulaire est envoyé directement à la page sécurisée FormSubmit. Le visiteur y termine la validation anti-spam ; le site ne tente pas de requête AJAX vers une fonction serveur absente. Ce relais nécessite l’activation de l’adresse destinataire : lors du premier envoi, ouvrir le message d’activation reçu à cette adresse et confirmer, puis refaire un envoi de test. Vérifier aussi les indésirables. La réception réelle dépend de la disponibilité de FormSubmit et doit être contrôlée dans la boîte mail.
 
 En cas d’erreur ou de délai dépassé, les champs restent remplis. Le lien vers la messagerie reprend le contenu du message ; il ouvre un brouillon et ne prétend pas avoir envoyé l’email.

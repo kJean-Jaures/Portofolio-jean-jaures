@@ -94,7 +94,9 @@ export default function FunZone() {
               className="grid md:grid-cols-3 gap-8"
             >
               {games.map((game, index) => (
-                <motion.div
+                <motion.button
+                  type="button"
+                  aria-label={`Jouer à ${game.name}`}
                   key={game.id}
                   initial={{ opacity: 0, y: 30 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -142,7 +144,7 @@ export default function FunZone() {
                       Jouer
                     </motion.div>
                   </div>
-                </motion.div>
+                </motion.button>
               ))}
             </motion.div>
           ) : (

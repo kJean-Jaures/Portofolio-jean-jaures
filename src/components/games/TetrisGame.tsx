@@ -78,31 +78,17 @@ export default function TetrisGame() {
 
   const gameLoopRef = useRef<number | null>(null);
 
-  const spawnNewPiece = useCallback(() => {
-    const newPiece = createPiece(nextPiece);
-    const newNextPiece = getRandomPiece();
-
-    if (!isValidMove(newPiece.shape, newPiece.x, newPiece.y, board)) {
-      setGameOver(true);
-      setGameStarted(false);
-      return;
-    }
-
-    setCurrentPiece(newPiece);
-    setNextPiece(newNextPiece);
-  }, [nextPiece, board]);
-
-  const placePiece = useCallback(() => {
-    if (!currentPiece) return;
+  const placePiece = useCallback((piece = currentPiece) => {
+    if (!piece) return;
 
     const newBoard = board.map(row => [...row]);
-    for (let row = 0; row < currentPiece.shape.length; row++) {
-      for (let col = 0; col < currentPiece.shape[row].length; col++) {
-        if (currentPiece.shape[row][col]) {
-          const y = currentPiece.y + row;
-          const x = currentPiece.x + col;
+    for (let row = 0; row < piece.shape.length; row++) {
+      for (let col = 0; col < piece.shape[row].length; col++) {
+        if (piece.shape[row][col]) {
+          const y = piece.y + row;
+          const x = piece.x + col;
           if (y >= 0 && y < BOARD_HEIGHT && x >= 0 && x < BOARD_WIDTH) {
-            newBoard[y][x] = TETROMINOS[currentPiece.type].color;
+            newBoard[y][x] = TETROMINOS[piece.type].color;
           }
         }
       }
@@ -123,8 +109,16 @@ export default function TetrisGame() {
       return newTotal;
     });
 
-    spawnNewPiece();
-  }, [currentPiece, board, level, spawnNewPiece]);
+    const next = createPiece(nextPiece);
+    if (!isValidMove(next.shape, next.x, next.y, newLines)) {
+      setGameOver(true);
+      setGameStarted(false);
+      setCurrentPiece(null);
+    } else {
+      setCurrentPiece(next);
+      setNextPiece(getRandomPiece());
+    }
+  }, [currentPiece, board, level, nextPiece]);
 
   const moveDown = useCallback(() => {
     if (!currentPiece || gameOver || isPaused) return;
@@ -169,8 +163,7 @@ export default function TetrisGame() {
     while (isValidMove(currentPiece.shape, currentPiece.x, newY + 1, board)) {
       newY++;
     }
-    setCurrentPiece({ ...currentPiece, y: newY });
-    setTimeout(() => placePiece(), 50);
+    placePiece({ ...currentPiece, y: newY });
   }, [currentPiece, gameOver, isPaused, board, placePiece]);
 
   const startGame = () => {
@@ -215,7 +208,7 @@ export default function TetrisGame() {
 
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
-      if (!gameStarted || gameOver) return;
+      if (!gameStarted || gameOver || (e.target instanceof HTMLElement && e.target.closest('input, textarea, button, a, select'))) return;
 
       if (e.key === 'p' || e.key === 'P') {
         togglePause();
@@ -288,12 +281,6 @@ export default function TetrisGame() {
     );
   };
 
-  // Handler pour boutons tactiles (appelle directement les fonctions, pas besoin de simuler keydown)
-  const handleTouch = (action: () => void) => (e: React.PointerEvent) => {
-    e.preventDefault();
-    action();
-  };
-
   return (
     <div className="p-4 md:p-6 rounded-2xl bg-gray-900/50 border border-gray-800/50 backdrop-blur-sm max-w-2xl w-full">
       <div className="flex items-center gap-3 mb-6">
@@ -330,7 +317,7 @@ export default function TetrisGame() {
       ) : (
         <div className="flex flex-col md:flex-row gap-6 justify-center items-start">
           {/* Game Board */}
-          <div className="relative flex-shrink-0">
+          <div className="relative flex-shrink-0 mx-auto">
             <div className="border-2 border-gray-700 rounded bg-gray-950 p-1">
               {renderBoard().map((row, rowIndex) => (
                 <div key={rowIndex} className="flex">
@@ -351,7 +338,7 @@ export default function TetrisGame() {
                 <div className="text-center">
                   <div className="text-4xl mb-2">⏸️</div>
                   <p className="text-white font-bold">PAUSE</p>
-                  <p className="text-gray-400 text-sm">Appuie sur P pour continuer</p>
+                  <p className="text-gray-400 text-sm">Utilise Reprendre pour continuer</p>
                 </div>
               </div>
             )}
@@ -378,19 +365,22 @@ export default function TetrisGame() {
             {/* Boutons de contrôle */}
             <div className="grid grid-cols-3 gap-2">
               <button
-                onPointerDown={handleTouch(moveLeft)}
+                aria-label="Déplacer à gauche"
+                onClick={moveLeft}
                 className="py-4 rounded-xl bg-gray-800/80 border border-gray-700/50 text-2xl active:scale-90 active:bg-purple-500/20 touch-manipulation"
               >
                 ⬅️
               </button>
               <button
-                onPointerDown={handleTouch(rotate)}
+                aria-label="Tourner la pièce"
+                onClick={rotate}
                 className="py-4 rounded-xl bg-gray-800/80 border border-gray-700/50 text-2xl active:scale-90 active:bg-purple-500/20 touch-manipulation"
               >
                 🔄
               </button>
               <button
-                onPointerDown={handleTouch(moveRight)}
+                aria-label="Déplacer à droite"
+                onClick={moveRight}
                 className="py-4 rounded-xl bg-gray-800/80 border border-gray-700/50 text-2xl active:scale-90 active:bg-purple-500/20 touch-manipulation"
               >
                 ➡️
@@ -398,13 +388,15 @@ export default function TetrisGame() {
             </div>
             <div className="grid grid-cols-2 gap-2">
               <button
-                onPointerDown={handleTouch(moveDown)}
+                aria-label="Descendre"
+                onClick={moveDown}
                 className="py-4 rounded-xl bg-gray-800/80 border border-gray-700/50 text-2xl active:scale-90 active:bg-purple-500/20 touch-manipulation"
               >
                 ⬇️
               </button>
               <button
-                onPointerDown={handleTouch(hardDrop)}
+                aria-label="Poser immédiatement"
+                onClick={hardDrop}
                 className="py-4 rounded-xl bg-purple-600/30 border border-purple-500/40 text-2xl active:scale-90 active:bg-purple-500/40 touch-manipulation"
               >
                 ⏬

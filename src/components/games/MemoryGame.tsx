@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { RotateCcw } from 'lucide-react';
 
@@ -18,14 +18,20 @@ export default function MemoryGame() {
   const [gameWon, setGameWon] = useState(false);
   const [bestScore, setBestScore] = useState<number | null>(null);
 
+  const timeout = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(() => {
     initializeGame();
+    return () => { if (timeout.current) clearTimeout(timeout.current); };
   }, []);
 
   const initializeGame = () => {
-    const shuffled = [...EMOJIS, ...EMOJIS]
-      .sort(() => Math.random() - 0.5)
-      .map((emoji, index) => ({
+    if (timeout.current) clearTimeout(timeout.current);
+    const deck = [...EMOJIS, ...EMOJIS];
+    for (let i = deck.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [deck[i], deck[j]] = [deck[j], deck[i]];
+    }
+    const shuffled = deck.map((emoji, index) => ({
         id: index,
         emoji,
         flipped: false,
@@ -53,7 +59,7 @@ export default function MemoryGame() {
       const [first, second] = newFlipped;
       
       if (cards[first].emoji === cards[second].emoji) {
-        setTimeout(() => {
+        timeout.current = setTimeout(() => {
           const matchedCards = [...cards];
           matchedCards[first].matched = true;
           matchedCards[second].matched = true;
@@ -68,7 +74,7 @@ export default function MemoryGame() {
           }
         }, 500);
       } else {
-        setTimeout(() => {
+        timeout.current = setTimeout(() => {
           const resetCards = [...cards];
           resetCards[first].flipped = false;
           resetCards[second].flipped = false;
@@ -80,7 +86,7 @@ export default function MemoryGame() {
   };
 
   return (
-    <div className="p-6 rounded-2xl bg-gray-900/50 border border-gray-800/50 backdrop-blur-sm max-w-md">
+    <div className="p-6 rounded-2xl bg-gray-900/50 border border-gray-800/50 backdrop-blur-sm max-w-md w-full">
       <div className="flex items-center gap-3 mb-6">
         <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-pink-500 to-rose-500 flex items-center justify-center">
           <span className="text-2xl">🧠</span>
@@ -101,11 +107,18 @@ export default function MemoryGame() {
         )}
       </div>
 
+      {!gameWon && (
+        <button className="button button-secondary mb-4" onClick={initializeGame}>
+          <RotateCcw size={16} /> Nouvelle partie
+        </button>
+      )}
       {!gameWon ? (
         <div className="grid grid-cols-4 gap-3">
           {cards.map((card) => (
             <motion.button
               key={card.id}
+              aria-label={card.matched ? `Paire trouvée : ${card.emoji}` : card.flipped ? card.emoji : `Retourner la carte ${card.id + 1}`}
+              disabled={card.matched || card.flipped || flippedCards.length === 2}
               onClick={() => handleCardClick(card.id)}
               whileHover={{ scale: card.flipped || card.matched ? 1 : 1.05 }}
               whileTap={{ scale: 0.95 }}

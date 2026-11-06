@@ -99,22 +99,19 @@ export default function CyberQuiz() {
     
     setSelectedAnswer(answerIndex);
     
-    setTimeout(() => {
-      if (answerIndex === QUESTIONS[currentQuestion].correct) {
-        setScore(score + 1);
-      }
-      
-      if (currentQuestion + 1 < QUESTIONS.length) {
-        setCurrentQuestion(currentQuestion + 1);
-        setSelectedAnswer(null);
-      } else {
-        setShowResult(true);
-        const finalScore = answerIndex === QUESTIONS[currentQuestion].correct ? score + 1 : score;
-        if (!bestScore || finalScore > bestScore) {
-          setBestScore(finalScore);
-        }
-      }
-    }, 1000);
+  };
+
+  const nextQuestion = () => {
+    if (selectedAnswer === null) return;
+    const finalScore = score + Number(selectedAnswer === QUESTIONS[currentQuestion].correct);
+    setScore(finalScore);
+    if (currentQuestion + 1 < QUESTIONS.length) {
+      setCurrentQuestion(currentQuestion + 1);
+      setSelectedAnswer(null);
+    } else {
+      setShowResult(true);
+      if (bestScore === null || finalScore > bestScore) setBestScore(finalScore);
+    }
   };
 
   const resetQuiz = () => {
@@ -125,7 +122,7 @@ export default function CyberQuiz() {
   };
 
   return (
-    <div className="p-6 rounded-2xl bg-gray-900/50 border border-gray-800/50 backdrop-blur-sm max-w-2xl">
+    <div className="p-6 rounded-2xl bg-gray-900/50 border border-gray-800/50 backdrop-blur-sm max-w-2xl w-full">
       <div className="flex items-center gap-3 mb-6">
         <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-violet-500 to-purple-500 flex items-center justify-center">
           <span className="text-2xl">💻</span>
@@ -176,6 +173,18 @@ export default function CyberQuiz() {
             </div>
           </div>
 
+          {selectedAnswer !== null && (
+            <div className="mb-6" aria-live="polite">
+              <p className="text-gray-200 mb-3">
+                {selectedAnswer === QUESTIONS[currentQuestion].correct
+                  ? 'Bonne réponse !'
+                  : `La bonne réponse : ${QUESTIONS[currentQuestion].answers[QUESTIONS[currentQuestion].correct]}`}
+              </p>
+              <button onClick={nextQuestion} className="button button-primary">
+                {currentQuestion + 1 === QUESTIONS.length ? 'Voir mon résultat' : 'Question suivante'}
+              </button>
+            </div>
+          )}
           {/* Progress bar */}
           <div className="w-full bg-gray-800 rounded-full h-2">
             <motion.div

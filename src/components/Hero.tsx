@@ -4,47 +4,50 @@ import {
   Download,
   Github,
   Linkedin,
-  MapPin,
 } from "lucide-react";
 import { profile } from "../data/profile";
 import cv from "../assets/CV-Jean-Jaures-KOUASSI.pdf";
-import TechScene from "./visuals/LazyScene";
 import { Reveal } from "./visuals/Reveal";
+import TypingText from "./visuals/TypingText";
+import HeroConsole from "./HeroConsole";
 
-export default function Hero() {
+export default function Hero({
+  onOpenTerminal,
+}: {
+  onOpenTerminal: () => void;
+}) {
   return (
     <section
       id="accueil"
-      className="hero section-shell"
+      className="hero section-shell cosmic-hero"
       aria-labelledby="hero-title"
     >
       <div className="hero-copy">
         <Reveal>
-          <span className="availability">
-            <span className="status-dot" /> Disponible pour une alternance
-          </span>
-          <p className="hero-overline">Hello world_ / Moi, c’est Kouamé</p>
+          <p className="hero-overline">
+            <span className="mini-orbit" /> KOUAMÉ JEAN-JAURES KOUASSI
+          </p>
           <h1 id="hero-title">
-            Jean-Jaures
+            <span>Des idées.</span>
             <br />
-            <span>KOUASSI</span>
-            <span className="accent hero-dot">.</span>
+            Du code.
+            <br />
+            Du concret<span className="hero-dot">.</span>
           </h1>
-          <p className="hero-role">
-            Le code rencontre <span>l’infrastructure.</span>
-          </p>
-          <p className="hero-description">
-            Systèmes, réseaux & SecOps. Je connecte les environnements IT et je
-            construis des expériences web. Une double compétence, une même
-            curiosité.
-          </p>
-          <div className="hero-study">
-            <span className="code-bracket">&lt;/&gt;</span> Bachelor 3 Réseaux &
-            SecOps <span>· {profile.school}</span>
+          <div className="hero-role">
+            <span className="typing-prompt" aria-hidden="true">
+              ❯
+            </span>{" "}
+            <TypingText />
           </div>
+          <p className="hero-description">
+            Je construis des expériences web et j’explore les systèmes qui les
+            font vivre. Étudiant en Bachelor 3 à l’{profile.school}, je relie
+            développement, réseaux et cybersécurité.
+          </p>
           <div className="button-row">
             <a className="button button-primary" href="#experiences">
-              Explorer mes expériences <ArrowUpRight size={18} />
+              Mes réalisations <ArrowUpRight size={17} />
             </a>
             <a
               className="button button-secondary"
@@ -55,42 +58,50 @@ export default function Hero() {
             </a>
           </div>
           <div className="hero-meta">
-            <span>
-              <MapPin size={15} /> {profile.location}
+            <span className="availability">
+              <span className="status-dot" /> Disponible pour une alternance
             </span>
-            <span className="meta-divider" />
-            <a href={profile.github} target="_blank" rel="noopener noreferrer">
-              <Github size={16} /> GitHub <ArrowUpRight size={12} />
+            <a
+              href={profile.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Mon profil GitHub"
+            >
+              <Github size={18} />
             </a>
             <a
               href={profile.linkedin}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Mon profil LinkedIn"
             >
-              <Linkedin size={16} /> LinkedIn <ArrowUpRight size={12} />
+              <Linkedin size={18} />
             </a>
           </div>
         </Reveal>
       </div>
-      <div className="hero-visual">
-        <div className="scene-aura" />
-        <span className="scene-orbit-label label-cyan">Systèmes & réseaux</span>
-        <span className="scene-orbit-label label-pink">
-          Créativité × Technologie
+      <Reveal className="hero-visual cosmic-console-visual" delay={0.15}>
+        <div className="console-aura" />
+        <span className="orbit-spark spark-one" aria-hidden="true">
+          ✦
         </span>
-        <TechScene />
-        <div className="scene-caption">
-          <span className="caption-line" />
-          <span>Construire. Connecter. Sécuriser.</span>
-          <span className="caption-line" />
-        </div>
-      </div>
+        <span className="orbit-spark spark-two" aria-hidden="true">
+          +
+        </span>
+        <HeroConsole onOpenTerminal={onOpenTerminal} />
+        <span className="console-caption">
+          Un profil. Plusieurs façons de créer.
+        </span>
+      </Reveal>
       <div className="hero-bottom">
-        <span>De l’idée à l’infrastructure.</span>
+        <span>Développement / Infrastructure / SecOps</span>
         <a href="#apropos">
-          Scroll pour explorer <ArrowDown size={15} />
+          <span className="scroll-mouse" aria-hidden="true">
+            <i />
+          </span>{" "}
+          Découvrir mon univers <ArrowDown size={14} />
         </a>
-        <span className="hero-coordinate">48.85° N / 2.35° E</span>
+        <span className="hero-coordinate">ÎLE-DE-FRANCE, FR</span>
       </div>
     </section>
   );

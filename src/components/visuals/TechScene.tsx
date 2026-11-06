@@ -5,7 +5,7 @@ import { useMotionSettings } from "./MotionSettings";
 import SceneFallback from "./SceneFallback";
 
 type Variant = "workspace" | "keyboard" | "globe";
-const palette = ["#9874ff", "#53d9f5", "#fa95ca", "#74e7b5", "#ffc578"];
+const palette = ["#548cff", "#53d9f5", "#8aa5ff", "#74e7b5", "#ffc578"];
 
 function labelTexture(label: string, screen = false) {
   const canvas = document.createElement("canvas");
@@ -410,7 +410,7 @@ export default function TechScene({
     const light = new THREE.DirectionalLight(0xffffff, 3.5);
     light.position.set(4, 7, 6);
     scene.add(light);
-    const purple = new THREE.PointLight(0x9b65ff, 24, 20);
+    const purple = new THREE.PointLight(0x426cff, 24, 20);
     purple.position.set(-3, 2, 0);
     scene.add(purple);
     const cyan = new THREE.PointLight(0x64d9ff, 18, 20);

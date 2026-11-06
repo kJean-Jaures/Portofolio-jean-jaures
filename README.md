@@ -2,6 +2,8 @@
 
 Portfolio React, TypeScript et Vite : systèmes, réseaux, SecOps et développement full stack.
 
+Interface à fond étoilé animé, entrée avec éclairs désactivable, navigation flottante, portrait cyber interactif et portfolio organisé en onglets accessibles au clavier. Les liens directs vers les projets, les compétences et la formation restent utilisables. Les animations respectent la préférence système de mouvement réduit et disposent d’un contrôle de pause persistant.
+
 ## Développement
 
 ```sh

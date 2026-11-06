@@ -58,7 +58,7 @@ export default function Contact() {
       <Reveal className="contact-panel">
         <div className="contact-copy">
           <SectionHeading
-            number="05"
+            number="03"
             label="Faisons connaissance"
             title="Et si on travaillait ensemble ?"
           />

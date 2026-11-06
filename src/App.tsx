@@ -5,9 +5,8 @@ import { MotionSettingsProvider } from "./components/visuals/MotionSettings";
 import Atmosphere from "./components/visuals/Atmosphere";
 import Hero from "./components/Hero";
 import About from "./components/About";
-import Parcours from "./components/Parcours";
-import Skills from "./components/Skills";
-import Projects from "./components/Projects";
+import PortfolioHub from "./components/PortfolioHub";
+import WelcomeIntro from "./components/visuals/WelcomeIntro";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
@@ -36,16 +35,15 @@ function Portfolio() {
   return (
     <>
       <Atmosphere />
+      <WelcomeIntro />
       <a className="skip-link" href="#main">
         Aller au contenu
       </a>
       <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
       <main id="main">
-        <Hero />
+        <Hero onOpenTerminal={() => setTerminalOpen(true)} />
         <About />
-        <Projects />
-        <Skills />
-        <Parcours />
+        <PortfolioHub />
         <Contact />
         <div className="playground section-shell">
           <details onToggle={(event) => setGamesOpen(event.currentTarget.open)}>
@@ -60,7 +58,7 @@ function Portfolio() {
               <ArrowDownRight size={20} />
             </summary>
             {gamesOpen && (
-              <div className="playground-content">
+              <div className="playground-content dark">
                 <Suspense
                   fallback={
                     <p className="lazy-loading" role="status">

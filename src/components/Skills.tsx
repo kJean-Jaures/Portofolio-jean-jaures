@@ -11,6 +11,7 @@ import { skillGroups } from "../data/profile";
 import SectionHeading from "./SectionHeading";
 import { Reveal, TiltCard } from "./visuals/Reveal";
 import TechScene from "./visuals/LazyScene";
+import TechTiles from "./TechTiles";
 const icons = [Server, Network, Activity, Code2, Database, PenTool];
 
 export default function Skills() {
@@ -22,6 +23,7 @@ export default function Skills() {
         title="Plusieurs outils. Une vision d’ensemble."
         description="Des outils complémentaires pour comprendre un projet, du réseau qui le porte à l’interface qui le rend accessible."
       />
+      <TechTiles />
       <Reveal className="stack-stage">
         <div className="stack-stage-copy">
           <span className="stack-pill">

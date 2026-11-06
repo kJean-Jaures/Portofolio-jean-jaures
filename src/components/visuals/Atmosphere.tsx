@@ -1,5 +1,6 @@
 import { motion, useScroll, useSpring } from "framer-motion";
 import { useMotionSettings } from "./MotionSettings";
+import Starfield from "./Starfield";
 
 export default function Atmosphere() {
   const { scrollYProgress } = useScroll();
@@ -7,11 +8,10 @@ export default function Atmosphere() {
   const { enabled } = useMotionSettings();
   return (
     <>
-      <div className="ambient-sky" aria-hidden="true">
-        <span className="ambient-blob blob-violet" />
-        <span className="ambient-blob blob-cyan" />
-        <span className="ambient-blob blob-pink" />
-        <div className="ambient-grid" />
+      <div className="ambient-sky cosmic-sky" aria-hidden="true">
+        <div className="nebula nebula-one" />
+        <div className="nebula nebula-two" />
+        <Starfield />
       </div>
       <motion.div
         className="scroll-progress"

@@ -22,6 +22,10 @@ export default function InteractiveTerminal({
   useEffect(() => {
     if (!isOpen) return;
     const dialog = dialogRef.current;
+    const opener =
+      document.activeElement instanceof HTMLElement
+        ? document.activeElement
+        : null;
     const oldOverflow = document.body.style.overflow;
     dialog?.showModal();
     inputRef.current?.focus();
@@ -29,6 +33,7 @@ export default function InteractiveTerminal({
     return () => {
       dialog?.close();
       document.body.style.overflow = oldOverflow;
+      if (opener?.isConnected) opener.focus({ preventScroll: true });
     };
   }, [isOpen]);
   useEffect(() => {

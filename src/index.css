@@ -363,7 +363,7 @@ main {
   background: linear-gradient(90deg, #2565ff, #83dbff);
 }
 
-/* Short, skippable lightning entrance; no fabricated loading counter. */
+/* Welcome screen with time to read, including on narrow viewports. */
 .welcome-intro {
   position: fixed;
   inset: 0;
@@ -377,10 +377,19 @@ main {
   background: #020611;
   color: #f4f8ff;
   overflow: hidden;
-  animation: intro-exit 0.3s ease 1.6s forwards;
+  animation: intro-exit 0.4s ease calc(var(--intro-duration) - 0.4s) forwards;
 }
 .welcome-intro:not([open]) {
   display: none;
+}
+.welcome-intro[data-animated="false"],
+.welcome-intro[data-animated="false"] .intro-copy {
+  animation: none;
+}
+.welcome-intro[data-animated="false"] .intro-lightning path {
+  animation: none;
+  stroke-dashoffset: 0;
+  opacity: 0.8;
 }
 .welcome-intro::backdrop {
   background: #020611;
@@ -408,7 +417,7 @@ main {
 .lightning-branch {
   stroke-dasharray: 1800;
   stroke-dashoffset: 1800;
-  animation: lightning-draw 1.1s ease-out forwards;
+  animation: lightning-draw 1.6s ease-out forwards;
 }
 .lightning-core {
   stroke: #d6f6ff;
@@ -476,8 +485,9 @@ main {
 }
 .intro-skip {
   position: absolute;
-  bottom: 30px;
-  right: 30px;
+  bottom: max(30px, env(safe-area-inset-bottom));
+  right: max(30px, env(safe-area-inset-right));
+  min-height: 44px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -3101,8 +3111,8 @@ html.motion-paused {
     letter-spacing: 0.1em;
   }
   .intro-skip {
-    bottom: 24px;
-    right: 20px;
+    bottom: max(24px, env(safe-area-inset-bottom));
+    right: max(20px, env(safe-area-inset-right));
     font-size: 10px;
   }
 }
@@ -3292,4 +3302,11 @@ button.tech-tile[aria-pressed="true"] {
     min-height: 44px;
     font-size: 12px;
   }
+}
+
+.contact-email-fallback {
+  width: 100%;
+  margin-top: 10px;
+  min-height: 44px;
+  text-align: center;
 }

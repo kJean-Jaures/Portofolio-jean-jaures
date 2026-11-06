@@ -28,6 +28,7 @@ export default function Contact() {
   >("idle");
   const [errorMessage, setErrorMessage] = useState("");
   const inFlight = useRef(false);
+  const emailDraft = `mailto:${profile.email}?subject=${encodeURIComponent(`Portfolio — Message de ${form.name.trim()}`)}&body=${encodeURIComponent(`${form.message.trim()}\n\n${form.name.trim()}\n${form.email.trim()}`)}`;
   const updateField = (field: keyof typeof form, value: string) => {
     setForm((previous) => ({ ...previous, [field]: value }));
     if (status !== "sending") setStatus("idle");
@@ -191,20 +192,27 @@ export default function Contact() {
           <div aria-live="polite" aria-atomic="true" className="form-feedback">
             {status === "success" && (
               <p className="form-success">
-                <CheckCircle2 size={17} /> Merci ! Le service d’envoi a bien
-                accepté votre message.
+                <CheckCircle2 size={17} /> Merci ! Votre message a été envoyé.
               </p>
             )}
             {status === "error" && (
               <p className="form-error">
                 {errorMessage} Vous pouvez m’écrire à{" "}
-                <a href={`mailto:${profile.email}`}>{profile.email}</a>.
+                <a href={emailDraft}>{profile.email}</a>.
               </p>
             )}
           </div>
+          {status === "error" && (
+            <a
+              className="button button-secondary contact-email-fallback"
+              href={emailDraft}
+            >
+              <Mail size={17} /> Envoyer depuis ma messagerie
+            </a>
+          )}
           <p className="form-note">
-            Envoi via FormSubmit. Vos coordonnées servent uniquement à répondre
-            à votre message.
+            Vos coordonnées me permettent uniquement de répondre à votre
+            message.
           </p>
         </form>
       </Reveal>

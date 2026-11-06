@@ -29,7 +29,7 @@ Le code est écrit en **TypeScript**, avec du **HTML** et du **CSS** pour la str
 - **Framer Motion** pour les animations d’interface.
 - **Lucide** et **Devicon** pour les icônes et les logos des technologies.
 - **Vite** pour lancer le site en local et préparer la version de production.
-- **FormSubmit** pour le formulaire de contact.
+- **Resend**, via une fonction serveur sur Vercel, pour l’envoi des messages. FormSubmit reste disponible sur la version statique.
 
 ## Lancer le projet en local
 
@@ -51,7 +51,7 @@ npm run build
 
 Les informations de mon profil et les projets se trouvent dans `src/data`. Les composants sont dans `src/components` et les styles dans `src/index.css`.
 
-Le formulaire utilise FormSubmit : l’adresse destinataire doit être activée auprès du service pour recevoir les messages.
+La configuration du formulaire est expliquée dans [le guide de contact](docs/contact.md). Sur Vercel, la variable serveur `RESEND_API_KEY` doit être renseignée pour activer l’envoi.
 
 ## Me contacter
 

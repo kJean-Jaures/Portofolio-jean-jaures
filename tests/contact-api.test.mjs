@@ -46,6 +46,7 @@ function fixture(options = {}) {
         setHeader(key, value) {
           this.headers[key] = value;
         },
+        end() { return this; },
         json(body) {
           this.body = body;
           return this;
@@ -206,4 +207,21 @@ test("limite les envois d’une même IP puis libère le quota", async () => {
   assert.equal(f.calls.length, 5);
   time = 600001;
   assert.equal((await f.send()).code, 202);
+});
+
+
+test("autorise le preflight et les messages GitHub Pages sans ouvrir les autres origines", async () => {
+  const f = fixture();
+  const headers = { origin: "https://kjean-jaures.github.io", "content-type": "application/json" };
+  const preflight = await f.send(request(undefined, { method: "OPTIONS", headers }));
+  assert.equal(preflight.code, 204);
+  assert.equal(preflight.headers["Access-Control-Allow-Origin"], headers.origin);
+  assert.equal(preflight.headers["Access-Control-Allow-Headers"], "Content-Type");
+  assert.equal(f.calls.length, 0);
+  const sent = await f.send(request(message, { headers }));
+  assert.equal(sent.code, 202);
+  assert.equal(sent.headers["Access-Control-Allow-Origin"], headers.origin);
+  const refused = await f.send(request(undefined, { method: "OPTIONS", headers: { origin: "https://example.com" } }));
+  assert.equal(refused.code, 403);
+  assert.equal(refused.headers["Access-Control-Allow-Origin"], undefined);
 });

@@ -29,7 +29,7 @@ Le code est écrit en **TypeScript**, avec du **HTML** et du **CSS** pour la str
 - **Framer Motion** pour les animations d’interface.
 - **Lucide** et **Devicon** pour les icônes et les logos des technologies.
 - **Vite** pour lancer le site en local et préparer la version de production.
-- **Resend**, via une fonction serveur sur Vercel, pour l’envoi des messages. FormSubmit reste disponible sur la version statique.
+- **Resend**, via une fonction serveur sur Vercel, pour l’envoi des messages. La version GitHub Pages utilise cette même fonction Vercel.
 
 ## Lancer le projet en local
 

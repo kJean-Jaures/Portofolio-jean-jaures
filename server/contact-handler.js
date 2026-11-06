@@ -12,8 +12,8 @@ export function createContactHandler({
   const attempts = new Map();
   return async function contact(req, res) {
     res.setHeader("Cache-Control", "no-store");
-    if (req.method !== "POST") {
-      res.setHeader("Allow", "POST");
+    if (!["POST", "OPTIONS"].includes(req.method)) {
+      res.setHeader("Allow", "POST, OPTIONS");
       return res.status(405).json({ success: false, code: "method" });
     }
     const env = getEnv();
@@ -27,6 +27,14 @@ export function createContactHandler({
     ]);
     if (!req.headers.origin || !origins.has(req.headers.origin))
       return res.status(403).json({ success: false, code: "origin" });
+    res.setHeader("Vary", "Origin");
+    res.setHeader("Access-Control-Allow-Origin", req.headers.origin);
+    if (req.method === "OPTIONS") {
+      res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+      res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+      res.setHeader("Access-Control-Max-Age", "600");
+      return res.status(204).end();
+    }
     if (!req.headers["content-type"]?.startsWith("application/json"))
       return res.status(415).json({ success: false, code: "validation" });
 

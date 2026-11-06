@@ -2049,7 +2049,7 @@ main {
   margin: 0;
 }
 
-/* Contact remains connected to FormSubmit. */
+/* Contact form feedback. */
 .contact-panel {
   display: grid;
   grid-template-columns: 1fr 0.95fr;

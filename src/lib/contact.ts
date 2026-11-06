@@ -19,10 +19,9 @@ export class ContactError extends Error {
   }
 }
 
-/** Uses the site’s server endpoint; static hosting retains the FormSubmit relay. */
+/** Sends through the server endpoint, including from static hosting. */
 export async function sendContactMessage(
   input: ContactMessage,
-  recipient: string,
 ) {
   const name = input.name.trim().replace(/[\r\n]/g, " ");
   const email = input.email.trim();
@@ -43,7 +42,10 @@ export async function sendContactMessage(
   const controller = new AbortController();
   const timeout = window.setTimeout(() => controller.abort(), 18000);
   try {
-    let response = await fetch("/api/contact", {
+    const endpoint = window.location.hostname.endsWith(".github.io")
+      ? "https://portofolio-jean-jaures.vercel.app/api/contact"
+      : "/api/contact";
+    const response = await fetch(endpoint, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -57,33 +59,6 @@ export async function sendContactMessage(
       }),
       signal: controller.signal,
     });
-    // GitHub Pages has no server functions. Only a missing endpoint falls back;
-    // a timeout never triggers a second send, because the first may have arrived.
-    const staticHost =
-      response.status === 404 ||
-      response.status === 405 ||
-      (response.ok &&
-        response.headers.get("content-type")?.includes("text/html"));
-    if (staticHost) {
-      response = await fetch(`https://formsubmit.co/ajax/${recipient}`, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          message,
-          _replyto: email,
-          _subject: `Portfolio — Message de ${name}`,
-          _template: "table",
-          _captcha: "false",
-          _honey: "",
-        }),
-        signal: controller.signal,
-      });
-    }
     const result: {
       success?: boolean | string;
       message?: string;

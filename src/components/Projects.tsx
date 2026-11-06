@@ -31,8 +31,8 @@ export default function Projects() {
       <SectionHeading
         number="02"
         label="Expériences & réalisations"
-        title="Des missions. Du code. Du concret."
-        description="Stages, projet académique et freelance : explorez chaque expérience pour découvrir mon rôle, mes contributions et mes réalisations."
+        title="Des systèmes aux services."
+        description="Support IT chez Arescom et réseau sécurisé avec WiSafe : mes expériences en infrastructure, complétées par mes réalisations en développement et en design."
       />
       <Reveal>
         <div

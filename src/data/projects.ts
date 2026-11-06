@@ -127,15 +127,15 @@ export const projects: Project[] = [
   },
   {
     id: "freelance",
-    title: "Fashion Afro Braids & projets web",
+    title: "Fashion Afro Braids Paris",
     company: "Freelance · Développement",
-    role: "Développeur web full stack",
+    role: "Développeur full stack · Réalisé seul",
     category: "Développement web",
     field: "development",
     type: "Indépendant",
     period: "Depuis 2023",
     summary:
-      "Des sites vitrines aux applications web : concevoir des interfaces responsives et relier les parcours aux données et aux services.",
+      "Une application pour un salon de coiffure, conçue et développée seul : réservation, boutique et interfaces responsives.",
     image: fashionImage,
     imageAlt:
       "Accueil de l’application Fashion Afro Braids Paris développée pour une cliente",
@@ -153,7 +153,7 @@ export const projects: Project[] = [
     ],
     tags: ["React", "Next.js", "TypeScript", "Node.js", "SEO"],
     context:
-      "Mon activité freelance en développement couvre les sites vitrines et e-commerce, de la conception à la mise en ligne. Fashion Afro Braids Paris illustre cette démarche avec une application pour un salon, ses réservations et sa boutique.",
+      "J’ai réalisé seul Fashion Afro Braids Paris, de la conception à la mise en ligne. Cette application pour un salon de coiffure réunit la présentation des prestations, les réservations et une boutique. J’ai pris en charge les interfaces, le développement et l’intégration des services.",
     contributions: [
       "Développement d’interfaces responsives adaptées au téléphone.",
       "Construction des parcours de réservation et de la boutique Fashion Afro Braids.",

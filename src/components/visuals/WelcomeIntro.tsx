@@ -3,7 +3,7 @@ import { ArrowRight, Zap } from "lucide-react";
 import { useMotionSettings } from "./MotionSettings";
 import Starfield from "./Starfield";
 
-const INTRO_DURATION_MS = 4800;
+const INTRO_DURATION_MS = 1600;
 
 export default function WelcomeIntro() {
   const { enabled } = useMotionSettings();
@@ -20,11 +20,22 @@ export default function WelcomeIntro() {
   );
   const ref = useRef<HTMLDialogElement>(null);
   const finish = () => {
+    try {
+      sessionStorage.setItem("portfolio-intro-seen", "true");
+    } catch {}
     ref.current?.close();
     setDone(true);
   };
   useEffect(() => {
     if (done) return;
+    let seen = false;
+    try {
+      seen = sessionStorage.getItem("portfolio-intro-seen") === "true";
+    } catch {}
+    if (!enabled || seen) {
+      setDone(true);
+      return;
+    }
     ref.current?.showModal();
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
@@ -38,7 +49,7 @@ export default function WelcomeIntro() {
       document.body.style.overflow = previousOverflow;
       ref.current?.close();
     };
-  }, [done]);
+  }, [done, enabled]);
   if (done) return null;
   return (
     <dialog

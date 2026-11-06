@@ -41,9 +41,10 @@ export default function Hero({
             <TypingText />
           </div>
           <p className="hero-description">
-            Je construis des expériences web et j’explore les systèmes qui les
-            font vivre. Étudiant en Bachelor 3 à l’{profile.school}, je relie
-            développement, réseaux et cybersécurité.
+            Je recherche une alternance en administration systèmes, réseaux et
+            cybersécurité en Île-de-France. Étudiant en Bachelor 3 à
+            l’{profile.school}, je développe aussi des applications web pour
+            comprendre les services de bout en bout.
           </p>
           <div className="button-row">
             <a className="button button-primary" href="#experiences">

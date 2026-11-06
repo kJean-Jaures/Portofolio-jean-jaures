@@ -202,7 +202,7 @@ export default function Contact() {
               </p>
             )}
           </div>
-          {status === "error" && (
+          {status !== "sending" && (
             <a
               className="button button-secondary contact-email-fallback"
               href={emailDraft}

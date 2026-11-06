@@ -1,3 +1,4 @@
+import fashionImage from "../assets/fashion-afro-braids.webp";
 import wisafeImage from "../assets/projet-wisafe.webp";
 import freelanceImage from "../assets/graphiste-freelance.webp";
 import merakyImage from "../assets/stage-assistant.webp";
@@ -8,7 +9,7 @@ export interface Project {
   company: string;
   role: string;
   category: string;
-  field: "infrastructure" | "development";
+  field: "infrastructure" | "development" | "design";
   type: string;
   period: string;
   summary: string;
@@ -126,38 +127,72 @@ export const projects: Project[] = [
   },
   {
     id: "freelance",
-    title: "Des idées qui prennent vie",
-    company: "Freelance",
-    role: "Développeur web full stack & graphiste",
-    category: "Web & identité visuelle",
+    title: "Fashion Afro Braids & projets web",
+    company: "Freelance · Développement",
+    role: "Développeur web full stack",
+    category: "Développement web",
     field: "development",
     type: "Indépendant",
     period: "Depuis 2023",
     summary:
-      "Sites vitrines, e-commerce et identités visuelles : accompagner les projets du premier croquis au lancement.",
-    image: freelanceImage,
-    imageAlt: "Illustration de mon activité de création web et graphique",
+      "Des sites vitrines aux applications web : concevoir des interfaces responsives et relier les parcours aux données et aux services.",
+    image: fashionImage,
+    imageAlt:
+      "Accueil de l’application Fashion Afro Braids Paris développée pour une cliente",
     resources: [
       {
         label: "Voir Fashion Afro Braids",
         href: "https://fashionafrobraids.fr",
         kind: "demo",
       },
+      {
+        label: "Présentation du projet",
+        href: "https://github.com/kJean-Jaures/Fashionafrobraids-presentation",
+        kind: "document",
+      },
     ],
-    tags: ["Responsive", "SEO", "Full stack", "Figma", "Design"],
+    tags: ["React", "Next.js", "TypeScript", "Node.js", "SEO"],
     context:
-      "Dans mon activité freelance, j’associe développement web et graphisme pour proposer des interfaces adaptées aux besoins de chaque client et une identité visuelle cohérente.",
+      "Mon activité freelance en développement couvre les sites vitrines et e-commerce, de la conception à la mise en ligne. Fashion Afro Braids Paris illustre cette démarche avec une application pour un salon, ses réservations et sa boutique.",
     contributions: [
-      "Conception de maquettes UI/UX avec Figma et Canva.",
-      "Développement de sites vitrines et e-commerce responsives.",
-      "Choix des technologies selon les besoins du projet.",
-      "Optimisation SEO, hébergement et mise en ligne.",
-      "Création de logos, chartes graphiques, affiches et flyers.",
+      "Développement d’interfaces responsives adaptées au téléphone.",
+      "Construction des parcours de réservation et de la boutique Fashion Afro Braids.",
+      "Intégration des fonctionnalités serveur, des données et des services externes.",
+      "Optimisation du référencement, hébergement et mise en ligne.",
     ],
     deliverables: [
       "Sites vitrines et e-commerce responsives.",
-      "Maquettes UI/UX et mise en ligne des sites.",
-      "Logos, chartes graphiques et supports de communication.",
+      "Application Fashion Afro Braids Paris et ses parcours de réservation.",
+      "Mise en ligne et optimisation SEO.",
+    ],
+  },
+  {
+    id: "design",
+    title: "Identités visuelles & interfaces",
+    company: "Freelance · Design",
+    role: "Graphiste & designer UI/UX",
+    category: "Design & communication",
+    field: "design",
+    type: "Indépendant",
+    period: "Depuis 2023",
+    summary:
+      "Transformer une idée en langage visuel : logos, chartes graphiques, supports de communication et maquettes d’interfaces.",
+    image: freelanceImage,
+    imageAlt:
+      "Illustration de mon activité de graphisme et de création d’identités visuelles",
+    tags: ["Figma", "Canva", "Photoshop", "InDesign", "UI/UX"],
+    context:
+      "J’accompagne les projets dans leur expression visuelle, avec des identités cohérentes et des interfaces claires, adaptées aux besoins de chaque client.",
+    contributions: [
+      "Création de logos et de chartes graphiques.",
+      "Réalisation d’affiches, de flyers et de supports de communication.",
+      "Conception de maquettes UI/UX avec Figma et Canva.",
+      "Déclinaison de l’identité visuelle sur les supports numériques et imprimés.",
+    ],
+    deliverables: [
+      "Logos et chartes graphiques.",
+      "Affiches, flyers et supports de communication.",
+      "Maquettes d’interfaces UI/UX.",
     ],
   },
 ];

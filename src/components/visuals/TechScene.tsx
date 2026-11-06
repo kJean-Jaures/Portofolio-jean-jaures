@@ -245,8 +245,8 @@ function buildWorld(scene: THREE.Scene, variant: Variant) {
       "SecOps",
       "Figma",
       "UI/UX",
-      "Web",
-      "IPSSI",
+      "OVH",
+      "Canva",
     ];
     const rows = 4,
       columns = variant === "workspace" ? 10 : 6;
@@ -348,9 +348,21 @@ function buildWorld(scene: THREE.Scene, variant: Variant) {
 
 export default function TechScene({
   variant = "workspace",
+  selectedTechnology = "",
+  onTechnologySelect,
 }: {
   variant?: Variant;
+  selectedTechnology?: string;
+  onTechnologySelect?: (label: string) => void;
 }) {
+  const callbackRef = useRef(onTechnologySelect);
+  callbackRef.current = onTechnologySelect;
+  const selectionRef = useRef(selectedTechnology);
+  selectionRef.current = selectedTechnology;
+  const applySelectionRef = useRef<((label: string) => void) | null>(null);
+  useEffect(() => {
+    applySelectionRef.current?.(selectedTechnology);
+  }, [selectedTechnology]);
   const hostRef = useRef<HTMLDivElement>(null);
   const { enabled } = useMotionSettings();
   const enabledRef = useRef(enabled);
@@ -445,33 +457,74 @@ export default function TechScene({
       { rootMargin: "100px" },
     );
     visibilityObserver.observe(host);
-    const move = (event: PointerEvent) => {
-      if (event.pointerType !== "mouse" || !enabledRef.current) return;
+    const applySelection = (label: string) => {
+      selectedKey =
+        keys.find(
+          (key) => key.userData.label.toLowerCase() === label.toLowerCase(),
+        ) || null;
+      keys.forEach((key) => {
+        key.position.y = key.userData.baseY + (key === selectedKey ? 0.2 : 0);
+      });
+      setHoverLabel(label);
+      renderer.render(scene, camera);
+    };
+    applySelectionRef.current = applySelection;
+    applySelection(selectionRef.current);
+    const pick = (event: PointerEvent) => {
       const bounds = host.getBoundingClientRect();
       pointer.set(
         ((event.clientX - bounds.left) / bounds.width) * 2 - 1,
         -((event.clientY - bounds.top) / bounds.height) * 2 + 1,
       );
+      raycaster.setFromCamera(pointer, camera);
+      return (
+        (raycaster.intersectObjects(keys, false)[0]?.object as THREE.Mesh) ||
+        null
+      );
+    };
+    const move = (event: PointerEvent) => {
+      if (event.pointerType !== "mouse" || !enabledRef.current) return;
+      const key = pick(event);
       if (variant === "keyboard") {
-        raycaster.setFromCamera(pointer, camera);
-        selectedKey =
-          (raycaster.intersectObjects(keys, false)[0]?.object as THREE.Mesh) ||
-          null;
-        const label = selectedKey?.userData.label || "";
+        selectedKey = key;
+        const label = key?.userData.label || selectionRef.current;
         if (label !== previousLabel) {
           previousLabel = label;
           setHoverLabel(label);
         }
       }
     };
-    const leave = () => {
+    const leave = (event: PointerEvent) => {
+      if (event.pointerType !== "mouse") return;
       pointer.set(0, 0);
-      selectedKey = null;
       previousLabel = "";
-      setHoverLabel("");
+      applySelection(selectionRef.current);
+    };
+    let start: { x: number; y: number; time: number } | null = null;
+    const down = (event: PointerEvent) => {
+      start = { x: event.clientX, y: event.clientY, time: performance.now() };
+    };
+    const cancel = () => {
+      start = null;
+    };
+    const up = (event: PointerEvent) => {
+      if (variant !== "keyboard" || !start) return;
+      const tap =
+        Math.hypot(event.clientX - start.x, event.clientY - start.y) < 12 &&
+        performance.now() - start.time < 800;
+      start = null;
+      if (!tap) return;
+      const key = pick(event);
+      if (key) {
+        applySelection(key.userData.label);
+        callbackRef.current?.(key.userData.label);
+      }
     };
     host.addEventListener("pointermove", move);
     host.addEventListener("pointerleave", leave);
+    host.addEventListener("pointerdown", down);
+    host.addEventListener("pointerup", up);
+    host.addEventListener("pointercancel", cancel);
     const lost = (event: Event) => {
       event.preventDefault();
       if (!disposed) setState("fallback");
@@ -506,7 +559,7 @@ export default function TechScene({
       keys.forEach((key) => {
         key.position.y = THREE.MathUtils.lerp(
           key.position.y,
-          key.userData.baseY + (active && key === selectedKey ? 0.2 : 0),
+          key.userData.baseY + (key === selectedKey ? 0.2 : 0),
           0.16,
         );
       });
@@ -524,6 +577,10 @@ export default function TechScene({
       visibilityObserver.disconnect();
       host.removeEventListener("pointermove", move);
       host.removeEventListener("pointerleave", leave);
+      host.removeEventListener("pointerdown", down);
+      host.removeEventListener("pointerup", up);
+      host.removeEventListener("pointercancel", cancel);
+      applySelectionRef.current = null;
       renderer.domElement.removeEventListener("webglcontextlost", lost);
       const geometries = new Set<THREE.BufferGeometry>();
       const materials = new Set<THREE.Material>();

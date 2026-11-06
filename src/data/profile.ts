@@ -28,19 +28,30 @@ export const experiences = [
     tags: ["Support IT", "Réseaux", "Maintenance", "Sécurité"],
   },
   {
-    company: "Freelance",
-    role: "Développeur web full stack & graphiste",
+    company: "Freelance · Développement",
+    role: "Développeur web full stack",
     period: "Depuis 2023",
     type: "Indépendant",
     description:
-      "Donner vie aux projets web et aux identités visuelles de mes clients, de la maquette à la mise en ligne.",
+      "Construire des sites vitrines et des applications web, de la conception à la mise en ligne.",
     tasks: [
       "Conception et développement de sites vitrines et e-commerce responsives.",
-      "Optimisation du référencement naturel (SEO), hébergement et mise en ligne.",
-      "Création de logos, chartes graphiques, affiches et flyers.",
-      "Conception de maquettes UI/UX avec Figma et Canva.",
+      "Optimisation SEO, hébergement et mise en ligne.",
     ],
-    tags: ["Full stack", "SEO", "UI/UX", "Identité visuelle"],
+    tags: ["Full stack", "Responsive", "SEO"],
+  },
+  {
+    company: "Freelance · Design",
+    role: "Graphiste & designer UI/UX",
+    period: "Depuis 2023",
+    type: "Indépendant",
+    description:
+      "Concevoir des identités visuelles, des supports de communication et des maquettes UI/UX.",
+    tasks: [
+      "Création de logos, chartes graphiques, affiches et flyers.",
+      "Conception de maquettes avec Figma et Canva.",
+    ],
+    tags: ["Graphisme", "UI/UX", "Identité visuelle"],
   },
   {
     company: "Meraky",
@@ -124,6 +135,7 @@ export const skillGroups = [
       "Construire des interfaces et des applications web adaptées aux besoins.",
     skills: [
       "HTML & CSS",
+      "JavaScript",
       "React.js",
       "TypeScript",
       "Next.js",

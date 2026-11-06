@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Server,
   Network,
@@ -15,6 +16,7 @@ import TechTiles from "./TechTiles";
 const icons = [Server, Network, Activity, Code2, Database, PenTool];
 
 export default function Skills() {
+  const [selectedTechnology, setSelectedTechnology] = useState("React");
   return (
     <section id="competences" className="section section-shell">
       <SectionHeading
@@ -40,9 +42,35 @@ export default function Skills() {
           </p>
         </div>
         <div className="stack-visual">
-          <TechScene variant="keyboard" />
+          <TechScene
+            variant="keyboard"
+            selectedTechnology={selectedTechnology}
+            onTechnologySelect={setSelectedTechnology}
+          />
         </div>
       </Reveal>
+      <div className="keyboard-interactions">
+        <p>
+          Touchez une touche du clavier, ou choisissez un outil ci-dessous.
+          Faites glisser la page pour continuer la visite.
+        </p>
+        <div role="group" aria-label="Explorer les touches du clavier">
+          {["React", "Linux", "Bash", "DNS", "Figma", "Grafana"].map(
+            (label) => (
+              <button
+                key={label}
+                aria-pressed={selectedTechnology === label}
+                onClick={() => setSelectedTechnology(label)}
+              >
+                {label}
+              </button>
+            ),
+          )}
+        </div>
+        <p className="keyboard-feedback" role="status">
+          Outil sélectionné : <strong>{selectedTechnology}</strong>
+        </p>
+      </div>
       <div className="skills-grid">
         {skillGroups.map((group, index) => {
           const Icon = icons[index];

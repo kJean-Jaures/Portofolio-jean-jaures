@@ -11,7 +11,8 @@ import { useMotionSettings } from "./visuals/MotionSettings";
 const filters = [
   { id: "all", label: "Tout explorer" },
   { id: "infrastructure", label: "Systèmes & réseaux" },
-  { id: "development", label: "Développement & design" },
+  { id: "development", label: "Développement web & mobile" },
+  { id: "design", label: "Design & graphisme" },
 ];
 
 export default function Projects() {

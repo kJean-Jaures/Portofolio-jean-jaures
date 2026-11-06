@@ -4,8 +4,12 @@ const TechScene = lazy(() => import("./TechScene"));
 
 export default function LazyScene({
   variant = "workspace",
+  selectedTechnology,
+  onTechnologySelect,
 }: {
   variant?: "workspace" | "keyboard" | "globe";
+  selectedTechnology?: string;
+  onTechnologySelect?: (label: string) => void;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(false);
@@ -27,7 +31,11 @@ export default function LazyScene({
     <div className="scene-loader" ref={ref}>
       {active ? (
         <Suspense fallback={<SceneFallback variant={variant} />}>
-          <TechScene variant={variant} />
+          <TechScene
+            variant={variant}
+            selectedTechnology={selectedTechnology}
+            onTechnologySelect={onTechnologySelect}
+          />
         </Suspense>
       ) : (
         <SceneFallback variant={variant} />

@@ -48,7 +48,7 @@ function Portfolio() {
           <div>
             <span className="eyebrow"><Gamepad2 size={18} /> La pause ludique</span>
             <h2 id="arcade-invite-title">On fait une partie ?</h2>
-            <p>Six mini-jeux pour tester tes réflexes, ta logique et ta mémoire.</p>
+            <p>Course, casse-briques et vol : trois défis dans mon salon arcade.</p>
           </div>
           <a className="button button-primary" href="./jeux.html">
             Entrer dans l’espace jeux <ArrowUpRight size={18} />

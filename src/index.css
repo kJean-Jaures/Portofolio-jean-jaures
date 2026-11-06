@@ -3314,7 +3314,6 @@ button.tech-tile[aria-pressed="true"] {
 /* Compact game layout for narrow screens. */
 @media (max-width: 767px) {
   #funzone { padding-block: 1.5rem; }
-  #funzone > div { padding-inline: 0; }
   #funzone .text-4xl { font-size: 1.75rem; }
   #funzone .mb-16 { margin-bottom: 1.5rem; }
   #funzone button { touch-action: manipulation; }
@@ -3411,3 +3410,71 @@ button.tech-tile[aria-pressed="true"] {
 .arcade-page [tabindex="0"]:focus-visible { outline: 3px solid #9bbaff; outline-offset: 4px; }
 @media (min-width: 600px) and (max-width: 1000px) { .arcade-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
 @media (max-width: 599px) { .arcade-library-bar { align-items: flex-start; flex-direction: column; gap: .6rem; } .arcade-filters button { padding-inline: .75rem; } .arcade-card-top { margin-bottom: 1.2rem; } }
+
+.neon-page { background: radial-gradient(ellipse at 80% 0%, #26143e 0, transparent 50%), radial-gradient(ellipse at 0% 50%, #101b32, transparent 55%), #080b14; }
+.neon-page .arcade-header { border-color: #ffffff14; }
+.neon-page .arcade-brand { color: #eee6ff; }
+.neon-zone { padding-block: 3.5rem 4rem; }
+.neon-heading { max-width: 820px; margin-bottom: 3rem; }
+.neon-eyebrow { display: flex; align-items: center; gap: .65rem; font-size: .65rem; font-family: monospace; letter-spacing: .14em; color: #b5a5c9; }
+.neon-eyebrow > span, .neon-live-dot { width: 6px; height: 6px; border-radius: 50%; background: #c4ff84; box-shadow: 0 0 12px #b8fa7a70; }
+.neon-heading h1 { font-size: clamp(2.8rem, 7.5vw, 6.5rem); font-weight: 850; letter-spacing: -.065em; line-height: 1; margin-block: 1.3rem 1.5rem; }
+.neon-heading h1 > span { background: linear-gradient(100deg,#f5b4fa,#b3b3ff 65%,#80e7f6); color: transparent; background-clip: text; }
+.neon-heading > p:last-of-type { color: #a8aec7; max-width: 540px; font-size: 1rem; line-height: 1.75; }
+.neon-meta { display: flex; flex-wrap: wrap; gap: 1.4rem; margin-top: 1.6rem; font-size: .72rem; color: #a8aec7; }
+.neon-meta span { display: flex; align-items: center; gap: .4rem; }
+.neon-shelf-label { display: flex; justify-content: space-between; border-top: 1px solid #ffffff14; padding-block: 1.3rem; color: #868aa5; font-size: .65rem; letter-spacing: .13em; font-family: monospace; }
+.neon-library { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1.3rem; }
+.neon-card { min-width: 0; border-radius: 19px; background: #101421; border: 1px solid #ffffff14; overflow: hidden; transition: border-color .2s, transform .2s; }
+.neon-art { height: 245px; position: relative; overflow: hidden; isolation: isolate; background: radial-gradient(ellipse at center,#481c53,#170e26); }
+.neon-card-breaker .neon-art { background: radial-gradient(ellipse at center,#10394c,#091c2b); }
+.neon-card-flight .neon-art { background: linear-gradient(#1c1b48,#4b3860); }
+.neon-art-number { position: absolute; top: 18px; left: 18px; font: .7rem monospace; color: #ffffff85; z-index: 3; }
+.neon-art-tag { position: absolute; left: 18px; bottom: 16px; color: #f5eaff; font-size: .65rem; padding: .35rem .65rem; border: 1px solid #ffffff30; background: #070b1c90; border-radius: 999px; z-index: 3; backdrop-filter: blur(8px); }
+.art-road { position: absolute; width: 200px; height: 340px; background: #15182b; left: 50%; top: -60px; transform: translateX(-50%) perspective(280px) rotateX(28deg) rotateZ(24deg); border-inline: 3px solid #ff65be; box-shadow: 0 0 35px #fc47ac35; }
+.art-road > i { position: absolute; width: 2px; height: 100%; left: 33%; background: repeating-linear-gradient(to bottom,#ffffff60 0 20px,transparent 20px 45px); }
+.art-road > i:nth-child(2) { left: 66%; }
+.art-car, .art-rival { position: absolute; width: 35px; height: 60px; left: 82px; top: 190px; background: #73f4db; border-radius: 6px; border: 3px solid #adffef; box-shadow: 0 10px 30px #73f4db66; }
+.art-rival { top: 65px; left: 145px; background: #f87192; border-color: #ffadbf; box-shadow: 0 10px 25px #f8719266; }
+.art-car::after, .art-rival::after { content: ''; position: absolute; inset: 12px 3px 19px; border-radius: 2px; background: #122538; }
+.art-breaker { position: absolute; inset: 50px 36px 35px; transform: rotate(-9deg); }
+.art-breaker > div { display: grid; grid-template-columns: repeat(6,1fr); gap: 5px; }
+.art-breaker i { height: 18px; border-radius: 3px; background: #ff8cbf; box-shadow: 0 0 10px #ff8cbf30; border-top: 2px solid #ffffff55; }
+.art-breaker i:nth-child(n+7) { background: #bca0ff; }.art-breaker i:nth-child(n+13) { background: #68dcf2; }
+.art-ball { position: absolute; left: 60%; top: 65%; width: 11px; height: 11px; border-radius: 50%; background: white; box-shadow: -10px 18px 0 #ffffff40,-20px 36px 0 #ffffff15,0 0 16px #fff; }
+.art-paddle { position: absolute; bottom: 0; left: 25%; width: 75px; height: 9px; border-radius: 8px; background: #68dcf2; box-shadow: 0 0 16px #68dcf270; }
+.art-flight { position: absolute; inset: 0; }
+.art-moon { position: absolute; right: 45px; top: 25px; width: 65px; height: 65px; border-radius: 50%; background: #dfd2ff; box-shadow: 0 0 45px #b5a4ff60; }
+.art-flight > i { position: absolute; right: 60px; top: -20px; width: 42px; height: 105px; background: #796dba; border: 3px solid #b3a6eb; box-shadow: inset 6px 0 #8a7ccb; }
+.art-flight > i:nth-of-type(2) { top: 175px; height: 100px; }
+.art-bird { position: absolute; top: 115px; left: 24%; width: 40px; height: 30px; border-radius: 50% 55% 40% 50%; background: #ffda6b; color: #b97029; font-weight: 900; text-align: right; font-size: 1.8rem; line-height: 1; box-shadow: 0 0 24px #ffda6b40; transform: rotate(-15deg); }
+.art-stars { position: absolute; color: #ffffff80; top: 60px; left: 30px; font-size: 1.5rem; letter-spacing: 1rem; }
+.neon-card-copy { padding: 1.5rem; }
+.neon-card h2 { font-size: 1.65rem; font-weight: 750; letter-spacing: -.04em; }
+.neon-card-copy > p { font-size: .85rem; line-height: 1.75; color: #9ba3bd; margin-block: .6rem 1.5rem; min-height: 4.5em; }
+.neon-card-cta { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #ffffff10; padding-top: 1.1rem; font-size: .8rem; color: #e1d9ef; font-weight: 600; }
+.neon-bottom-note { display: flex; align-items: center; justify-content: center; gap: .6rem; color: #7e879f; font-size: .7rem; margin-top: 2rem; text-align: center; }
+.neon-playing .neon-heading { margin-bottom: 1.5rem; }.neon-playing h1 { font-size: clamp(2.3rem,5vw,4rem); }
+.neon-game-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; font-size: .8rem; color: #aba7c1; }
+.neon-game-nav a { display: inline-flex; gap: .5rem; align-items: center; min-height: 44px; }
+.neon-stage { display: flex; justify-content: center; padding: 1.5rem; border: 1px solid #ffffff14; border-radius: 22px; background: #0c1020; }
+.neon-game { width: 100%; max-width: 400px; }
+.neon-scoreboard { display: flex; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
+.neon-scoreboard > span { font-family: monospace; text-transform: uppercase; color: #979bb5; font-size: .65rem; letter-spacing: .08em; }
+.neon-scoreboard svg { display: inline; vertical-align: middle; }
+.neon-scoreboard strong { display: block; color: #e8dfff; font-size: 1.65rem; letter-spacing: -.04em; line-height: 1.3; }
+.neon-screen { position: relative; border: 1px solid #3c3156; border-radius: 14px; overflow: hidden; }
+.neon-screen canvas { display: block; width: 100%; aspect-ratio: 3/4; touch-action: none; }
+.neon-overlay { position: absolute; inset: 0; background: #080b1bdc; backdrop-filter: blur(5px); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1.5rem; text-align: center; }
+.neon-overline { font-size: .65rem; text-transform: uppercase; letter-spacing: .17em; color: #d7a2ed; }
+.neon-overlay h2 { font-size: clamp(1.5rem,6vw,2.1rem); line-height: 1.1; font-weight: 800; letter-spacing: -.04em; margin-block: 1rem; }
+.neon-overlay p { color: #acacc6; font-size: .8rem; line-height: 1.7; max-width: 250px; }
+.neon-start { display: flex; align-items: center; justify-content: center; gap: .5rem; min-height: 48px; min-width: 150px; margin-top: 1.6rem; border-radius: 10px; background: #ddc3ff; color: #20152e; font-weight: 750; font-size: .9rem; border: none; }
+.neon-controls { display: flex; gap: .6rem; margin-top: 1rem; }
+.neon-controls button { flex: 1; min-height: 50px; border-radius: 10px; border: 1px solid #ffffff20; background: #1c1b30; color: #ddd4f4; display: flex; align-items: center; justify-content: center; font-size: .8rem; }
+.neon-controls button:last-child { flex: 0 0 55px; }.neon-controls button:disabled { cursor: default; opacity: .35; }
+.neon-help { color: #9298b2; font-size: .7rem; text-align: center; line-height: 1.7; margin-top: 1rem; }
+.neon-screen canvas:focus-visible { outline: 3px solid #d6b3ff; outline-offset: -4px; }
+@media (hover:hover) and (prefers-reduced-motion:no-preference) { .neon-card:hover { transform: translateY(-6px); border-color: #b995d178; } }
+@media (max-width:767px) { #funzone.neon-zone { padding-block: 2.5rem 3rem; } .neon-library { grid-template-columns: 1fr; } .neon-art { height: 230px; } .neon-card-copy > p { min-height: 0; } .neon-meta { gap: .8rem; font-size: .65rem; } .neon-stage { padding: .8rem; } .neon-heading { margin-bottom: 2rem; } }
+@media (max-width:359px) { .neon-stage { padding: .4rem; } .neon-overlay { padding: .8rem; } }

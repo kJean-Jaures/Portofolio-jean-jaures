@@ -3478,3 +3478,7 @@ button.tech-tile[aria-pressed="true"] {
 @media (hover:hover) and (prefers-reduced-motion:no-preference) { .neon-card:hover { transform: translateY(-6px); border-color: #b995d178; } }
 @media (max-width:767px) { #funzone.neon-zone { padding-block: 2.5rem 3rem; } .neon-library { grid-template-columns: 1fr; } .neon-art { height: 230px; } .neon-card-copy > p { min-height: 0; } .neon-meta { gap: .8rem; font-size: .65rem; } .neon-stage { padding: .8rem; } .neon-heading { margin-bottom: 2rem; } }
 @media (max-width:359px) { .neon-stage { padding: .4rem; } .neon-overlay { padding: .8rem; } }
+
+.tech-tile > .tech-concept-mark { display: flex; flex-direction: column; justify-content: center; gap: 3px; padding: 5px; background: #eaf2ff; }
+.tech-concept-mark small { font: 700 9px/1 monospace; letter-spacing: .02em; color: #285696; }
+.tech-tile > .tech-product-logo { padding: 6px; }

@@ -19,14 +19,26 @@ import express from "devicon/icons/express/express-original.svg";
 import flutter from "devicon/icons/flutter/flutter-original.svg";
 import photoshop from "devicon/icons/photoshop/photoshop-original.svg";
 import pfsense from "devicon/icons/pfsense/pfsense-original.svg";
+import hyperv from "devicon/icons/hyperv/hyperv-original.svg";
+import vmware from "../assets/tech/vmware.svg";
+import virtualbox from "../assets/tech/virtualbox.svg";
+import office from "../assets/tech/microsoft-office.svg";
+import zabbix from "../assets/tech/zabbix.svg";
+import indesign from "../assets/tech/adobe-indesign.svg";
+import ovh from "../assets/tech/ovh.svg";
 import { useState } from "react";
 import {
-  Server,
-  Network,
-  Activity,
-  Code2,
-  Database,
-  PenTool,
+  FolderTree,
+  Router,
+  Globe,
+  Cable,
+  Split,
+  ShieldCheck,
+  Cloud,
+  SearchCheck,
+  MonitorSmartphone,
+  Layout,
+  Fingerprint,
   Search,
   X,
 } from "lucide-react";
@@ -36,6 +48,13 @@ import { Reveal, TiltCard } from "./visuals/Reveal";
 
 const images: Record<string, string> = {
   "Windows Server": windows,
+  VMware: vmware,
+  "Hyper-V": hyperv,
+  VirtualBox: virtualbox,
+  Office: office,
+  Zabbix: zabbix,
+  "Adobe InDesign": indesign,
+  OVHcloud: ovh,
   Grafana: grafana,
   Bash: bash,
   GitHub: github,
@@ -58,7 +77,24 @@ const images: Record<string, string> = {
   Canva: canva,
   JavaScript: javascript,
 };
-const icons = [Server, Network, Activity, Code2, Database, PenTool];
+const symbols: Record<string, typeof Router> = {
+  "Active Directory": FolderTree,
+  "TCP/IP": Router,
+  DNS: Globe,
+  DHCP: Cable,
+  VLAN: Split,
+  "NAT & pare-feu": ShieldCheck,
+  "Hébergement web": Cloud,
+  SEO: SearchCheck,
+  "Responsive design": MonitorSmartphone,
+  "UI/UX": Layout,
+  "Identité visuelle": Fingerprint,
+};
+const abbreviations: Record<string, string> = {
+  "Active Directory": "AD", "TCP/IP": "IP", DNS: "DNS", DHCP: "DHCP",
+  VLAN: "VLAN", "NAT & pare-feu": "NAT", "Hébergement web": "WEB",
+  SEO: "SEO", "Responsive design": "RWD", "UI/UX": "UX", "Identité visuelle": "ID",
+};
 const technologies = skillGroups.flatMap((group, domain) =>
   group.skills.flatMap((skill) =>
     (skill === "HTML & CSS"
@@ -137,7 +173,7 @@ export default function TechTiles() {
       </p>
       <div className="tech-tiles">
         {visible.map((tool) => {
-          const Icon = icons[tool.domain];
+          const Icon = symbols[tool.name];
           return (
             <Reveal key={tool.name}>
               <TiltCard>
@@ -147,7 +183,7 @@ export default function TechTiles() {
                   aria-pressed={selected?.name === tool.name}
                   onClick={() => setSelected(tool)}
                 >
-                  <span>
+                  <span className={images[tool.name] ? "tech-product-logo" : "tech-concept-mark"}>
                     {images[tool.name] ? (
                       <img
                         src={images[tool.name]}
@@ -157,7 +193,10 @@ export default function TechTiles() {
                         loading="lazy"
                       />
                     ) : (
-                      <Icon size={30} strokeWidth={1.5} />
+                      <>
+                        {Icon && <Icon size={25} strokeWidth={1.6} aria-hidden="true" />}
+                        <small aria-hidden="true">{abbreviations[tool.name]}</small>
+                      </>
                     )}
                   </span>
                   <strong>{tool.name}</strong>

@@ -69,6 +69,12 @@ export const projects: Project[] = [
     imageAlt: "Portail captif du projet WiSafe, hotspot Wi-Fi sécurisé",
     resources: [
       {
+        label: "Télécharger la présentation WiSafe (PDF)",
+        href: "/documents/Projet-WiSafe.pdf",
+        kind: "pdf",
+        downloadName: "Projet-WiSafe.pdf",
+      },
+      {
         label: "Voir le portail captif",
         href: "https://kjean-jaures.github.io/portail-captif-Pi-ESIEA/",
         kind: "demo",
@@ -140,6 +146,12 @@ export const projects: Project[] = [
     imageAlt:
       "Accueil de l’application Fashion Afro Braids Paris développée pour une cliente",
     resources: [
+      {
+        label: "Télécharger la présentation Fashion Afro Braids (PDF)",
+        href: "/documents/Fashion_Afro_Braids_Presentation.pdf",
+        kind: "pdf",
+        downloadName: "Fashion_Afro_Braids_Presentation.pdf",
+      },
       {
         label: "Voir Fashion Afro Braids",
         href: "https://fashionafrobraids.fr",

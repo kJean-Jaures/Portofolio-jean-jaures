@@ -79,11 +79,6 @@ export const projects: Project[] = [
         href: "https://kjean-jaures.github.io/portail-captif-Pi-ESIEA/",
         kind: "demo",
       },
-      {
-        label: "Voir le document sur LinkedIn",
-        href: "https://www.linkedin.com/in/k-kouassi/overlay/1754786248894/single-media-viewer/?profileId=ACoAAFkDxVQBP9vFslDwfG0vMxBpG1uDCJBqcdA",
-        kind: "document",
-      },
     ],
     tags: ["Raspberry Pi", "Bash", "Zabbix", "Grafana", "Pare-feu"],
     context:

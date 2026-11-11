@@ -1,6 +1,6 @@
 # Mon portfolio — Jean-Jaures KOUASSI
 
-Bienvenue sur mon portfolio ! Je m’appelle Kouamé Jean-Jaures KOUASSI et je suis étudiant en Bachelor 3 Administrateur Réseaux & SecOps à l’IPSSI, en Île-de-France.
+Bienvenue sur mon portfolio ! Je m’appelle Kouamé Jean-Jaures KOUASSI et je suis étudiant en Bachelor 3 Administrateur Réseaux & SecOps à l’IPSSI.
 
 Je m’intéresse aux systèmes, aux réseaux et à la sécurité informatique. Je fais aussi du développement web et du graphisme en freelance. J’aime comprendre comment les choses fonctionnent, résoudre des problèmes et créer des projets que l’on peut vraiment utiliser.
 
@@ -31,27 +31,6 @@ Le code est écrit en **TypeScript**, avec du **HTML** et du **CSS** pour la str
 - **Vite** pour lancer le site en local et préparer la version de production.
 - **Resend**, via une fonction serveur sur Vercel, pour l’envoi des messages. La version GitHub Pages utilise cette même fonction Vercel.
 
-## Lancer le projet en local
-
-Avec Node.js et npm installés :
-
-```sh
-git clone https://github.com/kJean-Jaures/Portofolio-jean-jaures.git
-cd Portofolio-jean-jaures
-npm ci
-npm run dev
-```
-
-Pour vérifier le TypeScript et générer le site dans le dossier `dist` :
-
-```sh
-npm run typecheck
-npm run build
-```
-
-Les informations de mon profil et les projets se trouvent dans `src/data`. Les composants sont dans `src/components` et les styles dans `src/index.css`.
-
-La configuration du formulaire est expliquée dans [le guide de contact](docs/contact.md). Sur Vercel, la variable serveur `RESEND_API_KEY` doit être renseignée pour activer l’envoi.
 
 ## Me contacter
 

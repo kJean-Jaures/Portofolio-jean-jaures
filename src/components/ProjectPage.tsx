@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { ArrowLeft, ArrowUpRight, Check, Layers } from "lucide-react";
 import { projects } from "../data/projects";
 import ProjectResources from "./ProjectResources";
+import ProjectArtwork from "./ProjectArtwork";
 import Atmosphere from "./visuals/Atmosphere";
 
 export default function ProjectPage() {
@@ -29,6 +30,9 @@ export default function ProjectPage() {
       >
         {project ? (
           <article className={`project-page-content project-${project.id}`}>
+            <div className="dialog-art">
+              <ProjectArtwork project={project} modal />
+            </div>
             <div className="dialog-copy">
               <p className="eyebrow">
                 {project.company} / {project.category}

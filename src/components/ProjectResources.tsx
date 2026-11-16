@@ -3,6 +3,7 @@ import {
   ArrowUpRight,
   Download,
   ExternalLink,
+  Eye,
   FileText,
   X,
 } from "lucide-react";
@@ -11,8 +12,24 @@ import PdfPreview from "./PdfPreview";
 
 export default function ProjectResources({ project }: { project: Project }) {
   const [selected, setSelected] = useState<ProjectFile | null>(null);
+  const [zoomed, setZoomed] = useState(false);
+  const [imageError, setImageError] = useState(false);
   const preview = useRef<HTMLDivElement>(null);
   const trigger = useRef<HTMLButtonElement | null>(null);
+  const files: ProjectFile[] = [
+    ...(project.files ?? []),
+    ...(project.image
+      ? [
+          {
+            label: `Illustration — ${project.title}`,
+            href: project.image,
+            format: "image" as const,
+            alt: project.imageAlt,
+            downloadName: `${project.id}-illustration.webp`,
+          },
+        ]
+      : []),
+  ];
 
   useEffect(() => {
     if (!selected) return;
@@ -27,25 +44,9 @@ export default function ProjectResources({ project }: { project: Project }) {
 
   return (
     <>
-      {project.files?.length || project.resources?.length ? (
-        <div className="project-resources" aria-label="Ressources du projet">
-          {project.files?.map((file) => (
-            <button
-              key={file.href}
-              className="button button-secondary"
-              onClick={(event) => {
-                trigger.current = event.currentTarget;
-                setSelected(file);
-              }}
-              aria-expanded={selected?.href === file.href}
-              aria-controls="project-presentation"
-            >
-              <FileText size={18} />
-              Voir la {file.label.charAt(0).toLowerCase() + file.label.slice(1)}
-              <ArrowUpRight size={16} />
-            </button>
-          ))}
-          {project.resources?.map((resource) => (
+      {!!project.resources?.length && (
+        <div className="project-resources" aria-label="Liens du projet">
+          {project.resources.map((resource) => (
             <a
               key={resource.href}
               className={`button ${resource.kind === "demo" ? "button-primary" : "button-secondary"}`}
@@ -63,39 +64,134 @@ export default function ProjectResources({ project }: { project: Project }) {
             </a>
           ))}
         </div>
-      ) : null}
-      {selected && (
-        <div
-          id="project-presentation"
-          ref={preview}
-          tabIndex={-1}
-          className="file-preview"
-          role="region"
-          aria-label={`Aperçu — ${selected.label}`}
-          onKeyDown={(event) => {
-            if (event.key === "Escape") {
-              event.preventDefault();
-              event.stopPropagation();
-              close();
-            }
-          }}
-        >
-          <div className="preview-header">
-            <h4>{selected.label}</h4>
-            <button className="button button-secondary" onClick={close}>
-              <X size={17} /> Fermer l’aperçu
-            </button>
-          </div>
-          <PdfPreview key={selected.href} href={selected.href} />
-          <a
-            className="button button-secondary"
-            href={selected.href}
-            download={selected.downloadName}
-          >
-            <Download size={16} /> Télécharger le PDF
-          </a>
-        </div>
       )}
+      <section className="project-files" aria-labelledby="project-files-title">
+        <h2 id="project-files-title">Fichiers disponibles</h2>
+        {!project.files?.length && (
+          <p className="missing-document">
+            Aucun document de présentation n’est disponible pour ce projet.
+            {project.image
+              ? " Seule l’illustration ci-dessous est disponible."
+              : " Aucun fichier n’est joint."}
+          </p>
+        )}
+        {!!files.length && (
+          <ul className="project-file-list">
+            {files.map((file) => (
+              <li key={file.href}>
+                <div>
+                  <strong>{file.label}</strong>
+                  <small>
+                    {file.format === "pdf"
+                      ? "PDF de présentation"
+                      : file.format === "image"
+                        ? "Image · illustration"
+                        : "Fichier"}
+                  </small>
+                </div>
+                <div className="file-actions">
+                  <button
+                    className="button button-secondary"
+                    aria-label={`Consulter — ${file.label}`}
+                    aria-expanded={selected?.href === file.href}
+                    aria-controls={
+                      selected?.href === file.href
+                        ? "project-presentation"
+                        : undefined
+                    }
+                    onClick={(event) => {
+                      trigger.current = event.currentTarget;
+                      setZoomed(false);
+                      setImageError(false);
+                      setSelected(file);
+                    }}
+                  >
+                    <Eye size={16} /> Consulter
+                  </button>
+                  <a
+                    className="button button-secondary"
+                    href={file.href}
+                    download={file.downloadName}
+                    aria-label={`Télécharger — ${file.label}`}
+                  >
+                    <Download size={16} /> Télécharger
+                  </a>
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+        {selected && (
+          <div
+            id="project-presentation"
+            ref={preview}
+            tabIndex={-1}
+            className="file-preview"
+            role="region"
+            aria-label={`Aperçu — ${selected.label}`}
+            onKeyDown={(event) => {
+              if (event.key === "Escape") {
+                event.preventDefault();
+                close();
+              }
+            }}
+          >
+            <div className="preview-header">
+              <h3>{selected.label}</h3>
+              <button className="button button-secondary" onClick={close}>
+                <X size={17} /> Fermer l’aperçu
+              </button>
+            </div>
+            {selected.format === "pdf" ? (
+              <PdfPreview key={selected.href} href={selected.href} />
+            ) : selected.format === "image" ? (
+              <>
+                {imageError ? (
+                  <p role="alert">
+                    Impossible d’afficher cette image. Vous pouvez la
+                    télécharger pour l’ouvrir.
+                  </p>
+                ) : (
+                  <>
+                    <button
+                      className="button button-secondary"
+                      aria-pressed={zoomed}
+                      onClick={() => setZoomed(!zoomed)}
+                    >
+                      {zoomed ? "Réduire l’image" : "Agrandir l’image"}
+                    </button>
+                    <div
+                      className="image-scroll"
+                      tabIndex={0}
+                      aria-label="Aperçu de l’image, défilement disponible après agrandissement"
+                    >
+                      <img
+                        className={zoomed ? "is-zoomed" : ""}
+                        src={selected.href}
+                        alt={selected.alt ?? selected.label}
+                        onError={() => setImageError(true)}
+                      />
+                    </div>
+                  </>
+                )}
+              </>
+            ) : (
+              <p>
+                Aucun aperçu n’est disponible pour ce format. Téléchargez le
+                fichier pour l’ouvrir sur votre appareil.
+              </p>
+            )}
+            <a
+              className="button button-secondary"
+              href={selected.href}
+              download={selected.downloadName}
+            >
+              <Download size={16} /> Télécharger{" "}
+              {selected.format === "pdf" ? "le PDF" : "le fichier"}
+            </a>
+          </div>
+        )}
+      </section>
     </>
   );
 }

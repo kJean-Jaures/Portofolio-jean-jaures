@@ -8,7 +8,7 @@ export default defineConfig({
   base: './',
   build: {
     rollupOptions: {
-      input: { portfolio: 'index.html', jeux: 'jeux.html' },
+      input: { portfolio: 'index.html', jeux: 'jeux.html', projet: 'projet.html' },
     },
   },
 })

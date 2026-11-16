@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { projects, type Project } from "../data/projects";
+import { projects } from "../data/projects";
 import SectionHeading from "./SectionHeading";
-import ProjectModal from "./ProjectModal";
 import ProjectArtwork from "./ProjectArtwork";
 import { Reveal, TiltCard } from "./visuals/Reveal";
 import { useMotionSettings } from "./visuals/MotionSettings";
@@ -16,7 +15,6 @@ const filters = [
 ];
 
 export default function Projects() {
-  const [selected, setSelected] = useState<Project | null>(null);
   const [filter, setFilter] = useState("all");
   const { enabled } = useMotionSettings();
   const displayed = projects.filter(
@@ -99,11 +97,10 @@ export default function Projects() {
                         Explorer cette expérience <ArrowUpRight size={17} />
                       </span>
                     </div>
-                    <button
+                    <a
                       className="card-hit-area"
-                      onClick={() => setSelected(project)}
+                      href={`./projet.html?projet=${project.id}`}
                       aria-label={`Découvrir ${project.company} — ${project.title}`}
-                      aria-haspopup="dialog"
                     />
                   </article>
                 </TiltCard>
@@ -112,7 +109,6 @@ export default function Projects() {
           </AnimatePresence>
         </div>
       </Reveal>
-      <ProjectModal project={selected} onClose={() => setSelected(null)} />
     </section>
   );
 }

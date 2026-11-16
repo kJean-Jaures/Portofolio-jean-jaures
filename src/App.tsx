@@ -10,6 +10,7 @@ import WelcomeIntro from "./components/visuals/WelcomeIntro";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
+const ProjectPage = lazy(() => import("./components/ProjectPage"));
 const GamesPage = lazy(() => import("./components/GamesPage"));
 const InteractiveTerminal = lazy(
   () => import("./components/InteractiveTerminal"),
@@ -71,7 +72,11 @@ function Portfolio() {
 export default function App() {
   return (
     <MotionSettingsProvider>
-      {window.location.pathname.endsWith("/jeux.html") ? (
+      {window.location.pathname.endsWith("/projet.html") ? (
+        <Suspense fallback={<p className="lazy-loading" role="status">Chargement du projet…</p>}>
+          <ProjectPage />
+        </Suspense>
+      ) : window.location.pathname.endsWith("/jeux.html") ? (
         <Suspense fallback={<p className="lazy-loading" role="status">Chargement de l’espace jeux…</p>}>
           <GamesPage />
         </Suspense>

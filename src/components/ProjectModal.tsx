@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import type { Project } from "../data/projects";
 import ProjectArtwork from "./ProjectArtwork";
+import ProjectFiles from "./ProjectFiles";
 
 export default function ProjectModal({
   project,
@@ -93,6 +94,7 @@ export default function ProjectModal({
                 ))}
               </div>
             )}
+            <ProjectFiles key={project.id} project={project} />
             <h3>Le contexte</h3>
             <p>{project.context}</p>
             <h3>Ce que j’ai fait</h3>

@@ -3482,3 +3482,26 @@ button.tech-tile[aria-pressed="true"] {
 .tech-tile > .tech-concept-mark { display: flex; flex-direction: column; justify-content: center; gap: 3px; padding: 5px; background: #eaf2ff; }
 .tech-concept-mark small { font: 700 9px/1 monospace; letter-spacing: .02em; color: #285696; }
 .tech-tile > .tech-product-logo { padding: 6px; }
+
+.project-file-list { list-style: none; padding: 0; display: grid; gap: 12px; }
+.project-file-list li, .file-preview { border: 1px solid var(--line); border-radius: 10px; padding: 16px; background: var(--surface); }
+.project-file-list strong, .project-file-list small { display: block; overflow-wrap: anywhere; }
+.project-file-list small, .missing-document { color: var(--muted); font-size: 13px; }
+.file-actions, .preview-controls, .preview-header { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-block: 12px; }
+.file-actions .button, .file-preview .button { min-width: 0; white-space: normal; padding: 10px 12px; font-size: 12px; }
+.file-preview { margin-block: 20px; scroll-margin-top: 12px; }
+.preview-header { position: sticky; top: 0; z-index: 3; background: var(--surface); padding-block: 8px; justify-content: space-between; }
+.preview-header h4 { overflow-wrap: anywhere; flex: 1 1 160px; }
+.preview-controls { font-size: 13px; }
+.preview-controls select { background: var(--surface); color: var(--text); border: 1px solid var(--line); padding: 8px; border-radius: 6px; }
+.pdf-preview { min-width: 0; }
+.pdf-scroll, .image-scroll { max-width: 100%; overflow: auto; margin-block: 12px; max-height: 65dvh; }
+.pdf-scroll canvas { display: block; background: white; }
+.image-scroll img { display: block; width: 100%; height: auto; }
+.image-scroll img.is-zoomed { width: 200%; max-width: none; }
+.pdf-preview > a { display: inline-block; color: var(--muted); text-decoration: underline; font-size: 12px; margin-block: 10px; }
+@media (max-width: 600px) {
+  .project-file-list li, .file-preview { padding: 10px; }
+  .file-actions > .button { flex: 1 1 110px; }
+  .preview-header > .button { width: 100%; }
+}

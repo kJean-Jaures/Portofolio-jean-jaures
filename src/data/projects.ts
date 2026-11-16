@@ -3,6 +3,13 @@ import wisafeImage from "../assets/projet-wisafe.webp";
 import freelanceImage from "../assets/graphiste-freelance.webp";
 import merakyImage from "../assets/stage-assistant.webp";
 
+export interface ProjectFile {
+  label: string;
+  href: string;
+  format: "pdf" | "image" | "other";
+  downloadName: string;
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -19,10 +26,11 @@ export interface Project {
   context: string;
   contributions: string[];
   deliverables: string[];
+  files?: ProjectFile[];
   resources?: {
     label: string;
     href: string;
-    kind: "demo" | "document" | "pdf";
+    kind: "demo" | "document";
     downloadName?: string;
   }[];
 }
@@ -67,13 +75,15 @@ export const projects: Project[] = [
       "Un hotspot Wi-Fi sur Raspberry Pi, avec portail captif, contrôle d’accès et supervision du réseau.",
     image: wisafeImage,
     imageAlt: "Portail captif du projet WiSafe, hotspot Wi-Fi sécurisé",
-    resources: [
+    files: [
       {
-        label: "Télécharger la présentation WiSafe (PDF)",
-        href: "/documents/Projet-WiSafe.pdf",
-        kind: "pdf",
+        label: "Présentation WiSafe",
+        href: "./documents/Projet-WiSafe.pdf",
+        format: "pdf",
         downloadName: "Projet-WiSafe.pdf",
       },
+    ],
+    resources: [
       {
         label: "Voir le portail captif",
         href: "https://kjean-jaures.github.io/portail-captif-Pi-ESIEA/",
@@ -140,13 +150,15 @@ export const projects: Project[] = [
     image: fashionImage,
     imageAlt:
       "Accueil de l’application Fashion Afro Braids Paris développée pour une cliente",
-    resources: [
+    files: [
       {
-        label: "Télécharger la présentation Fashion Afro Braids (PDF)",
-        href: "/documents/Fashion_Afro_Braids_Presentation.pdf",
-        kind: "pdf",
+        label: "Présentation Fashion Afro Braids",
+        href: "./documents/Fashion_Afro_Braids_Presentation.pdf",
+        format: "pdf",
         downloadName: "Fashion_Afro_Braids_Presentation.pdf",
       },
+    ],
+    resources: [
       {
         label: "Voir Fashion Afro Braids",
         href: "https://fashionafrobraids.fr",

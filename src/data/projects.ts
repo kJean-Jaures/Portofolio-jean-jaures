@@ -6,7 +6,7 @@ import merakyImage from "../assets/stage-assistant.webp";
 export interface ProjectFile {
   label: string;
   href: string;
-  format: "pdf" | "image" | "other";
+  format: "pdf";
   downloadName: string;
 }
 

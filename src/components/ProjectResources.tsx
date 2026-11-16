@@ -4,7 +4,7 @@ import {
   Download,
   ExternalLink,
   Eye,
-  FileText,
+  Github,
   X,
 } from "lucide-react";
 import type { Project, ProjectFile } from "../data/projects";
@@ -12,24 +12,9 @@ import PdfPreview from "./PdfPreview";
 
 export default function ProjectResources({ project }: { project: Project }) {
   const [selected, setSelected] = useState<ProjectFile | null>(null);
-  const [zoomed, setZoomed] = useState(false);
-  const [imageError, setImageError] = useState(false);
   const preview = useRef<HTMLDivElement>(null);
   const trigger = useRef<HTMLButtonElement | null>(null);
-  const files: ProjectFile[] = [
-    ...(project.files ?? []),
-    ...(project.image
-      ? [
-          {
-            label: `Illustration — ${project.title}`,
-            href: project.image,
-            format: "image" as const,
-            alt: project.imageAlt,
-            downloadName: `${project.id}-illustration.webp`,
-          },
-        ]
-      : []),
-  ];
+  const files = project.files ?? [];
 
   useEffect(() => {
     if (!selected) return;
@@ -57,7 +42,7 @@ export default function ProjectResources({ project }: { project: Project }) {
               {resource.kind === "demo" ? (
                 <ExternalLink size={18} />
               ) : (
-                <FileText size={18} />
+                <Github size={18} />
               )}
               {resource.label}
               <ArrowUpRight size={16} />
@@ -70,9 +55,6 @@ export default function ProjectResources({ project }: { project: Project }) {
         {!project.files?.length && (
           <p className="missing-document">
             Aucun document de présentation n’est disponible pour ce projet.
-            {project.image
-              ? " Seule l’illustration ci-dessous est disponible."
-              : " Aucun fichier n’est joint."}
           </p>
         )}
         {!!files.length && (
@@ -82,11 +64,7 @@ export default function ProjectResources({ project }: { project: Project }) {
                 <div>
                   <strong>{file.label}</strong>
                   <small>
-                    {file.format === "pdf"
-                      ? "PDF de présentation"
-                      : file.format === "image"
-                        ? "Image · illustration"
-                        : "Fichier"}
+                    {file.format === "pdf" ? "PDF de présentation" : "Fichier"}
                   </small>
                 </div>
                 <div className="file-actions">
@@ -101,8 +79,6 @@ export default function ProjectResources({ project }: { project: Project }) {
                     }
                     onClick={(event) => {
                       trigger.current = event.currentTarget;
-                      setZoomed(false);
-                      setImageError(false);
                       setSelected(file);
                     }}
                   >
@@ -144,37 +120,6 @@ export default function ProjectResources({ project }: { project: Project }) {
             </div>
             {selected.format === "pdf" ? (
               <PdfPreview key={selected.href} href={selected.href} />
-            ) : selected.format === "image" ? (
-              <>
-                {imageError ? (
-                  <p role="alert">
-                    Impossible d’afficher cette image. Vous pouvez la
-                    télécharger pour l’ouvrir.
-                  </p>
-                ) : (
-                  <>
-                    <button
-                      className="button button-secondary"
-                      aria-pressed={zoomed}
-                      onClick={() => setZoomed(!zoomed)}
-                    >
-                      {zoomed ? "Réduire l’image" : "Agrandir l’image"}
-                    </button>
-                    <div
-                      className="image-scroll"
-                      tabIndex={0}
-                      aria-label="Aperçu de l’image, défilement disponible après agrandissement"
-                    >
-                      <img
-                        className={zoomed ? "is-zoomed" : ""}
-                        src={selected.href}
-                        alt={selected.alt ?? selected.label}
-                        onError={() => setImageError(true)}
-                      />
-                    </div>
-                  </>
-                )}
-              </>
             ) : (
               <p>
                 Aucun aperçu n’est disponible pour ce format. Téléchargez le

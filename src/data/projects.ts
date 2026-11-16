@@ -6,8 +6,7 @@ import merakyImage from "../assets/stage-assistant.webp";
 export interface ProjectFile {
   label: string;
   href: string;
-  format: "pdf" | "image" | "other";
-  alt?: string;
+  format: "pdf" | "other";
   downloadName: string;
 }
 
@@ -31,7 +30,7 @@ export interface Project {
   resources?: {
     label: string;
     href: string;
-    kind: "demo" | "document";
+    kind: "demo" | "github";
     downloadName?: string;
   }[];
 }
@@ -89,6 +88,11 @@ export const projects: Project[] = [
         label: "Voir le portail captif",
         href: "https://kjean-jaures.github.io/portail-captif-Pi-ESIEA/",
         kind: "demo",
+      },
+      {
+        label: "Voir le code du projet sur GitHub",
+        href: "https://github.com/kJean-Jaures/portail-captif-Pi-ESIEA",
+        kind: "github",
       },
     ],
     tags: ["Raspberry Pi", "Bash", "Zabbix", "Grafana", "Pare-feu"],
@@ -166,9 +170,9 @@ export const projects: Project[] = [
         kind: "demo",
       },
       {
-        label: "Présentation du projet",
+        label: "Voir la présentation du projet sur GitHub",
         href: "https://github.com/kJean-Jaures/Fashionafrobraids-presentation",
-        kind: "document",
+        kind: "github",
       },
     ],
     tags: ["React", "Next.js", "TypeScript", "Node.js", "SEO"],

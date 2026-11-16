@@ -3503,7 +3503,6 @@ button.tech-tile[aria-pressed="true"] {
 .project-page-header { position: relative; z-index: 2; display: flex; align-items: center; justify-content: space-between; gap: 16px; width: min(1180px, calc(100% - 48px)); margin: 28px auto; }
 .project-page-header > span { color: var(--muted); font-size: 12px; }
 .project-page { position: relative; z-index: 1; width: min(1180px, calc(100% - 48px)); margin: 0 auto 60px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; overflow: clip; }
-.project-page .dialog-art > img { display: block; width: 100%; max-height: 480px; object-fit: contain; height: auto; }
 .project-page .dialog-copy { padding: clamp(20px, 5vw, 64px); }
 .project-page h1 { font-size: clamp(28px, 4vw, 52px); line-height: 1.15; letter-spacing: -.04em; }
 .project-page .dialog-copy h2 { font-size: 22px; margin: 32px 0 16px; letter-spacing: -.02em; }
@@ -3517,9 +3516,6 @@ button.tech-tile[aria-pressed="true"] {
 .file-actions .button { min-width: 0; padding: 12px; font-size: 12px; }
 .project-page .preview-header { top: 0; }
 .preview-header h3 { overflow-wrap: anywhere; flex: 1 1 160px; }
-.image-scroll { max-width: 100%; max-height: 70dvh; overflow: auto; margin-block: 16px; }
-.image-scroll img { display: block; width: 100%; height: auto; }
-.image-scroll img.is-zoomed { width: 200%; max-width: none; }
 @media (max-width: 600px) {
   .project-page-header, .project-page { width: calc(100% - 24px); }
   .project-page-header { margin-block: 16px; }
